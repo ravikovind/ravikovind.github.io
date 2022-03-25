@@ -1,11 +1,11 @@
 {
-    "name": "Ravi_Kovind",
-    "short_name": "Ravi_Kovind",
+    "name": "me",
+    "short_name": "me",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Ravi_Kovind's Portfolio",
+    "description": "Ravi's Portfolio.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
