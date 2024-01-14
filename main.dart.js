@@ -26029,12 +26029,8 @@ _.b=a
 _.c=b
 _.f=_.e=$
 _.a=c},
-aI4(a,b,c){var s,r=null,q=A.aI([null,0],t.LO,t.S),p=a.length
-if(c!==!0)if(c==null)s=!0
-else s=!1
-else s=!0
-s=s?B.fd:r
-return new A.BM(new A.akn(!0,!0,!0,a,q),b,B.aq,!1,r,c,s,r,!1,r,0,r,p,B.aG,B.kN,r,B.X,r)},
+aI4(a,b,c){var s=null,r=A.aI([null,0],t.LO,t.S),q=a.length,p=B.fd
+return new A.BM(new A.akn(!0,!0,!0,a,r),b,B.aq,!1,s,!0,p,s,!1,s,0,s,q,B.aG,B.kN,s,B.X,s)},
 aI5(a,b,c,d){var s,r=null
 if(c==null){s=!0
 s=s?B.fd:r}else s=c
@@ -32395,7 +32391,7 @@ $1(a){var s=$.cI
 s=(s==null?$.cI=A.fM(self.window.flutterConfiguration):s).b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/3f3e560236539b7e2702f5ac790b2a4691b32d49/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/4a585b79294e830fa89c24924d58a27cc8fbf406/":s)+a},
 $S:41}
 A.ayF.prototype={
 $1(a){this.a.remove()
@@ -98209,7 +98205,7 @@ r=A.bA("Get in Touch",n,n,n,r==null?n:r.Bb(B.aH),B.bb,n)
 q=A.J(a).p3.ax
 q=A.bA("Open for new Opportunities.\nI\u2019m available for any information needed from my end.",n,n,n,q==null?n:q.J1(2.4,2.4),B.bb,n)
 p=A.aIy(n,n,n,n,n,n,n,n,n,n,n,n,n,n,new A.cb(A.ni(16),B.n),new A.aY(A.J(a).ax.b,1,B.x,-1),n,n,n,n)
-return A.aiG(l,A.aI4(A.a([i,k,h,A.en(n,A.fi(A.a([B.bV,s,B.bV,r,q,B.bV,A.aKO(B.nS,new A.c3(B.nk,A.bA("ravikumar2710999@gmail.com",n,n,n,A.J(a).p3.Q,n,n),n),new A.asa(a),p),B.hU,B.OJ,B.bV,B.TY,B.d5,A.bA("\xa9 "+A.D_(new A.dC(Date.now(),!1))+" Ravi Kovind.\nMade with Love\u2764\ufe0f in India \ud83c\uddee\ud83c\uddf3",n,n,n,n,B.bb,n),B.hU],m),B.aN,B.h6,B.aI),B.q,n,n,n,n,n,n,n,new A.at(j,0,j,0),n,n,1/0)],m),n,n),n)}}
+return A.aiG(l,A.aI4(A.a([i,k,h,A.en(n,A.fi(A.a([B.bV,s,B.bV,r,q,B.bV,A.aKO(B.nS,new A.c3(B.nk,A.bA("ravikumar2710999@gmail.com",n,n,n,A.J(a).p3.Q,n,n),n),new A.asa(a),p),B.hU,B.OJ,B.bV,B.TY,B.d5,A.bA("\xa9 "+A.D_(new A.dC(Date.now(),!1))+" Ravi Kovind.\nMade with Love\u2764\ufe0f in India \ud83c\uddee\ud83c\uddf3",n,n,n,n,B.bb,n),B.hU],m),B.aN,B.h6,B.aI),B.q,n,n,n,n,n,n,n,new A.at(j,0,j,0),n,n,1/0)],m),n,!0),n)}}
 A.asb.prototype={
 $0(){var s="Unkown",r=this.a.c
 r.toString
@@ -98334,7 +98330,7 @@ r.Cu(new A.adE(q,B.ov,B.ke,o))
 $.aCY.toString
 p=A.aZj(new A.agj(r))
 A.ag8(p,$.aEJ(),!0)
-return A.fi(A.a([m,A.i7(new A.TP(p,o),s.a.b,o)],t.p),B.aN,B.al,B.aI)},
+return A.fi(A.a([m,A.i7(new A.TP(p,o),s.a.b*0.75,o)],t.p),B.aN,B.al,B.aI)},
 $S:586}
 A.arX.prototype={
 $0(){var s=this.a
