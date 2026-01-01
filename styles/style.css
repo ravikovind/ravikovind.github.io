@@ -12,6 +12,7 @@
     --accent-glow: rgba(235, 29, 37, 0.3);
 
     --font-main: 'Ubuntu', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
     --radius-lg: 16px;
     --radius-md: 12px;
@@ -112,8 +113,9 @@ body {
 }
 
 .logo {
+    font-family: var(--font-mono);
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.02em;
@@ -231,12 +233,13 @@ p {
 }
 
 .hero-label {
+    font-family: var(--font-mono);
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 0.1em;
     color: var(--accent);
     margin-bottom: var(--spacing-sm);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .hero-title {
@@ -303,6 +306,16 @@ p {
     margin-bottom: var(--spacing-sm);
 }
 
+.skill-card h4 {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-xs);
+}
+
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -311,13 +324,15 @@ p {
 }
 
 .tags span {
-    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     padding: 6px 12px;
     border-radius: var(--radius-full);
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-secondary);
     border: 1px solid transparent;
     transition: all 0.2s;
+    letter-spacing: -0.02em;
 }
 
 .card:hover .tags span {
@@ -355,13 +370,15 @@ p {
 }
 
 .role {
+    font-family: var(--font-mono);
     color: var(--accent);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .date {
-    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     color: var(--text-secondary);
     background: rgba(255,255,255,0.05);
     padding: 4px 10px;
