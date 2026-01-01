@@ -1,0 +1,7 @@
+# robots.txt for ravikovind.github.io
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ravikovind.github.io/sitemap.xml
