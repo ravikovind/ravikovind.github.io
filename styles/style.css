@@ -578,19 +578,24 @@ body::before {
     border-left-color: var(--accent);
 }
 
-/* Hero Word Animation */
-.hero-title .word {
-    display: inline-block;
+/* Hero Animation */
+.hero-section {
     opacity: 0;
-    transform: translateY(20px);
-    animation: wordReveal 0.5s ease forwards;
+    transform: translateY(30px);
+    animation: heroReveal 0.8s ease forwards;
+    animation-delay: 0.2s;
 }
 
-@keyframes wordReveal {
+@keyframes heroReveal {
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.hero-title .accent,
+.hero-title .text-white {
+    display: inline;
 }
 
 /* Staggered Card Animation */

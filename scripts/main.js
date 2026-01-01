@@ -107,20 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Hero Title Word Animation ---
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const html = heroTitle.innerHTML;
-        const lines = html.split('<br>');
-
-        heroTitle.innerHTML = lines.map(line => {
-            const words = line.trim().split(/\s+/);
-            return words.map((word, i) => {
-                if (word.includes('<span')) {
-                    return word;
-                }
-                return `<span class="word" style="animation-delay: ${i * 0.08}s">${word}</span>`;
-            }).join(' ');
-        }).join('<br>');
+    // Simplified: Just add animation class to hero section, don't manipulate innerHTML
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) {
+        heroSection.classList.add('is-visible');
     }
 
     // --- Mobile Menu Toggle ---
