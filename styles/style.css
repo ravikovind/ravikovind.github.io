@@ -1178,23 +1178,36 @@ noscript .fade-in-section {
     transform: translateX(4px);
 }
 
-/* Open Source Section */
+/* Open Source Section - Horizontal Scroll */
+.opensource-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--card-bg);
+}
+
+.opensource-scroll-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.opensource-scroll-wrapper::-webkit-scrollbar-track {
+    background: var(--card-bg);
+    border-radius: 3px;
+}
+
+.opensource-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 3px;
+}
+
 .opensource-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
     gap: var(--spacing-md);
-}
-
-@media (min-width: 640px) {
-    .opensource-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .opensource-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    width: max-content;
+    padding: 0 var(--spacing-md);
 }
 
 .opensource-card {
@@ -1202,6 +1215,9 @@ noscript .fade-in-section {
     flex-direction: column;
     text-decoration: none;
     transition: all 0.3s ease;
+    flex-shrink: 0;
+    width: 280px;
+    min-width: 280px;
 }
 
 .opensource-card:hover {
