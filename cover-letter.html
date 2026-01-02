@@ -503,42 +503,42 @@
         manager: 'Hiring Manager',
         company: 'Company Name',
         position: 'Software Engineer',
-        location: 'Location',
-        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+        companyLocation: 'Location',
+        letterDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
       };
 
       // Get values from params or use defaults
-      const manager = params.get('manager') || defaults.manager;
-      const company = params.get('company') || defaults.company;
-      const position = params.get('position') || defaults.position;
-      const location = params.get('location') || defaults.location;
-      const date = params.get('date') || defaults.date;
+      let currentManager = params.get('manager') || defaults.manager;
+      let currentCompany = params.get('company') || defaults.company;
+      let currentPosition = params.get('position') || defaults.position;
+      let currentLocation = params.get('location') || defaults.companyLocation;
+      let currentDate = params.get('date') || defaults.letterDate;
 
       // Update DOM
       function updateLetter() {
-        document.getElementById('letter-date').textContent = date;
-        document.getElementById('letter-manager').textContent = manager;
-        document.getElementById('letter-company').textContent = company;
-        document.getElementById('letter-location').textContent = location;
-        document.getElementById('letter-position').textContent = position;
-        document.getElementById('letter-greeting').textContent = manager;
-        document.getElementById('letter-position-body').textContent = position;
-        document.getElementById('letter-company-body').textContent = company;
+        document.getElementById('letter-date').textContent = currentDate;
+        document.getElementById('letter-manager').textContent = currentManager;
+        document.getElementById('letter-company').textContent = currentCompany;
+        document.getElementById('letter-location').textContent = currentLocation;
+        document.getElementById('letter-position').textContent = currentPosition;
+        document.getElementById('letter-greeting').textContent = currentManager;
+        document.getElementById('letter-position-body').textContent = currentPosition;
+        document.getElementById('letter-company-body').textContent = currentCompany;
 
         // Update page title
-        if (company !== defaults.company) {
-          document.title = `Ravi Kumar | Cover Letter - ${company}`;
+        if (currentCompany !== defaults.company) {
+          document.title = `Ravi Kumar | Cover Letter - ${currentCompany}`;
         }
       }
 
       // Modal functions
       function openModal() {
         document.getElementById('modal').classList.add('active');
-        document.getElementById('input-manager').value = manager;
-        document.getElementById('input-company').value = company;
-        document.getElementById('input-position').value = position;
-        document.getElementById('input-location').value = location;
-        document.getElementById('input-date').value = date;
+        document.getElementById('input-manager').value = currentManager;
+        document.getElementById('input-company').value = currentCompany;
+        document.getElementById('input-position').value = currentPosition;
+        document.getElementById('input-location').value = currentLocation;
+        document.getElementById('input-date').value = currentDate;
       }
 
       function closeModal() {
@@ -549,16 +549,16 @@
         const newManager = document.getElementById('input-manager').value || defaults.manager;
         const newCompany = document.getElementById('input-company').value || defaults.company;
         const newPosition = document.getElementById('input-position').value || defaults.position;
-        const newLocation = document.getElementById('input-location').value || defaults.location;
-        const newDate = document.getElementById('input-date').value || defaults.date;
+        const newLocation = document.getElementById('input-location').value || defaults.companyLocation;
+        const newDate = document.getElementById('input-date').value || defaults.letterDate;
 
         // Build new URL with params
         const newParams = new URLSearchParams();
         if (newManager !== defaults.manager) newParams.set('manager', newManager);
         if (newCompany !== defaults.company) newParams.set('company', newCompany);
         if (newPosition !== defaults.position) newParams.set('position', newPosition);
-        if (newLocation !== defaults.location) newParams.set('location', newLocation);
-        if (newDate !== defaults.date) newParams.set('date', newDate);
+        if (newLocation !== defaults.companyLocation) newParams.set('location', newLocation);
+        if (newDate !== defaults.letterDate) newParams.set('date', newDate);
 
         const newUrl = window.location.pathname + (newParams.toString() ? '?' + newParams.toString() : '');
         window.history.pushState({}, '', newUrl);
