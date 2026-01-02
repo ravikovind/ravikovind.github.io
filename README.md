@@ -91,4 +91,6 @@ open index.html
 
 ---
 
-Built with clarity.
+**V 2.0.0** | Built with clarity.
+
+[View Repository](https://github.com/ravikovind/ravikovind.github.io)

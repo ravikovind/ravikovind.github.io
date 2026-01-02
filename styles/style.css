@@ -839,6 +839,39 @@ footer {
     color: rgba(255,255,255,0.3);
 }
 
+.template-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: var(--spacing-sm);
+    font-size: 0.8rem;
+}
+
+.template-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.template-link a:hover {
+    color: var(--accent);
+}
+
+.template-link a i {
+    width: 14px;
+    height: 14px;
+}
+
+.template-link .version {
+    font-family: var(--font-mono);
+    color: rgba(255,255,255,0.3);
+    font-size: 0.75rem;
+}
+
 /*
  * Animation Base
  */
