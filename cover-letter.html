@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ravi Kumar | Cover Letter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --accent: #EB1D25;
+        --text-primary: #1a1a1a;
+        --text-secondary: #555;
+        --border: #e0e0e0;
+        --bg: #ffffff;
+      }
+
+      body {
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 12px;
+        line-height: 1.7;
+        color: var(--text-primary);
+        background: var(--bg);
+        padding: 0;
+        margin: 0;
+      }
+
+      .cover-letter {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 50px;
+        background: white;
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid var(--accent);
+      }
+
+      .profile-pic {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--accent);
+        flex-shrink: 0;
+      }
+
+      .header-content {
+        flex: 1;
+      }
+
+      .name {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+
+      .title {
+        font-size: 12px;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .contact {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        font-size: 10px;
+        color: var(--text-secondary);
+        white-space: nowrap;
+      }
+
+      .contact a {
+        color: var(--text-secondary);
+        text-decoration: none;
+      }
+
+      .contact a:hover {
+        color: var(--accent);
+      }
+
+      .contact span {
+        color: var(--border);
+      }
+
+      /* Date & Recipient */
+      .date {
+        margin-bottom: 24px;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+
+      .recipient {
+        margin-bottom: 24px;
+      }
+
+      .recipient p {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .recipient .company-name {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      /* Subject */
+      .subject {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        padding: 10px 14px;
+        background: #f9f9f9;
+        border-left: 3px solid var(--accent);
+      }
+
+      /* Body */
+      .letter-body {
+        margin-bottom: 30px;
+      }
+
+      .letter-body p {
+        font-size: 12px;
+        margin-bottom: 16px;
+        text-align: justify;
+      }
+
+      .letter-body .greeting {
+        margin-bottom: 20px;
+      }
+
+      .letter-body .highlight {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .letter-body ul {
+        margin: 16px 0 16px 20px;
+        color: var(--text-secondary);
+      }
+
+      .letter-body li {
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+
+      /* Signature */
+      .signature {
+        margin-top: 30px;
+      }
+
+      .signature .closing {
+        margin-bottom: 24px;
+        font-size: 12px;
+      }
+
+      .signature .sign-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+
+      .signature .sign-title {
+        font-size: 12px;
+        color: var(--accent);
+      }
+
+      .signature .sign-links {
+        margin-top: 12px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        color: var(--text-secondary);
+      }
+
+      .signature .sign-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        margin-right: 16px;
+      }
+
+      .signature .sign-links a:hover {
+        color: var(--accent);
+      }
+
+      /* Buttons */
+      .action-buttons {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+      }
+
+      .print-btn, .edit-btn {
+        padding: 12px 24px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(235, 29, 37, 0.3);
+        transition: all 0.2s;
+      }
+
+      .edit-btn {
+        background: var(--text-secondary);
+        box-shadow: 0 4px 12px rgba(85, 85, 85, 0.3);
+      }
+
+      .print-btn:hover, .edit-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .print-btn:hover {
+        box-shadow: 0 6px 20px rgba(235, 29, 37, 0.4);
+      }
+
+      .edit-btn:hover {
+        box-shadow: 0 6px 20px rgba(85, 85, 85, 0.4);
+      }
+
+      .back-link {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .back-link:hover {
+        color: var(--accent);
+      }
+
+      /* Edit Modal */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-overlay.active {
+        display: flex;
+      }
+
+      .modal {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .modal h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: var(--text-primary);
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: var(--text-secondary);
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 14px;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .modal-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .modal-buttons button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .btn-apply {
+        background: var(--accent);
+        color: white;
+      }
+
+      .btn-cancel {
+        background: var(--border);
+        color: var(--text-primary);
+      }
+
+      /* Print Styles */
+      @media print {
+        body {
+          font-size: 11px;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .cover-letter {
+          padding: 20px 30px;
+          max-width: 100%;
+        }
+
+        .action-buttons,
+        .back-link,
+        .modal-overlay {
+          display: none !important;
+        }
+
+        .profile-pic {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        @page {
+          size: A4;
+          margin: 10mm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+    <div class="action-buttons">
+      <button class="edit-btn" onclick="openModal()">Edit</button>
+      <button class="print-btn" onclick="window.print()">Download PDF</button>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="modal">
+      <div class="modal">
+        <h3>Customize Cover Letter</h3>
+        <div class="form-group">
+          <label>Hiring Manager Name</label>
+          <input type="text" id="input-manager" placeholder="Hiring Manager" />
+        </div>
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" id="input-company" placeholder="Company Name" />
+        </div>
+        <div class="form-group">
+          <label>Position</label>
+          <input type="text" id="input-position" placeholder="Software Engineer" />
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="input-location" placeholder="City, Country" />
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="text" id="input-date" placeholder="January 2, 2026" />
+        </div>
+        <div class="modal-buttons">
+          <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button class="btn-apply" onclick="applyChanges()">Apply & Update URL</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-letter">
+      <!-- Header -->
+      <header class="header">
+        <img src="assets/logo.jpg" alt="Ravi Kumar" class="profile-pic" />
+        <div class="header-content">
+          <h1 class="name">Ravi Kumar</h1>
+          <p class="title">Software Engineer | Full-Stack | Mobile | Backend | Infrastructure</p>
+          <div class="contact">
+            <a href="mailto:hey.ravikovind@gmail.com">hey.ravikovind@gmail.com</a>
+            <span>|</span>
+            <a href="tel:+918433491441">+91 8433491441</a>
+            <span>|</span>
+            <a href="https://ravikovind.github.io" target="_blank">ravikovind.github.io</a>
+            <span>|</span>
+            <a href="https://linkedin.com/in/ravikovind" target="_blank">linkedin.com/in/ravikovind</a>
+            <span>|</span>
+            <a href="https://github.com/ravikovind" target="_blank">github.com/ravikovind</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Date -->
+      <div class="date" id="letter-date">
+        January 2, 2026
+      </div>
+
+      <!-- Recipient -->
+      <div class="recipient">
+        <p class="company-name" id="letter-manager">Hiring Manager</p>
+        <p id="letter-company">Company Name</p>
+        <p id="letter-location">Location</p>
+      </div>
+
+      <!-- Subject -->
+      <div class="subject">
+        Re: Application for <span id="letter-position">Software Engineer</span> Position
+      </div>
+
+      <!-- Letter Body -->
+      <div class="letter-body">
+        <p class="greeting">Dear <span id="letter-greeting">Hiring Manager</span>,</p>
+
+        <p>
+          I am writing to express my interest in the <span class="highlight" id="letter-position-body">Software Engineer</span> position at <span class="highlight" id="letter-company-body">your company</span>. With <span class="highlight">4+ years of hands-on experience</span> building production-grade applications across mobile, backend, and cloud infrastructure, I am confident in my ability to contribute meaningfully to your engineering team.
+        </p>
+
+        <p>
+          At <span class="highlight">TingTing</span>, I served as System Architect & Founding Developer, where I led the technical execution of a hyperlocal grocery delivery ecosystem. I designed and built the complete suite of applications — Customer, Store, Picker, and Delivery apps — serving <span class="highlight">30K+ users</span> and processing <span class="highlight">80K+ orders</span> with revenue exceeding <span class="highlight">₹1.5 Crore</span>. My responsibilities included:
+        </p>
+
+        <ul>
+          <li>Designing backend architecture with Node.js + MongoDB and real-time WebSocket communication</li>
+          <li>Integrating ERP systems (Zoho Gofrugal) and payment gateways (Juspay, PhonePe, Razorpay)</li>
+          <li>Managing DevOps on AWS and GCP Cloud Run with CI/CD pipelines</li>
+          <li>Building and deploying Flutter applications across iOS and Android platforms</li>
+        </ul>
+
+        <p>
+          Beyond my professional work, I actively contribute to the open-source community. My package <span class="highlight">flutter_lucide</span> has garnered 70 likes and 3.89K+ downloads on pub.dev. My <span class="highlight">Bhagavad Gita</span> app has been downloaded over 40K times with 2K daily active users.
+        </p>
+
+        <p>
+          I prioritize <span class="highlight">maintainability and ownership</span> over shortcuts and hype. I believe in writing clean code, building predictable systems, and thinking long-term rather than opting for quick fixes. I am looking for engineering roles where impact matters and ownership is valued.
+        </p>
+
+        <p>
+          I would welcome the opportunity to discuss how my experience and approach align with your team's goals. Thank you for considering my application.
+        </p>
+      </div>
+
+      <!-- Signature -->
+      <div class="signature">
+        <p class="closing">Sincerely,</p>
+        <p class="sign-name">Ravi Kumar</p>
+        <p class="sign-title">Software Engineer</p>
+        <div class="sign-links">
+          <a href="https://ravikovind.github.io">Portfolio</a>
+          <a href="https://github.com/ravikovind">GitHub</a>
+          <a href="https://linkedin.com/in/ravikovind">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Get query params
+      const params = new URLSearchParams(window.location.search);
+
+      // Default values
+      const defaults = {
+        manager: 'Hiring Manager',
+        company: 'Company Name',
+        position: 'Software Engineer',
+        location: 'Location',
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+      };
+
+      // Get values from params or use defaults
+      const manager = params.get('manager') || defaults.manager;
+      const company = params.get('company') || defaults.company;
+      const position = params.get('position') || defaults.position;
+      const location = params.get('location') || defaults.location;
+      const date = params.get('date') || defaults.date;
+
+      // Update DOM
+      function updateLetter() {
+        document.getElementById('letter-date').textContent = date;
+        document.getElementById('letter-manager').textContent = manager;
+        document.getElementById('letter-company').textContent = company;
+        document.getElementById('letter-location').textContent = location;
+        document.getElementById('letter-position').textContent = position;
+        document.getElementById('letter-greeting').textContent = manager;
+        document.getElementById('letter-position-body').textContent = position;
+        document.getElementById('letter-company-body').textContent = company;
+
+        // Update page title
+        if (company !== defaults.company) {
+          document.title = `Ravi Kumar | Cover Letter - ${company}`;
+        }
+      }
+
+      // Modal functions
+      function openModal() {
+        document.getElementById('modal').classList.add('active');
+        document.getElementById('input-manager').value = manager;
+        document.getElementById('input-company').value = company;
+        document.getElementById('input-position').value = position;
+        document.getElementById('input-location').value = location;
+        document.getElementById('input-date').value = date;
+      }
+
+      function closeModal() {
+        document.getElementById('modal').classList.remove('active');
+      }
+
+      function applyChanges() {
+        const newManager = document.getElementById('input-manager').value || defaults.manager;
+        const newCompany = document.getElementById('input-company').value || defaults.company;
+        const newPosition = document.getElementById('input-position').value || defaults.position;
+        const newLocation = document.getElementById('input-location').value || defaults.location;
+        const newDate = document.getElementById('input-date').value || defaults.date;
+
+        // Build new URL with params
+        const newParams = new URLSearchParams();
+        if (newManager !== defaults.manager) newParams.set('manager', newManager);
+        if (newCompany !== defaults.company) newParams.set('company', newCompany);
+        if (newPosition !== defaults.position) newParams.set('position', newPosition);
+        if (newLocation !== defaults.location) newParams.set('location', newLocation);
+        if (newDate !== defaults.date) newParams.set('date', newDate);
+
+        const newUrl = window.location.pathname + (newParams.toString() ? '?' + newParams.toString() : '');
+        window.history.pushState({}, '', newUrl);
+
+        // Update the page
+        window.location.reload();
+      }
+
+      // Close modal on outside click
+      document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+      });
+
+      // Initialize
+      updateLetter();
+    </script>
+  </body>
+</html>
