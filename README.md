@@ -84,7 +84,6 @@ open index.html
 ## Contact
 
 - **Email:** hey.ravikovind@gmail.com
-- **Phone:** +91 8433491441
 - **LinkedIn:** [ravikovind](https://linkedin.com/in/ravikovind)
 - **GitHub:** [ravikovind](https://github.com/ravikovind)
 - **X:** [@ravi_kovind](https://x.com/ravi_kovind)
