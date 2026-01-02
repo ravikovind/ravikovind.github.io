@@ -346,13 +346,57 @@
       @media print {
         body {
           font-size: 11px;
+          line-height: 1.5;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
 
         .cover-letter {
-          padding: 20px 30px;
+          padding: 15px 25px;
           max-width: 100%;
+        }
+
+        .header {
+          margin-bottom: 20px;
+          padding-bottom: 12px;
+        }
+
+        .date {
+          margin-bottom: 16px;
+        }
+
+        .recipient {
+          margin-bottom: 16px;
+        }
+
+        .subject {
+          margin-bottom: 14px;
+          padding: 8px 12px;
+        }
+
+        .letter-body {
+          margin-bottom: 20px;
+        }
+
+        .letter-body p {
+          margin-bottom: 12px;
+        }
+
+        .letter-body ul {
+          margin: 12px 0 12px 16px;
+        }
+
+        .letter-body li {
+          margin-bottom: 4px;
+        }
+
+        .signature {
+          margin-top: 20px;
+          page-break-inside: avoid;
+        }
+
+        .signature .closing {
+          margin-bottom: 16px;
         }
 
         .action-buttons,
@@ -368,7 +412,7 @@
 
         @page {
           size: A4;
-          margin: 10mm;
+          margin: 8mm;
         }
       }
     </style>
