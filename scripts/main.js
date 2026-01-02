@@ -113,6 +113,54 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSection.classList.add('is-visible');
     }
 
+    // --- Typing Animation ---
+    const typingText = document.querySelector('.typing-text');
+    if (typingText) {
+        const words = ['Clarity.', 'Correctness.', 'Scalability.', 'Ownership.', 'User Focus.', 'Ecosystems.'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isPaused = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+
+            if (isPaused) {
+                setTimeout(type, 1500);
+                isPaused = false;
+                isDeleting = true;
+                return;
+            }
+
+            if (isDeleting) {
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(type, 300);
+                    return;
+                }
+            } else {
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentWord.length) {
+                    isPaused = true;
+                    setTimeout(type, 100);
+                    return;
+                }
+            }
+
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(type, speed);
+        }
+
+        // Start typing after a short delay
+        setTimeout(type, 1000);
+    }
+
     // --- Mobile Menu Toggle ---
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');

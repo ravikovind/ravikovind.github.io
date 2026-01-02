@@ -182,26 +182,50 @@
       <section id="hero" class="hero-section container">
         <div id="particle-bg" aria-hidden="true"></div>
         <div class="hero-content">
-          <p class="hero-label">Software Engineer</p>
+          <p class="hero-label">
+            <span class="label-dot"></span>
+            <span class="label-text">Open to Work</span>
+            <span class="label-sep">|</span>
+            <span class="label-text">Software Engineer</span>
+            <span class="label-sep">|</span>
+            <span class="label-text">4+ Years Experience</span>
+          </p>
           <h1 class="hero-title">
-            Building Systems with <br />
-            <span class="text-white">Clarity</span> &
-            <span class="accent">Correctness</span>.
+            <span class="hero-greeting">Hey There!</span>
+            <span class="hero-greeting">I'm <span class="accent">Ravi</span></span>
+            <span class="hero-tagline">
+              I build systems with
+              <span class="typing-container">
+                <span class="typing-text"></span>
+                <span class="typing-cursor">|</span>
+              </span>
+            </span>
           </h1>
           <p class="hero-subtitle">
-            Full-Stack | Mobile | Backend | Infrastructure.<br />
+            <span class="hero-stack">Full-Stack</span>
+            <span class="hero-divider">|</span>
+            <span class="hero-stack">Mobile</span>
+            <span class="hero-divider">|</span>
+            <span class="hero-stack">Backend</span>
+            <span class="hero-divider">|</span>
+            <span class="hero-stack">Infrastructure</span>
+          </p>
+          <p class="hero-philosophy">
             I prioritize maintainability and ownership over shortcuts and hype.
+            Clean code, predictable systems, and long-term thinking over quick fixes.
           </p>
           <div class="hero-actions">
             <a href="#experience" class="btn btn-primary">View Work</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
             <a
               href="https://github.com/ravikovind"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn-outline"
+              class="btn btn-ghost"
               aria-label="View GitHub profile"
-              >GitHub</a
             >
+              <i data-lucide="github"></i>
+            </a>
           </div>
         </div>
       </section>
@@ -530,7 +554,102 @@
               <span>Docker</span>
             </div>
           </div>
+
         </div>
+        <p class="projects-more">
+          <a href="https://github.com/ravikovind" target="_blank" rel="noopener noreferrer">
+            ...and many more <i data-lucide="arrow-right"></i>
+          </a>
+        </p>
+      </section>
+
+      <!-- Open Source -->
+      <section id="opensource" class="container section-spacing">
+        <h2 class="section-title">Open <span class="accent">Source</span></h2>
+        <p class="section-tagline">
+          Packages and tools I've built for the community.
+        </p>
+        <div class="opensource-grid">
+          <!-- flutter_lucide -->
+          <a href="https://pub.dev/packages/flutter_lucide" target="_blank" rel="noopener noreferrer" class="card opensource-card">
+            <div class="opensource-header">
+              <div class="opensource-icon">
+                <i data-lucide="package"></i>
+              </div>
+              <div class="opensource-stats">
+                <span class="stat-badge"><i data-lucide="heart"></i> 70</span>
+                <span class="stat-badge"><i data-lucide="download"></i> 3.89k</span>
+              </div>
+            </div>
+            <h3>flutter_lucide</h3>
+            <p>Flutter package for Lucide Icons. 1450+ beautiful, consistent icons for your Flutter apps.</p>
+            <div class="tags">
+              <span>Flutter</span>
+              <span>Dart</span>
+              <span>Icons</span>
+            </div>
+          </a>
+          <!-- Bhagavad Gita -->
+          <a href="https://play.google.com/store/apps/details?id=com.gita" target="_blank" rel="noopener noreferrer" class="card opensource-card">
+            <div class="opensource-header">
+              <div class="opensource-icon">
+                <i data-lucide="book-open"></i>
+              </div>
+              <div class="opensource-stats">
+                <span class="stat-badge"><i data-lucide="download"></i> 40K+</span>
+                <span class="stat-badge"><i data-lucide="users"></i> 2K/day</span>
+              </div>
+            </div>
+            <h3>Bhagavad Gita</h3>
+            <p>Complete Bhagavad Gita with all 18 chapters. Free, no ads. Released May 2021.</p>
+            <div class="tags">
+              <span>Flutter</span>
+              <span>Android</span>
+              <span>Web</span>
+            </div>
+          </a>
+          <!-- gen-images -->
+          <a href="https://github.com/ravikovind/gen-images" target="_blank" rel="noopener noreferrer" class="card opensource-card">
+            <div class="opensource-header">
+              <div class="opensource-icon">
+                <i data-lucide="image"></i>
+              </div>
+              <div class="opensource-stats">
+                <span class="stat-badge"><i data-lucide="github"></i> Repo</span>
+              </div>
+            </div>
+            <h3>gen-images</h3>
+            <p>AI image generation pipeline using GPT for prompts and Gemini for high-quality image output.</p>
+            <div class="tags">
+              <span>Python</span>
+              <span>GPT</span>
+              <span>Gemini</span>
+            </div>
+          </a>
+          <!-- recipe_x -->
+          <a href="https://github.com/ravikovind/recipe_x" target="_blank" rel="noopener noreferrer" class="card opensource-card">
+            <div class="opensource-header">
+              <div class="opensource-icon">
+                <i data-lucide="chef-hat"></i>
+              </div>
+              <div class="opensource-stats">
+                <span class="stat-badge"><i data-lucide="github"></i> Repo</span>
+              </div>
+            </div>
+            <h3>recipe_x</h3>
+            <p>45K+ recipes worldwide. Free app with no ads, no tracking. Built 2 years ago, still used daily.</p>
+            <div class="tags">
+              <span>Flutter</span>
+              <span>Dart</span>
+              <span>Mobile</span>
+            </div>
+          </a>
+        </div>
+        <p class="projects-more">
+          <a href="https://pub.dev/publishers/voltvave.com/packages" target="_blank" rel="noopener noreferrer">
+            View all packages <i data-lucide="arrow-right"></i>
+          </a>
+        </p>
       </section>
 
       <!-- Tech Stack -->
@@ -650,6 +769,43 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- What I'm Building and Fun Stuff -->
+      <section class="container section-spacing">
+        <h2 class="section-title">What I'm <span class="accent">Building</span> and Fun Stuff</h2>
+        <p class="section-tagline">
+          Side projects, experiments, and things I'm excited about.
+        </p>
+        <div class="posts-scroll-wrapper">
+          <div class="posts-grid">
+            <!-- Dec 18, 2025 -->
+            <blockquote class="twitter-tweet" data-theme="dark" data-width="280">
+              <a href="https://twitter.com/ravi_kovind/status/2001691016739635227"></a>
+            </blockquote>
+            <!-- Dec 3, 2025 -->
+            <blockquote class="twitter-tweet" data-theme="dark" data-width="280">
+              <a href="https://twitter.com/ravi_kovind/status/1996155227029028876"></a>
+            </blockquote>
+            <!-- Dec 1, 2025 -->
+            <blockquote class="twitter-tweet" data-theme="dark" data-width="280">
+              <a href="https://twitter.com/ravi_kovind/status/1995469077587148987"></a>
+            </blockquote>
+            <!-- Nov 14, 2025 -->
+            <blockquote class="twitter-tweet" data-theme="dark" data-width="280">
+              <a href="https://twitter.com/ravi_kovind/status/1989358677074268200"></a>
+            </blockquote>
+            <!-- Sep 18, 2025 -->
+            <blockquote class="twitter-tweet" data-theme="dark" data-width="280">
+              <a href="https://twitter.com/ravi_kovind/status/1968680353716945339"></a>
+            </blockquote>
+            <!-- Apr 15, 2025 -->
+            <blockquote class="twitter-tweet" data-theme="dark" data-width="280">
+              <a href="https://twitter.com/ravi_kovind/status/1912146619589370220"></a>
+            </blockquote>
+          </div>
+        </div>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </section>
 
       <!-- CTA Section -->
