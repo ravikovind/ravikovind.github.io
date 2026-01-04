@@ -77,11 +77,11 @@
     <!-- Web App Manifest -->
     <link rel="manifest" href="assets/site.webmanifest" />
 
-    <!-- Google Fonts: Ubuntu + JetBrains Mono -->
+    <!-- Google Fonts: Lato + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Ubuntu:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Lato:wght@300;400;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -812,11 +812,23 @@
 
       <!-- CTA Section -->
       <section class="container section-spacing cta-section">
-        <p class="cta-tagline">
-          Got an idea?
-          <a href="#contact">Let's <span class="accent">talk</span></a
-          >.
-        </p>
+        <div class="cta-content">
+          <div class="cta-icon">
+            <i data-lucide="lightbulb"></i>
+          </div>
+          <h2 class="cta-title">Got an idea?</h2>
+          <p class="cta-subtitle">Let's turn it into something real.</p>
+          <div class="cta-actions">
+            <a href="#contact" class="btn btn-primary">
+              <i data-lucide="message-circle"></i>
+              Let's Talk
+            </a>
+            <a href="mailto:hey.ravikovind@gmail.com" class="btn btn-outline">
+              <i data-lucide="mail"></i>
+              Email Me
+            </a>
+          </div>
+        </div>
       </section>
     </main>
 

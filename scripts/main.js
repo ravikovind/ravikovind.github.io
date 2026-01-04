@@ -211,4 +211,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Tech Stack Manual Scroll with Auto-Resume ---
+    const techScrollWrapper = document.querySelector('.tech-scroll-wrapper');
+    if (techScrollWrapper) {
+        let scrollTimeout;
+
+        // Pause auto-scroll on manual scroll
+        techScrollWrapper.addEventListener('scroll', () => {
+            techScrollWrapper.classList.add('manual-scroll');
+
+            // Clear existing timeout
+            clearTimeout(scrollTimeout);
+
+            // Resume auto-scroll after 3 seconds of no interaction
+            scrollTimeout = setTimeout(() => {
+                techScrollWrapper.classList.remove('manual-scroll');
+            }, 3000);
+        });
+
+        // Pause on touch/drag
+        techScrollWrapper.addEventListener('touchstart', () => {
+            techScrollWrapper.classList.add('manual-scroll');
+            clearTimeout(scrollTimeout);
+        });
+
+        techScrollWrapper.addEventListener('touchend', () => {
+            scrollTimeout = setTimeout(() => {
+                techScrollWrapper.classList.remove('manual-scroll');
+            }, 3000);
+        });
+    }
+
 });

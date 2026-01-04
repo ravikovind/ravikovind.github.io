@@ -13,7 +13,7 @@
     const connectionDistance = 120;
 
     // Colors
-    const accentColor = { r: 235, g: 29, b: 37 }; // #EB1D25
+    const accentColor = { r: 79, g: 70, b: 229 }; // #4F46E5
     const whiteColor = { r: 255, g: 255, b: 255 };
 
     class Particle {
@@ -61,7 +61,7 @@
                     this.x, this.y, this.radius * 3
                 );
                 gradient.addColorStop(0, `rgba(${accentColor.r}, ${accentColor.g}, ${accentColor.b}, 0.3)`);
-                gradient.addColorStop(1, 'rgba(235, 29, 37, 0)');
+                gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
                 ctx.fillStyle = gradient;
                 ctx.fill();
             }
