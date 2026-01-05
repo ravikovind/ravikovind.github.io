@@ -1124,15 +1124,30 @@ noscript .fade-in-section {
     height: 20px;
 }
 
-.project-links .badge {
-    font-size: 0.7rem;
-    font-weight: 600;
+/* Flagship badge - corner ribbon style */
+.project-card.flagship {
+    position: relative;
+    overflow: hidden;
+}
+
+.flagship-badge {
+    position: absolute;
+    top: 12px;
+    right: -30px;
+    font-size: 0.65rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 4px 10px;
-    background: linear-gradient(135deg, var(--accent), rgba(79, 70, 229, 0.7));
+    letter-spacing: 0.08em;
+    padding: 4px 36px;
+    background: linear-gradient(135deg, var(--accent), #6366f1);
     color: #fff;
-    border-radius: var(--radius-sm);
+    transform: rotate(45deg);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
+    z-index: 10;
+}
+
+.project-card.flagship .project-links {
+    margin-right: 40px;
 }
 
 .project-card h3 {
