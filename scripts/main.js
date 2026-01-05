@@ -211,33 +211,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Tech Stack Manual Scroll with Auto-Resume ---
+    // --- Tech Stack Auto-Scroll with Manual Override ---
     const techScrollWrapper = document.querySelector('.tech-scroll-wrapper');
     if (techScrollWrapper) {
-        let scrollTimeout;
+        let isPaused = false;
+        let resumeTimeout;
+        const scrollSpeed = 0.5; // pixels per frame
 
-        // Pause auto-scroll on manual scroll
-        techScrollWrapper.addEventListener('scroll', () => {
-            techScrollWrapper.classList.add('manual-scroll');
+        // Auto-scroll function
+        function autoScroll() {
+            if (!isPaused) {
+                techScrollWrapper.scrollLeft += scrollSpeed;
+                // Reset to start when reaching halfway (for seamless loop)
+                const maxScroll = techScrollWrapper.scrollWidth / 2;
+                if (techScrollWrapper.scrollLeft >= maxScroll) {
+                    techScrollWrapper.scrollLeft = 0;
+                }
+            }
+            requestAnimationFrame(autoScroll);
+        }
 
-            // Clear existing timeout
-            clearTimeout(scrollTimeout);
+        // Start auto-scroll
+        requestAnimationFrame(autoScroll);
 
-            // Resume auto-scroll after 3 seconds of no interaction
-            scrollTimeout = setTimeout(() => {
-                techScrollWrapper.classList.remove('manual-scroll');
-            }, 3000);
+        // Pause on hover
+        techScrollWrapper.addEventListener('mouseenter', () => {
+            isPaused = true;
+            clearTimeout(resumeTimeout);
         });
 
-        // Pause on touch/drag
+        techScrollWrapper.addEventListener('mouseleave', () => {
+            resumeTimeout = setTimeout(() => {
+                isPaused = false;
+            }, 1000);
+        });
+
+        // Pause on manual scroll/touch
+        let lastScrollLeft = 0;
+        techScrollWrapper.addEventListener('scroll', () => {
+            // Detect manual scroll (significant change)
+            if (Math.abs(techScrollWrapper.scrollLeft - lastScrollLeft) > 2) {
+                isPaused = true;
+                clearTimeout(resumeTimeout);
+                resumeTimeout = setTimeout(() => {
+                    isPaused = false;
+                }, 3000);
+            }
+            lastScrollLeft = techScrollWrapper.scrollLeft;
+        });
+
         techScrollWrapper.addEventListener('touchstart', () => {
-            techScrollWrapper.classList.add('manual-scroll');
-            clearTimeout(scrollTimeout);
+            isPaused = true;
+            clearTimeout(resumeTimeout);
         });
 
         techScrollWrapper.addEventListener('touchend', () => {
-            scrollTimeout = setTimeout(() => {
-                techScrollWrapper.classList.remove('manual-scroll');
+            resumeTimeout = setTimeout(() => {
+                isPaused = false;
             }, 3000);
         });
     }
