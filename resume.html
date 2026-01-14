@@ -18,7 +18,7 @@
       }
 
       :root {
-        --accent: #4F46E5;
+        --accent: #4f46e5;
         --text-primary: #1a1a1a;
         --text-secondary: #555;
         --border: #e0e0e0;
@@ -26,9 +26,9 @@
       }
 
       body {
-        font-family: 'Lato', sans-serif;
-        font-size: 12px;
-        line-height: 1.5;
+        font-family: "Lato", sans-serif;
+        font-size: 14px;
+        line-height: 1.35;
         color: var(--text-primary);
         background: var(--bg);
         padding: 0;
@@ -38,36 +38,36 @@
       .resume {
         max-width: 800px;
         margin: 0 auto;
-        padding: 30px 40px;
+        padding: 16px 24px;
         background: white;
       }
 
       /* Header */
       .header {
-        margin-bottom: 16px;
-        padding-bottom: 12px;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
         border-bottom: 2px solid var(--accent);
       }
 
       .name {
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 700;
         color: var(--text-primary);
         margin-bottom: 2px;
       }
 
       .title {
-        font-size: 12px;
+        font-size: 14px;
         color: var(--accent);
         font-weight: 500;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
       }
 
       .contact {
         display: flex;
         flex-wrap: nowrap;
-        gap: 8px;
-        font-size: 10px;
+        gap: 10px;
+        font-size: 12px;
         color: var(--text-secondary);
         white-space: nowrap;
       }
@@ -87,11 +87,11 @@
 
       /* Sections */
       .section {
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
 
       .section-title {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -104,7 +104,8 @@
       /* Summary */
       .summary {
         color: var(--text-secondary);
-        line-height: 1.6;
+        font-size: 14px;
+        line-height: 1.5;
       }
 
       /* Experience */
@@ -120,35 +121,35 @@
       }
 
       .company {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700;
         color: var(--text-primary);
       }
 
       .date {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
         color: var(--text-secondary);
       }
 
       .role {
-        font-size: 12px;
+        font-size: 14px;
         color: var(--accent);
         font-weight: 500;
-        margin-bottom: 4px;
+        margin-bottom: 2px;
       }
 
       .location {
-        font-size: 12px;
+        font-size: 14px;
         color: var(--text-secondary);
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
 
       .experience-item ul {
         margin-left: 16px;
         color: var(--text-secondary);
-        font-size: 12px;
-        line-height: 1.6;
+        font-size: 14px;
+        line-height: 1.45;
       }
 
       .experience-item li {
@@ -157,10 +158,10 @@
 
       .stats {
         display: flex;
-        gap: 12px;
+        gap: 10px;
         margin: 6px 0;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
       }
 
       .stat {
@@ -178,25 +179,25 @@
       .skills-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px 24px;
-        font-size: 12px;
+        gap: 6px 18px;
+        font-size: 14px;
       }
 
       .skill-row {
         display: flex;
-        gap: 8px;
+        gap: 10px;
       }
 
       .skill-label {
         font-weight: 600;
         color: var(--text-primary);
-        min-width: 90px;
+        min-width: 92px;
       }
 
       .skill-value {
         color: var(--text-secondary);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
       }
 
       /* Projects */
@@ -219,7 +220,7 @@
 
       .project-name {
         font-weight: 700;
-        font-family: 'JetBrains Mono', monospace;
+        font-family: "JetBrains Mono", monospace;
         font-size: 12px;
         color: var(--text-primary);
       }
@@ -255,7 +256,7 @@
       }
 
       .project-tech {
-        font-family: 'JetBrains Mono', monospace;
+        font-family: "JetBrains Mono", monospace;
         font-size: 10px;
         color: var(--accent);
         text-align: left;
@@ -287,7 +288,7 @@
         color: white;
         border: none;
         border-radius: 8px;
-        font-family: 'Lato', sans-serif;
+        font-family: "Lato", sans-serif;
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
@@ -313,17 +314,17 @@
         color: var(--accent);
       }
 
-      /* Print Styles */
+      /* Print Styles - Standard A4 Resume */
       @media print {
         body {
-          font-size: 11px;
+          font-size: 12px;
           line-height: 1.4;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
 
         .resume {
-          padding: 12px 16px;
+          padding: 0;
           max-width: 100%;
         }
 
@@ -333,19 +334,19 @@
         }
 
         .section {
-          margin-bottom: 10px;
+          margin-bottom: 12px;
           page-break-inside: avoid;
         }
 
         .section-title {
-          font-size: 11px;
-          margin-bottom: 8px;
-          padding-bottom: 3px;
+          font-size: 12px;
+          margin-bottom: 6px;
+          padding-bottom: 4px;
         }
 
         .header {
-          margin-bottom: 12px;
-          padding-bottom: 10px;
+          margin-bottom: 10px;
+          padding-bottom: 8px;
         }
 
         .name {
@@ -353,86 +354,89 @@
         }
 
         .title {
-          font-size: 11px;
+          font-size: 12px;
+          margin-bottom: 4px;
         }
 
         .contact {
           font-size: 10px;
+          gap: 8px;
         }
 
         .summary {
-          font-size: 11px;
-          line-height: 1.5;
+          font-size: 12px;
+          line-height: 1.4;
         }
 
         .experience-item {
           margin-bottom: 10px;
+          page-break-inside: avoid;
         }
 
         .experience-item ul {
-          font-size: 11px;
-          line-height: 1.5;
+          font-size: 12px;
+          line-height: 1.4;
+          margin-left: 14px;
         }
 
         .experience-item li {
-          margin-bottom: 3px;
+          margin-bottom: 2px;
         }
 
         .company {
-          font-size: 13px;
+          font-size: 14px;
         }
 
-        .role, .date {
-          font-size: 11px;
+        .role,
+        .date {
+          font-size: 12px;
+        }
+
+        .location {
+          font-size: 10px;
+          margin-bottom: 4px;
         }
 
         .stats {
-          margin: 5px 0;
-          gap: 10px;
-          font-size: 11px;
+          margin: 4px 0;
+          gap: 6px;
+          font-size: 10px;
         }
 
         .stat {
-          padding: 3px 6px;
+          padding: 2px 6px;
         }
 
         .skills-grid {
-          gap: 6px 20px;
-          font-size: 11px;
+          gap: 4px 14px;
+          font-size: 12px;
+        }
+
+        .skill-label {
+          min-width: 80px;
         }
 
         .skill-value {
           font-size: 10px;
         }
 
-        .projects-list {
-          gap: 4px;
-        }
-
-        .project-row {
-          padding: 4px 10px;
-          gap: 10px;
-        }
-
-        .project-name {
-          font-size: 11px;
-        }
-
-        .project-desc {
-          font-size: 11px;
-        }
-
-        .project-tech {
-          font-size: 9px;
-        }
-
         .education-item {
-          font-size: 11px;
+          font-size: 12px;
+        }
+
+        /* Keep experience items together */
+        .experience-item {
+          page-break-inside: avoid;
+        }
+
+        /* Prevent orphan section titles */
+        .section-title {
+          page-break-after: avoid;
         }
 
         @page {
           size: A4;
-          margin: 6mm;
+          margin: 10mm;
         }
       }
     </style>
@@ -448,15 +452,23 @@
           <h1 class="name">Ravi Kumar</h1>
           <p class="title">Founding Engineer | Backend & Full-Stack | AI/MCP</p>
           <div class="contact">
-            <a href="mailto:hey.ravikovind@gmail.com">hey.ravikovind@gmail.com</a>
+            <a href="mailto:hey.ravikovind@gmail.com"
+              >hey.ravikovind@gmail.com</a
+            >
             <span>|</span>
             <a href="tel:+918433491441">+91 8433491441</a>
             <span>|</span>
-            <a href="https://ravikovind.github.io" target="_blank">ravikovind.github.io</a>
+            <a href="https://ravikovind.github.io" target="_blank"
+              >ravikovind.github.io</a
+            >
             <span>|</span>
-            <a href="https://linkedin.com/in/ravikovind" target="_blank">linkedin.com/in/ravikovind</a>
+            <a href="https://linkedin.com/in/ravikovind" target="_blank"
+              >linkedin.com/in/ravikovind</a
+            >
             <span>|</span>
-            <a href="https://github.com/ravikovind" target="_blank">github.com/ravikovind</a>
+            <a href="https://github.com/ravikovind" target="_blank"
+              >github.com/ravikovind</a
+            >
           </div>
         </div>
       </header>
@@ -465,7 +477,11 @@
       <section class="section">
         <h2 class="section-title">Summary</h2>
         <p class="summary">
-          Backend-focused full-stack engineer specializing in high-scale Node.js systems, real-time infrastructure, and AI integration. Built production platforms processing 80K+ orders with <200ms P95 latency. Developed cross-platform MCP engine enabling AI/LLM capabilities across 6 platforms. Strong bias toward systems thinking, production ownership, and pragmatic architecture. Delivered 0→1 products serving 30K+ users with 99.9% uptime. NIT Allahabad.
+          Backend-focused full-stack engineer specializing in high-scale Node.js
+          systems, Flutter, real-time infrastructure and AI integration. Built
+          production platforms processing 80K+ orders at &lt;200ms P95 latency
+          with 99.9% uptime. Strong bias toward system design, production
+          ownership, and pragmatic architecture. NIT Allahabad.
         </p>
       </section>
 
@@ -481,55 +497,221 @@
           <p class="role">Founding Engineer</p>
           <p class="location">Bengaluru, Karnataka, India</p>
           <ul>
-            <li>Architected multi-tenant SaaS infrastructure from scratch: JWT + refresh token rotation, RBAC with row-level isolation, comprehensive audit logging, and token-bucket rate limiting</li>
-            <li>Deployed production systems on AWS (EC2, NGINX reverse proxy, CloudFront CDN, WAF, S3, SES) achieving 99.9% uptime across 30+ stores</li>
+            <li>
+              Architected multi-tenant SaaS infrastructure from scratch: JWT +
+              refresh token rotation, RBAC with row-level isolation,
+              comprehensive audit logging, and token-bucket rate limiting
+            </li>
+            <li>
+              Deployed production systems on AWS (EC2, NGINX reverse proxy,
+              CloudFront CDN, WAF, S3, SES) achieving 99.9% uptime across 30+
+              stores
+            </li>
           </ul>
-          <p class="role" style="margin-top: 8px;">Flagship Product:
-            Zoober
-            <a href="https://zoober.in" title="Web App" style="color: var(--text-secondary); margin-left: 6px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
-            <a href="https://play.google.com/store/apps/details?id=com.voltvave.app" title="Play Store" style="color: var(--text-secondary); margin-left: 4px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor; vertical-align: middle;"><path d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"/></svg></a>
-            <a href="https://apps.apple.com/in/app/zoober-buy-book-delivery/id6742256589" title="App Store" style="color: var(--text-secondary); margin-left: 4px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor; vertical-align: middle;"><path d="M11.6734 7.222C10.7974 7.222 9.4414 6.226 8.0134 6.262C6.1294 6.286 4.4014 7.354 3.4294 9.046C1.4734 12.442 2.9254 17.458 4.8334 20.218C5.7694 21.562 6.8734 23.074 8.3374 23.026C9.7414 22.966 10.2694 22.114 11.9734 22.114C13.6654 22.114 14.1454 23.026 15.6334 22.99C17.1454 22.966 18.1054 21.622 19.0294 20.266C20.0974 18.706 20.5414 17.194 20.5654 17.11C20.5294 17.098 17.6254 15.982 17.5894 12.622C17.5654 9.814 19.8814 8.47 19.9894 8.41C18.6694 6.478 16.6414 6.262 15.9334 6.214C14.0854 6.07 12.5374 7.222 11.6734 7.222ZM14.7934 4.39C15.5734 3.454 16.0894 2.146 15.9454 0.85C14.8294 0.898 13.4854 1.594 12.6814 2.53C11.9614 3.358 11.3374 4.69 11.5054 5.962C12.7414 6.058 14.0134 5.326 14.7934 4.39Z"/></svg></a>
+          <p class="role" style="margin-top: 8px">
+            Flagship Product: Zoober
+            <a
+              href="https://zoober.in"
+              title="Web App"
+              style="color: var(--text-secondary); margin-left: 6px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-width: 2;
+                  vertical-align: middle;
+                "
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                /></svg
+            ></a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.voltvave.app"
+              title="Play Store"
+              style="color: var(--text-secondary); margin-left: 4px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: currentColor;
+                  vertical-align: middle;
+                "
+              >
+                <path
+                  d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"
+                /></svg
+            ></a>
+            <a
+              href="https://apps.apple.com/in/app/zoober-buy-book-delivery/id6742256589"
+              title="App Store"
+              style="color: var(--text-secondary); margin-left: 4px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: currentColor;
+                  vertical-align: middle;
+                "
+              >
+                <path
+                  d="M11.6734 7.222C10.7974 7.222 9.4414 6.226 8.0134 6.262C6.1294 6.286 4.4014 7.354 3.4294 9.046C1.4734 12.442 2.9254 17.458 4.8334 20.218C5.7694 21.562 6.8734 23.074 8.3374 23.026C9.7414 22.966 10.2694 22.114 11.9734 22.114C13.6654 22.114 14.1454 23.026 15.6334 22.99C17.1454 22.966 18.1054 21.622 19.0294 20.266C20.0974 18.706 20.5414 17.194 20.5654 17.11C20.5294 17.098 17.6254 15.982 17.5894 12.622C17.5654 9.814 19.8814 8.47 19.9894 8.41C18.6694 6.478 16.6414 6.262 15.9334 6.214C14.0854 6.07 12.5374 7.222 11.6734 7.222ZM14.7934 4.39C15.5734 3.454 16.0894 2.146 15.9454 0.85C14.8294 0.898 13.4854 1.594 12.6814 2.53C11.9614 3.358 11.3374 4.69 11.5054 5.962C12.7414 6.058 14.0134 5.326 14.7934 4.39Z"
+                /></svg
+            ></a>
           </p>
-          <p class="location" style="margin-top: 2px;">Multi-Tenant Hyperlocal Commerce Platform | 30+ Store Segments | Express + MongoDB + Flutter</p>
+          <p class="location" style="margin-top: 2px">
+            Multi-Tenant Hyperlocal Commerce Platform | 30+ Store Segments |
+            Express + MongoDB + Flutter
+          </p>
           <ul>
-            <li>Designed Express.js REST API with 23 MongoDB collections using 2dsphere geospatial indexes for <100ms radius-based store discovery under concurrent load</li>
-            <li>Implemented idempotent 7-stage order state machine with optimistic locking to handle duplicate WebSocket events during network partitions</li>
-            <li>Built real-time WebSocket sync layer broadcasting order updates to 1000+ concurrent connections with automatic reconnection and event replay</li>
-            <li>Architected 4-app Flutter ecosystem (Customer, Merchant, Rider, Admin) with BLoC state management and go_router deep linking across Android, iOS, Web</li>
-            <li>Integrated payment gateways (Juspay, PhonePe, Razorpay) with webhook signature verification and idempotent transaction handling</li>
+            <li>
+              Designed Express.js REST API with 23 MongoDB collections using
+              2dsphere geospatial indexes for <100ms radius-based store
+              discovery under concurrent load
+            </li>
+            <li>
+              Implemented idempotent 7-stage order state machine with optimistic
+              locking to handle duplicate WebSocket events during network
+              partitions
+            </li>
+            <li>
+              Built real-time WebSocket sync layer broadcasting order updates to
+              1000+ concurrent connections with automatic reconnection and event
+              replay
+            </li>
+            <li>
+              Architected 4-app Flutter ecosystem (Customer, Merchant, Rider,
+              Admin) with BLoC state management and go_router deep linking
+              across Android, iOS, Web
+            </li>
+            <li>
+              Integrated payment gateways (Juspay, PhonePe, Razorpay) with
+              webhook signature verification and idempotent transaction handling
+            </li>
           </ul>
-          <p class="role" style="margin-top: 8px;">Internal Tool:
-            MCPVave
-            <a href="https://mcpvave.voltvave.com/public/index.html" title="Web" style="color: var(--text-secondary); margin-left: 6px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; vertical-align: middle;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          <p class="role" style="margin-top: 8px">
+            Internal Tool: MCPVave
+            <a
+              href="https://mcpvave.voltvave.com/public/index.html"
+              title="Web"
+              style="color: var(--text-secondary); margin-left: 6px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-width: 2;
+                  vertical-align: middle;
+                "
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" /></svg
+            ></a>
           </p>
-          <p class="location" style="margin-top: 2px;">AI Engine — Cross-Platform MCP Client | Foundation for AI-Powered Commerce</p>
+          <p class="location" style="margin-top: 2px">
+            AI Engine — Cross-Platform MCP Client | Foundation for AI-Powered
+            Commerce
+          </p>
           <ul>
-            <li>Built Model Context Protocol (MCP) engine enabling standardized AI/LLM-to-data communication via SSE/STDIO across Android, iOS, Windows, macOS, Linux, and Web</li>
-            <li>Developed internal packages: mcp_client (protocol implementation) and llm_shared (unified LLM provider interface for Claude, GPT, Gemini)</li>
-            <li>Powering AI capabilities: intelligent inventory management, demand forecasting, automated customer support, and smart order routing across Voltvave products</li>
+            <li>
+              Built Model Context Protocol (MCP) engine enabling standardized
+              AI/LLM-to-data communication via SSE/STDIO across Android, iOS,
+              Windows, macOS, Linux, and Web
+            </li>
+            <li>
+              Developed internal packages: mcp_client (protocol implementation)
+              and llm_shared (unified LLM provider interface for Claude, GPT,
+              Gemini)
+            </li>
+            <li>
+              Powering AI capabilities: intelligent inventory management, demand
+              forecasting, automated customer support, and smart order routing
+              across Voltvave products
+            </li>
           </ul>
         </div>
 
         <div class="experience-item">
           <div class="experience-header">
-            <span class="company">TingTing <a href="https://apps.apple.com/in/app/tingting-groceries-in-mins/id6464051281" title="App Store" style="color: var(--text-secondary); margin-left: 8px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor; vertical-align: middle;"><path d="M11.6734 7.222C10.7974 7.222 9.4414 6.226 8.0134 6.262C6.1294 6.286 4.4014 7.354 3.4294 9.046C1.4734 12.442 2.9254 17.458 4.8334 20.218C5.7694 21.562 6.8734 23.074 8.3374 23.026C9.7414 22.966 10.2694 22.114 11.9734 22.114C13.6654 22.114 14.1454 23.026 15.6334 22.99C17.1454 22.966 18.1054 21.622 19.0294 20.266C20.0974 18.706 20.5414 17.194 20.5654 17.11C20.5294 17.098 17.6254 15.982 17.5894 12.622C17.5654 9.814 19.8814 8.47 19.9894 8.41C18.6694 6.478 16.6414 6.262 15.9334 6.214C14.0854 6.07 12.5374 7.222 11.6734 7.222ZM14.7934 4.39C15.5734 3.454 16.0894 2.146 15.9454 0.85C14.8294 0.898 13.4854 1.594 12.6814 2.53C11.9614 3.358 11.3374 4.69 11.5054 5.962C12.7414 6.058 14.0134 5.326 14.7934 4.39Z"/></svg></a><a href="https://play.google.com/store/apps/details?id=com.tingtingnow.app" title="Play Store" style="color: var(--text-secondary); margin-left: 4px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor; vertical-align: middle;"><path d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"/></svg></a></span>
+            <span class="company"
+              >TingTing
+              <a
+                href="https://apps.apple.com/in/app/tingting-groceries-in-mins/id6464051281"
+                title="App Store"
+                style="color: var(--text-secondary); margin-left: 8px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M11.6734 7.222C10.7974 7.222 9.4414 6.226 8.0134 6.262C6.1294 6.286 4.4014 7.354 3.4294 9.046C1.4734 12.442 2.9254 17.458 4.8334 20.218C5.7694 21.562 6.8734 23.074 8.3374 23.026C9.7414 22.966 10.2694 22.114 11.9734 22.114C13.6654 22.114 14.1454 23.026 15.6334 22.99C17.1454 22.966 18.1054 21.622 19.0294 20.266C20.0974 18.706 20.5414 17.194 20.5654 17.11C20.5294 17.098 17.6254 15.982 17.5894 12.622C17.5654 9.814 19.8814 8.47 19.9894 8.41C18.6694 6.478 16.6414 6.262 15.9334 6.214C14.0854 6.07 12.5374 7.222 11.6734 7.222ZM14.7934 4.39C15.5734 3.454 16.0894 2.146 15.9454 0.85C14.8294 0.898 13.4854 1.594 12.6814 2.53C11.9614 3.358 11.3374 4.69 11.5054 5.962C12.7414 6.058 14.0134 5.326 14.7934 4.39Z"
+                  /></svg></a
+              ><a
+                href="https://play.google.com/store/apps/details?id=com.tingtingnow.app"
+                title="Play Store"
+                style="color: var(--text-secondary); margin-left: 4px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"
+                  /></svg></a
+            ></span>
             <span class="date">Aug 2022 - Mar 2025</span>
           </div>
           <p class="role">Founding Engineer</p>
           <p class="location">Bengaluru, Karnataka, India</p>
           <div class="stats">
             <span class="stat"><span class="stat-value">35+</span> Stores</span>
-            <span class="stat"><span class="stat-value">80K+</span> Orders</span>
+            <span class="stat"
+              ><span class="stat-value">80K+</span> Orders</span
+            >
             <span class="stat"><span class="stat-value">30K+</span> Users</span>
-            <span class="stat"><span class="stat-value">₹1.5Cr+</span> GMV</span>
-            <span class="stat"><span class="stat-value">99.9%</span> Uptime</span>
+            <span class="stat"
+              ><span class="stat-value">₹1.5Cr+</span> GMV</span
+            >
+            <span class="stat"
+              ><span class="stat-value">99.9%</span> Uptime</span
+            >
           </div>
           <ul>
-            <li>Architected event-driven Node.js backend processing 80K+ orders with <200ms P95 latency; separated read/write workloads using MongoDB + Redis to avoid write amplification</li>
-            <li>Built real-time WebSocket infrastructure syncing order state across 4 client apps (Android, iOS, Web, Desktop) with automatic reconnection and missed-event reconciliation</li>
-            <li>Integrated Zoho Gofrugal ERP for automated stock sync, pricing updates, and product catalog management across 35+ stores</li>
-            <li>Designed graceful degradation for payment gateway failures (Juspay, PhonePe, Razorpay) with retry logic and admin recovery workflows, processing ₹1.5Cr+ GMV</li>
-            <li>Deployed HA infrastructure on AWS/GCP with blue-green deployments and automated rollback on health check failures, maintaining 99.9% uptime</li>
+            <li>
+              Architected event-driven Node.js backend processing 80K+ orders
+              with <200ms P95 latency; separated read/write workloads using
+              MongoDB + Redis to avoid write amplification
+            </li>
+            <li>
+              Built real-time WebSocket infrastructure syncing order state across 4 client apps with automatic reconnection; integrated Zoho Gofrugal ERP for automated stock sync and catalog management across 35+ stores
+            </li>
+            <li>
+              Designed graceful degradation for payment gateway failures (Juspay, PhonePe, Razorpay) with retry logic and admin recovery workflows, processing ₹1.5Cr+ GMV
+            </li>
+            <li>
+              Deployed HA infrastructure on AWS/GCP with blue-green deployments and automated rollback on health check failures, maintaining 99.9% uptime
+            </li>
           </ul>
         </div>
 
@@ -540,8 +722,16 @@
           </div>
           <p class="role">Software Engineer (Remote)</p>
           <ul>
-            <li>Built consumer-facing Flutter apps (Footbus, Livehappy) with BLoC state management and shipped 15+ releases across Play Store and App Store</li>
-            <li>Developed backend systems (Node.js, PHP) and collaborated across time zones on API design, feature specifications, and production debugging</li>
+            <li>
+              Built consumer-facing Flutter apps (Footbus, Livehappy) with BLoC
+              state management and shipped 15+ releases across Play Store and
+              App Store
+            </li>
+            <li>
+              Developed backend systems (Node.js, PHP) and collaborated across
+              time zones on API design, feature specifications, and production
+              debugging
+            </li>
           </ul>
         </div>
       </section>
@@ -552,35 +742,56 @@
         <div class="skills-grid">
           <div class="skill-row">
             <span class="skill-label">Backend:</span>
-            <span class="skill-value">Node.js, Express, Microservices, REST APIs, WebSocket, Event-Driven</span>
+            <span class="skill-value"
+              >Node.js, Express, Microservices, REST APIs, WebSocket,
+              Event-Driven</span
+            >
           </div>
           <div class="skill-row">
             <span class="skill-label">Databases:</span>
-            <span class="skill-value">MongoDB, PostgreSQL, Redis, Mongoose ODM, Query Optimization</span>
+            <span class="skill-value"
+              >MongoDB, PostgreSQL, Redis, Mongoose ODM, Query
+              Optimization</span
+            >
           </div>
           <div class="skill-row">
             <span class="skill-label">Mobile:</span>
-            <span class="skill-value">Flutter, Dart, BLoC, iOS, Android, Cross-platform</span>
+            <span class="skill-value"
+              >Flutter, Dart, BLoC, iOS, Android, Cross-platform</span
+            >
           </div>
           <div class="skill-row">
             <span class="skill-label">Infrastructure:</span>
-            <span class="skill-value">AWS (EC2, S3, CloudFront), GCP, OCI, Docker, NGINX, CI/CD, Linux</span>
+            <span class="skill-value"
+              >AWS (EC2, S3, CloudFront), GCP, OCI, Docker, NGINX, CI/CD,
+              Linux</span
+            >
           </div>
           <div class="skill-row">
             <span class="skill-label">Languages:</span>
-            <span class="skill-value">JavaScript, TypeScript, Dart, Python</span>
+            <span class="skill-value"
+              >JavaScript, TypeScript, Dart, Python</span
+            >
           </div>
           <div class="skill-row">
             <span class="skill-label">System Design:</span>
-            <span class="skill-value">Distributed Systems, High Availability, Real-Time Sync, Failure Handling</span>
+            <span class="skill-value"
+              >Distributed Systems, High Availability, Real-Time Sync, Failure
+              Handling</span
+            >
           </div>
           <div class="skill-row">
             <span class="skill-label">AI/MCP:</span>
-            <span class="skill-value">Model Context Protocol, LLM Integration, SSE/STDIO, Claude, GPT, Gemini</span>
+            <span class="skill-value"
+              >Model Context Protocol, LLM Integration, SSE/STDIO, Claude, GPT,
+              Gemini</span
+            >
           </div>
           <div class="skill-row">
             <span class="skill-label">Tools:</span>
-            <span class="skill-value">Git, GitHub, Claude Code, GitHub Copilot</span>
+            <span class="skill-value"
+              >Git, GitHub, Claude Code, GitHub Copilot</span
+            >
           </div>
         </div>
       </section>
@@ -591,32 +802,128 @@
 
         <div class="experience-item">
           <div class="experience-header">
-            <span class="company">Tredye <a href="https://tredye.com" title="Web" style="color: var(--text-secondary); margin-left: 8px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a></span>
+            <span class="company"
+              >Tredye
+              <a
+                href="https://tredye.com"
+                title="Web"
+                style="color: var(--text-secondary); margin-left: 8px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-width: 2;
+                    vertical-align: middle;
+                  "
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  /></svg></a
+            ></span>
             <span class="date">Side Project</span>
           </div>
-          <p class="role">Real-Time Trading Dashboard | Event-Driven Microservices Architecture</p>
-          <p class="location">FastAPI, Next.js 16, Kafka, PostgreSQL, Redis, Docker Compose</p>
+          <p class="role">
+            Real-Time Trading Dashboard | Event-Driven Microservices
+            Architecture
+          </p>
+          <p class="location">
+            FastAPI, Next.js 16, Kafka, PostgreSQL, Redis, Docker Compose
+          </p>
           <ul>
-            <li>Architected 12-service event-driven system with Kafka-based data pipeline (KRaft mode, Snappy compression) processing live market data from Kite WebSocket API through 4-stage flow (data-ingestion → candle-builder → rsi-calculator → divergence-detector) with <50ms end-to-end latency</li>
-            <li>Implemented incremental RSI calculation using Wilder's smoothing (avoiding 300+ candle recalculation per tick) and ZigZag peak/trough analysis for price/RSI divergence detection with Redis pub/sub broadcasting alerts to WebSocket clients and PostgreSQL time-series persistence</li>
-            <li>Built multi-source news aggregation (Livemint, Moneycontrol, Financial Express) with keyword tagging (150+ terms), sentiment analysis, and 5-minute Redis caching for real-time financial news delivery</li>
-            <li>Developed responsive frontend with Next.js 16 App Router, React 19, TypeScript, Tailwind CSS v4, SWR caching, and embedded TradingView charts for live market visualization</li>
+            <li>
+              Architected 12-service event-driven system with Kafka-based data
+              pipeline (KRaft mode, Snappy compression) processing live market
+              data from Kite WebSocket API through 4-stage flow (data-ingestion
+              → candle-builder → rsi-calculator → divergence-detector) with
+              <50ms end-to-end latency
+            </li>
+            <li>
+              Implemented incremental RSI calculation using Wilder's smoothing
+              (avoiding 300+ candle recalculation per tick) and ZigZag
+              peak/trough analysis for price/RSI divergence detection with Redis
+              pub/sub broadcasting alerts to WebSocket clients and PostgreSQL
+              time-series persistence
+            </li>
+            <li>
+              Built multi-source news aggregation (Livemint, Moneycontrol,
+              Financial Express) with keyword tagging (150+ terms), sentiment
+              analysis, and 5-minute Redis caching for real-time financial news
+              delivery
+            </li>
+            <li>
+              Developed responsive frontend with Next.js 16 App Router, React
+              19, TypeScript, Tailwind CSS v4, SWR caching, and embedded
+              TradingView charts for live market visualization
+            </li>
           </ul>
         </div>
 
         <div class="experience-item">
           <div class="experience-header">
-            <span class="company">Bhagavad Gita <a href="https://play.google.com/store/apps/details?id=com.gita" title="Play Store" style="color: var(--text-secondary); margin-left: 8px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor; vertical-align: middle;"><path d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"/></svg></a><a href="https://bhagavad-gita-india.web.app/" title="Web" style="color: var(--text-secondary); margin-left: 4px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a></span>
+            <span class="company"
+              >Bhagavad Gita
+              <a
+                href="https://play.google.com/store/apps/details?id=com.gita"
+                title="Play Store"
+                style="color: var(--text-secondary); margin-left: 8px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"
+                  /></svg></a
+              ><a
+                href="https://bhagavad-gita-india.web.app/"
+                title="Web"
+                style="color: var(--text-secondary); margin-left: 4px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-width: 2;
+                    vertical-align: middle;
+                  "
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  /></svg></a
+            ></span>
             <span class="date">Side Project</span>
           </div>
           <div class="stats">
-            <span class="stat"><span class="stat-value">40K+</span> Downloads</span>
+            <span class="stat"
+              ><span class="stat-value">40K+</span> Downloads</span
+            >
             <span class="stat"><span class="stat-value">2K</span> DAU</span>
           </div>
           <p class="role">Offline-First Mobile App | Flutter + BLoC</p>
           <ul>
-            <li>Built cross-platform Flutter app with offline-first architecture using Isolate-based multithreading for background data processing without blocking UI</li>
-            <li>Implemented Hydrated BLoC with Hive persistence for offline-first state management, enabling full app functionality without network connectivity</li>
+            <li>
+              Built cross-platform Flutter app with offline-first architecture
+              using Isolate-based multithreading for background data processing
+              without blocking UI
+            </li>
+            <li>
+              Implemented Hydrated BLoC with Hive persistence for offline-first
+              state management, enabling full app functionality without network
+              connectivity
+            </li>
           </ul>
         </div>
       </section>
@@ -627,31 +934,92 @@
 
         <div class="experience-item">
           <div class="experience-header">
-            <span class="company">flutter_lucide <a href="https://pub.dev/packages/flutter_lucide" title="pub.dev" style="color: var(--text-secondary); margin-left: 8px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor; vertical-align: middle;"><path d="M3 10H2V4.003C2 3.449 2.455 3 2.992 3h18.016C21.556 3 22 3.438 22 4.003V10h-1v10.002c0 .553-.455 1-1.007 1H4.007A1.001 1.001 0 0 1 3 20.002V10zm16 0H5v9h14v-9zM4 5v3h16V5H4zm5 7h6v2H9v-2z"/></svg></a></span>
+            <span class="company"
+              >flutter_lucide
+              <a
+                href="https://pub.dev/packages/flutter_lucide"
+                title="pub.dev"
+                style="color: var(--text-secondary); margin-left: 8px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M3 10H2V4.003C2 3.449 2.455 3 2.992 3h18.016C21.556 3 22 3.438 22 4.003V10h-1v10.002c0 .553-.455 1-1.007 1H4.007A1.001 1.001 0 0 1 3 20.002V10zm16 0H5v9h14v-9zM4 5v3h16V5H4zm5 7h6v2H9v-2z"
+                  /></svg></a
+            ></span>
             <span class="date">Open Source</span>
           </div>
           <div class="stats">
-            <span class="stat"><span class="stat-value">4K</span> Weekly DL</span>
-            <span class="stat"><span class="stat-value">1,666+</span> Icons</span>
-            <span class="stat"><span class="stat-value">6</span> Platforms</span>
+            <span class="stat"
+              ><span class="stat-value">4K</span> Weekly DL</span
+            >
+            <span class="stat"
+              ><span class="stat-value">1,666+</span> Icons</span
+            >
+            <span class="stat"
+              ><span class="stat-value">6</span> Platforms</span
+            >
           </div>
           <p class="role">Flutter Icon Library | Cross-Platform Package</p>
           <ul>
-            <li>Published and maintaining comprehensive Flutter package providing 1,666+ Lucide icons optimized for Android, iOS, Web, macOS, Windows, and Linux</li>
-            <li>Implemented tree-shaking optimization allowing selective icon imports to minimize bundle size; achieved 4K weekly downloads on pub.dev with active community contributions</li>
+            <li>
+              Published and maintaining comprehensive Flutter package providing
+              1,666+ Lucide icons optimized for Android, iOS, Web, macOS,
+              Windows, and Linux
+            </li>
+            <li>
+              Implemented tree-shaking optimization allowing selective icon
+              imports to minimize bundle size; achieved 4K weekly downloads on
+              pub.dev with active community contributions
+            </li>
           </ul>
         </div>
 
         <div class="experience-item">
           <div class="experience-header">
-            <span class="company">gen-images <a href="https://github.com/ravikovind/gen-images" title="GitHub" style="color: var(--text-secondary); margin-left: 8px;"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor; vertical-align: middle;"><path d="M12.001 2C6.476 2 2.001 6.475 2.001 12c0 4.425 2.862 8.163 6.838 9.488.5.087.688-.213.688-.476 0-.238-.013-1.02-.013-1.85-2.512.463-3.163-.612-3.363-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.088.637-1.338-2.225-.25-4.55-1.112-4.55-4.937 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.263 2.75 1.025.8-.225 1.65-.338 2.5-.338s1.7.113 2.5.338c1.912-1.3 2.75-1.025 2.75-1.025.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.688 0 3.837-2.337 4.687-4.562 4.937.362.313.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .263.188.575.688.475C19.138 20.163 22 16.413 22 12c0-5.525-4.475-10-10-10z"/></svg></a></span>
+            <span class="company"
+              >gen-images
+              <a
+                href="https://github.com/ravikovind/gen-images"
+                title="GitHub"
+                style="color: var(--text-secondary); margin-left: 8px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M12.001 2C6.476 2 2.001 6.475 2.001 12c0 4.425 2.862 8.163 6.838 9.488.5.087.688-.213.688-.476 0-.238-.013-1.02-.013-1.85-2.512.463-3.163-.612-3.363-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.088.637-1.338-2.225-.25-4.55-1.112-4.55-4.937 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.263 2.75 1.025.8-.225 1.65-.338 2.5-.338s1.7.113 2.5.338c1.912-1.3 2.75-1.025 2.75-1.025.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.688 0 3.837-2.337 4.687-4.562 4.937.362.313.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .263.188.575.688.475C19.138 20.163 22 16.413 22 12c0-5.525-4.475-10-10-10z"
+                  /></svg></a
+            ></span>
             <span class="date">Open Source</span>
           </div>
-          <p class="role">AI Image Generation Pipeline | E-commerce Product Visuals</p>
-          <p class="location">TypeScript, Node.js, OpenAI API, Google Gemini, Nano Banana</p>
+          <p class="role">
+            AI Image Generation Pipeline | E-commerce Product Visuals
+          </p>
+          <p class="location">
+            TypeScript, Node.js, OpenAI API, Google Gemini, Nano Banana
+          </p>
           <ul>
-            <li>Built automated pipeline using OpenAI API for runtime prompt generation and Gemini Nano Banana model for high-quality realistic image generation</li>
-            <li>Designed for e-commerce/website product showcase generation with optimized prompts for professional product photography</li>
+            <li>
+              Built automated pipeline using OpenAI API for runtime prompt
+              generation and Gemini Nano Banana model for high-quality realistic
+              image generation
+            </li>
+            <li>
+              Designed for e-commerce/website product showcase generation with
+              optimized prompts for professional product photography
+            </li>
           </ul>
         </div>
       </section>
@@ -662,7 +1030,9 @@
         <div class="education-item">
           <div>
             <span class="degree">Bachelor of Technology</span>
-            <span class="school"> — National Institute of Technology, Allahabad</span>
+            <span class="school">
+              — National Institute of Technology, Allahabad</span
+            >
           </div>
         </div>
       </section>
@@ -672,9 +1042,11 @@
         <h2 class="section-title">Languages</h2>
         <div class="education-item">
           <div>
-            <span class="degree">Hindi</span><span class="school"> (Native)</span>
-            <span style="color: var(--border); margin: 0 8px;">|</span>
-            <span class="degree">English</span><span class="school"> (Professional)</span>
+            <span class="degree">Hindi</span
+            ><span class="school"> (Native)</span>
+            <span style="color: var(--border); margin: 0 8px">|</span>
+            <span class="degree">English</span
+            ><span class="school"> (Professional)</span>
           </div>
         </div>
       </section>
