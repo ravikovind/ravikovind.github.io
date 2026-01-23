@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ravi Kumar | Resume</title>
+    <title>Ravi Kumar | Resume - Python & AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -450,7 +450,7 @@
       <header class="header">
         <div class="header-content">
           <h1 class="name">Ravi Kumar</h1>
-          <p class="title">Founding Engineer | Backend & Full-Stack | AI/MCP</p>
+          <p class="title">Python Engineer | AI/ML Systems | Real-Time Data</p>
           <div class="contact">
             <a href="mailto:hey.ravikovind@gmail.com"
               >hey.ravikovind@gmail.com</a
@@ -477,11 +477,12 @@
       <section class="section">
         <h2 class="section-title">Summary</h2>
         <p class="summary">
-          Backend-focused full-stack engineer specializing in high-scale Node.js
-          systems, Flutter, real-time infrastructure and AI integration. Built
-          production platforms processing 80K+ orders at &lt;200ms P95 latency
-          with 99.9% uptime. Strong bias toward system design, production
-          ownership, and pragmatic architecture. NIT Allahabad.
+          Full-stack engineer with end-to-end ownership of production systems —
+          from architecture and implementation to deployment and reliability.
+          Built low-latency real-time platforms, cross-platform AI-enabled
+          engines, and large-scale systems processing 80K+ orders with 99.9%
+          uptime. Experienced in owning complex products across their full
+          lifecycle. NIT Allahabad.
         </p>
       </section>
 
@@ -498,14 +499,112 @@
           <p class="location">Bengaluru, Karnataka, India</p>
           <ul>
             <li>
-              Architected <strong>multi-tenant SaaS infrastructure</strong> from scratch: JWT +
-              refresh token rotation, RBAC with row-level isolation,
-              comprehensive audit logging, and token-bucket rate limiting
+              Architected <strong>multi-tenant SaaS infrastructure</strong> from
+              scratch: JWT + refresh token rotation, RBAC with row-level
+              isolation, comprehensive audit logging, and token-bucket rate
+              limiting
             </li>
             <li>
-              Deployed production systems on AWS (EC2, NGINX, CloudFront, WAF, S3, SES) achieving <strong>99.9% uptime</strong> across <strong>30+ stores</strong>
+              Deployed production systems on AWS (EC2, NGINX reverse proxy,
+              CloudFront CDN, WAF, S3, SES) achieving
+              <strong>99.9% uptime</strong> across <strong>30+ stores</strong>
             </li>
           </ul>
+
+          <!-- Tredye - Python/FastAPI Trading Platform (First - Python Focus) -->
+          <p class="role" style="margin-top: 8px">
+            Flagship Product: Tredye
+            <a
+              href="https://tredye.com"
+              title="Web"
+              style="color: var(--text-secondary); margin-left: 6px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-width: 2;
+                  vertical-align: middle;
+                "
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                /></svg
+            ></a>
+          </p>
+          <p class="location" style="margin-top: 2px">
+            Real-Time Monitoring Dashboard | <strong>Python</strong>, <strong>FastAPI</strong>, <strong>Kafka</strong>, <strong>PostgreSQL</strong>, <strong>Redis</strong>, <strong>Docker</strong>, <strong>OCI (Ampere A1)</strong>
+          </p>
+          <ul>
+            <li>
+              Architected <strong>12-service FastAPI microservices</strong> with Kafka pipeline (KRaft, Snappy) → 4-stage flow with <strong>&lt;50ms latency</strong>; Redis pub/sub for WebSocket updates, PostgreSQL time-series persistence
+            </li>
+            <li>
+              Built async services (<strong>asyncio, aiokafka, asyncpg</strong>) with incremental RSI using <strong>Wilder's smoothing</strong> — avoiding 300+ candle recalculation per tick
+            </li>
+            <li>
+              <strong>Multi-source news aggregation</strong> (Livemint, Moneycontrol, Financial Express) with BeautifulSoup/feedparser, keyword tagging (<strong>150+ terms</strong>), sentiment analysis
+            </li>
+            <li>
+              <strong>Defense-in-depth security</strong>: JWT + bcrypt, IP whitelisting (CIDR), RBAC (USER/ADMIN/SUPER_ADMIN), audit logging, Kafka session invalidation
+            </li>
+          </ul>
+
+          <!-- MCPVave - AI Engine (Second) -->
+          <p class="role" style="margin-top: 8px">
+            Internal Tool: MCPVave
+            <a
+              href="https://mcpvave.voltvave.com/public/index.html"
+              title="Web"
+              style="color: var(--text-secondary); margin-left: 6px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-width: 2;
+                  vertical-align: middle;
+                "
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" /></svg
+            ></a>
+          </p>
+          <p class="location" style="margin-top: 2px">
+            AI Engine — Cross-Platform MCP Client | Foundation for AI-Powered
+            Commerce
+          </p>
+          <ul>
+            <li>
+              Built
+              <strong>Model Context Protocol (MCP) engine</strong> enabling
+              standardized AI/LLM-to-data communication via SSE/STDIO across
+              <strong>6 platforms</strong> (Android, iOS, Windows, macOS, Linux,
+              and Web)
+            </li>
+            <li>
+              Developed internal packages: <strong>mcp_client</strong> (protocol
+              implementation) and <strong>llm_shared</strong> (unified LLM
+              provider interface for Claude, GPT, Gemini)
+            </li>
+            <li>
+              Powering AI capabilities:
+              <strong>intelligent inventory management</strong>, demand
+              forecasting, automated customer support, and smart order routing
+              across Voltvave products
+            </li>
+          </ul>
+
+          <!-- Zoober - Commerce Platform (Third - Condensed) -->
           <p class="role" style="margin-top: 8px">
             Flagship Product: Zoober
             <a
@@ -570,73 +669,22 @@
           </p>
           <ul>
             <li>
-              Designed Express.js REST API with <strong>23 MongoDB collections</strong> using
-              2dsphere geospatial indexes for <strong>&lt;100ms</strong> radius-based store
-              discovery under concurrent load
+              Designed Express.js REST API with
+              <strong>23 MongoDB collections</strong> using 2dsphere geospatial
+              indexes for <strong>&lt;100ms</strong> radius-based store
+              discovery
             </li>
             <li>
-              Implemented idempotent <strong>7-stage order state machine</strong> with optimistic
-              locking to handle duplicate WebSocket events during network
-              partitions
+              Built <strong>real-time WebSocket sync</strong> layer broadcasting
+              order updates to
+              <strong>1000+ concurrent connections</strong> with automatic
+              reconnection
             </li>
             <li>
-              Built <strong>real-time WebSocket sync</strong> layer broadcasting order updates to
-              <strong>1000+ concurrent connections</strong> with automatic reconnection and event
-              replay
-            </li>
-            <li>
-              Architected <strong>4-app Flutter ecosystem</strong> (Customer, Merchant, Rider,
-              Admin) with BLoC state management and go_router deep linking
-              across Android, iOS, Web
-            </li>
-            <li>
-              Integrated payment gateways (<strong>Juspay, PhonePe, Razorpay</strong>) with
-              webhook signature verification and idempotent transaction handling
-            </li>
-          </ul>
-          <p class="role" style="margin-top: 8px">
-            Internal Tool: MCPVave
-            <a
-              href="https://mcpvave.voltvave.com/public/index.html"
-              title="Web"
-              style="color: var(--text-secondary); margin-left: 6px"
-              ><svg
-                viewBox="0 0 24 24"
-                style="
-                  width: 12px;
-                  height: 12px;
-                  fill: none;
-                  stroke: currentColor;
-                  stroke-width: 2;
-                  vertical-align: middle;
-                "
-              >
-                <path
-                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" /></svg
-            ></a>
-          </p>
-          <p class="location" style="margin-top: 2px">
-            AI Engine — Cross-Platform MCP Client | Foundation for AI-Powered
-            Commerce
-          </p>
-          <ul>
-            <li>
-              Built <strong>Model Context Protocol (MCP) engine</strong> enabling standardized
-              AI/LLM-to-data communication via SSE/STDIO across <strong>6 platforms</strong> (Android, iOS,
-              Windows, macOS, Linux, Web)
-            </li>
-            <li>
-              Developed internal packages: <strong>mcp_client</strong> (protocol implementation)
-              and <strong>llm_shared</strong> (unified LLM provider interface for Claude, GPT,
-              Gemini)
-            </li>
-            <li>
-              Powering AI capabilities: <strong>intelligent inventory management</strong>, demand
-              forecasting, automated customer support, and smart order routing
-              across Voltvave products
+              Integrated payment gateways (<strong
+                >Juspay, PhonePe, Razorpay</strong
+              >) with webhook signature verification and idempotent transaction
+              handling
             </li>
           </ul>
         </div>
@@ -697,25 +745,10 @@
           </div>
           <ul>
             <li>
-              Architected event-driven Node.js backend processing <strong>80K+ orders</strong>
-              with <strong>&lt;200ms P95 latency</strong>; separated read/write workloads using
-              MongoDB + Redis to avoid write amplification
+              Architected Node.js backend processing <strong>80K+ orders</strong> with <strong>&lt;200ms P95 latency</strong>; real-time WebSocket sync across <strong>4 apps</strong> and <strong>35+ stores</strong>
             </li>
             <li>
-              Built <strong>real-time WebSocket infrastructure</strong> syncing order state
-              across <strong>4 client apps</strong> with automatic reconnection; integrated Zoho
-              Gofrugal ERP for automated stock sync and catalog management
-              across <strong>35+ stores</strong>
-            </li>
-            <li>
-              Designed graceful degradation for payment gateway failures
-              (<strong>Juspay, PhonePe, Razorpay</strong>) with retry logic and admin recovery
-              workflows, processing <strong>₹1.5Cr+ GMV</strong>
-            </li>
-            <li>
-              Deployed <strong>HA infrastructure</strong> on AWS/GCP with blue-green deployments
-              and automated rollback on health check failures, maintaining <strong>99.9%
-              uptime</strong>
+              Deployed <strong>HA infrastructure</strong> on AWS/GCP with blue-green deployments, automated rollback, Zoho ERP integration — <strong>99.9% uptime</strong>
             </li>
           </ul>
         </div>
@@ -728,9 +761,10 @@
           <p class="role">Software Engineer (Remote)</p>
           <ul>
             <li>
-              Built consumer-facing Flutter apps (<strong>Footbus, Livehappy</strong>) with BLoC
-              state management and shipped <strong>15+ releases</strong> across Play Store and
-              App Store
+              Built consumer-facing Flutter apps (<strong
+                >Footbus, Livehappy</strong
+              >) with BLoC state management and shipped
+              <strong>15+ releases</strong> across Play Store and App Store
             </li>
             <li>
               Developed backend systems (Node.js, PHP) and collaborated across
@@ -741,28 +775,28 @@
         </div>
       </section>
 
-      <!-- Skills -->
+      <!-- Skills - Python/AI Prioritized -->
       <section class="section">
         <h2 class="section-title">Technical Skills</h2>
         <div class="skills-grid">
           <div class="skill-row">
-            <span class="skill-label">Backend:</span>
+            <span class="skill-label">Python:</span>
             <span class="skill-value"
-              >Node.js, Express, Microservices, REST APIs, WebSocket,
-              Event-Driven</span
+              >FastAPI, asyncio, Pydantic, uvicorn, pandas, numpy, TA-Lib</span
             >
           </div>
           <div class="skill-row">
-            <span class="skill-label">Databases:</span>
+            <span class="skill-label">AI/MCP:</span>
             <span class="skill-value"
-              >MongoDB, PostgreSQL, Redis, Mongoose ODM, Query
-              Optimization</span
+              >Model Context Protocol, LLM Integration, Claude API, GPT API,
+              Gemini API</span
             >
           </div>
           <div class="skill-row">
-            <span class="skill-label">Mobile:</span>
+            <span class="skill-label">Data:</span>
             <span class="skill-value"
-              >Flutter, Dart, BLoC, iOS, Android, Cross-platform</span
+              >Kafka, PostgreSQL, Redis, MongoDB, Time-series, Real-time
+              Processing</span
             >
           </div>
           <div class="skill-row">
@@ -775,7 +809,20 @@
           <div class="skill-row">
             <span class="skill-label">Languages:</span>
             <span class="skill-value"
-              >JavaScript, TypeScript, Dart, Python</span
+              >Python, JavaScript, TypeScript, Dart</span
+            >
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Backend:</span>
+            <span class="skill-value"
+              >Node.js, Express, Microservices, REST APIs, WebSocket,
+              Event-Driven</span
+            >
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Mobile:</span>
+            <span class="skill-value"
+              >Flutter, Dart, BLoC, iOS, Android, Cross-platform</span
             >
           </div>
           <div class="skill-row">
@@ -783,13 +830,6 @@
             <span class="skill-value"
               >Distributed Systems, High Availability, Real-Time Sync, Failure
               Handling</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">AI/MCP:</span>
-            <span class="skill-value"
-              >Model Context Protocol, LLM Integration, SSE/STDIO, Claude, GPT,
-              Gemini</span
             >
           </div>
           <div class="skill-row">
@@ -804,69 +844,6 @@
       <!-- Selected Projects -->
       <section class="section">
         <h2 class="section-title">Selected Projects</h2>
-
-        <div class="experience-item">
-          <div class="experience-header">
-            <span class="company"
-              >Tredye
-              <a
-                href="https://tredye.com"
-                title="Web"
-                style="color: var(--text-secondary); margin-left: 8px"
-                ><svg
-                  viewBox="0 0 24 24"
-                  style="
-                    width: 12px;
-                    height: 12px;
-                    fill: none;
-                    stroke: currentColor;
-                    stroke-width: 2;
-                    vertical-align: middle;
-                  "
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  /></svg></a
-            ></span>
-            <span class="date">Side Project</span>
-          </div>
-          <p class="role">
-            Real-Time Trading Dashboard | Event-Driven Microservices
-            Architecture
-          </p>
-          <p class="location">
-            FastAPI, Next.js 16, Kafka, PostgreSQL, Redis, Docker Compose
-          </p>
-          <ul>
-            <li>
-              Architected <strong>12-service event-driven system</strong> with Kafka-based data
-              pipeline (KRaft mode, Snappy compression) processing live market
-              data from Kite WebSocket API through 4-stage flow (data-ingestion
-              → candle-builder → rsi-calculator → divergence-detector) with
-              <strong>&lt;50ms end-to-end latency</strong>
-            </li>
-            <li>
-              Implemented incremental RSI calculation using <strong>Wilder's smoothing</strong>
-              (avoiding 300+ candle recalculation per tick) and <strong>ZigZag
-              peak/trough analysis</strong> for price/RSI divergence detection with Redis
-              pub/sub broadcasting alerts to WebSocket clients and PostgreSQL
-              time-series persistence
-            </li>
-            <li>
-              Built <strong>multi-source news aggregation</strong> (Livemint, Moneycontrol,
-              Financial Express) with keyword tagging (<strong>150+ terms</strong>), sentiment
-              analysis, and 5-minute Redis caching for real-time financial news
-              delivery
-            </li>
-            <li>
-              Developed responsive frontend with <strong>Next.js 16 App Router</strong>, React
-              19, TypeScript, Tailwind CSS v4, SWR caching, and embedded
-              TradingView charts for live market visualization
-            </li>
-          </ul>
-        </div>
 
         <div class="experience-item">
           <div class="experience-header">
@@ -920,14 +897,16 @@
           <p class="role">Offline-First Mobile App | Flutter + BLoC</p>
           <ul>
             <li>
-              Built cross-platform Flutter app with <strong>offline-first architecture</strong>
-              using <strong>Isolate-based multithreading</strong> for background data processing
-              without blocking UI
+              Built cross-platform Flutter app with
+              <strong>offline-first architecture</strong> using
+              <strong>Isolate-based multithreading</strong> for background data
+              processing without blocking UI
             </li>
             <li>
-              Implemented <strong>Hydrated BLoC with Hive persistence</strong> for offline-first
-              state management, enabling full app functionality without network
-              connectivity
+              Implemented
+              <strong>Hydrated BLoC with Hive persistence</strong> for
+              offline-first state management, enabling full app functionality
+              without network connectivity
             </li>
           </ul>
         </div>
@@ -995,7 +974,7 @@
                   /></svg></a
               ><a
                 href="https://github.com/pqoqubbw/icons"
-                title="pqoqubbw/icons on GitHub (6.8K stars)"
+                title="pqoqubbw/icons on GitHub"
                 style="color: var(--text-secondary); margin-left: 4px"
                 ><svg
                   viewBox="0 0 24 24"
@@ -1013,9 +992,7 @@
             <span class="date">Featured</span>
           </div>
           <div class="stats">
-            <span class="stat"
-              ><span class="stat-value">6.8K</span> Stars</span
-            >
+            <span class="stat"><span class="stat-value">6.8K</span> Stars</span>
             <span class="stat"
               ><span class="stat-value">4K</span> Weekly DL</span
             >
@@ -1023,13 +1000,21 @@
               ><span class="stat-value">6</span> Platforms</span
             >
           </div>
-          <p class="role">Flutter Icon Libraries | Static + Animated | lucide-animated Ecosystem</p>
+          <p class="role">
+            Flutter Icon Libraries | Static + Animated | lucide-animated
+            Ecosystem
+          </p>
           <ul>
             <li>
-              Published and maintaining two Flutter packages: <strong>flutter_lucide</strong> (1,666+ static icons) and <strong>flutter_lucide_animated</strong> (smooth Lottie-style animations) with tree-shaking optimization
+              Published and maintaining two Flutter packages:
+              <strong>flutter_lucide</strong> (1,666+ static icons) and
+              <strong>flutter_lucide_animated</strong> (smooth animations) with
+              tree-shaking optimization
             </li>
             <li>
-              flutter_lucide_animated officially featured in <strong>pqoqubbw/icons</strong> — the lucide-animated ecosystem alongside Svelte, Vue, and Angular implementations
+              flutter_lucide_animated officially featured in
+              <strong>pqoqubbw/icons</strong> (6.8K stars) — the lucide-animated
+              ecosystem alongside Svelte, Vue, and Angular implementations
             </li>
           </ul>
         </div>
@@ -1065,13 +1050,15 @@
           </p>
           <ul>
             <li>
-              Built automated pipeline using <strong>OpenAI API</strong> for runtime prompt
-              generation and <strong>Gemini Nano Banana model</strong> for high-quality realistic
-              image generation
+              Built automated pipeline using <strong>OpenAI API</strong> for
+              runtime prompt generation and
+              <strong>Gemini Nano Banana model</strong> for high-quality
+              realistic image generation
             </li>
             <li>
-              Designed for <strong>e-commerce/website product showcase</strong> generation with
-              optimized prompts for professional product photography
+              Designed for
+              <strong>e-commerce/website product showcase</strong> generation
+              with optimized prompts for professional product photography
             </li>
           </ul>
         </div>
