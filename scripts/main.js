@@ -1,4 +1,80 @@
 
+// --- Custom Cursor (spring animation, desktop only) ---
+(function initCursor() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+
+    let mouseX = -200, mouseY = -200;
+    let ringX  = -200, ringY  = -200;
+    let vx = 0, vy = 0;
+
+    function setPos(el, x, y) {
+        el.style.left = x + 'px';
+        el.style.top  = y + 'px';
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        setPos(dot, mouseX, mouseY);
+        dot.classList.add('visible');
+        ring.classList.add('visible');
+    });
+
+    document.addEventListener('mouseleave', () => {
+        dot.classList.add('hidden');
+        ring.classList.add('hidden');
+    });
+
+    document.addEventListener('mouseenter', () => {
+        dot.classList.remove('hidden');
+        ring.classList.remove('hidden');
+    });
+
+    document.addEventListener('mousedown', () => {
+        dot.classList.add('is-clicking');
+        ring.classList.add('is-clicking');
+    });
+
+    document.addEventListener('mouseup', () => {
+        dot.classList.remove('is-clicking');
+        ring.classList.remove('is-clicking');
+    });
+
+    function bindHovers() {
+        document.querySelectorAll('a, button, [role="button"], input, label, select, textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                dot.classList.add('is-hovering');
+                ring.classList.add('is-hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                dot.classList.remove('is-hovering');
+                ring.classList.remove('is-hovering');
+            });
+        });
+    }
+    bindHovers();
+
+    // Spring physics for ring trailing
+    const STIFFNESS = 0.14;
+    const DAMPING   = 0.76;
+
+    function animateRing() {
+        const ax = (mouseX - ringX) * STIFFNESS;
+        const ay = (mouseY - ringY) * STIFFNESS;
+        vx = (vx + ax) * DAMPING;
+        vy = (vy + ay) * DAMPING;
+        ringX += vx;
+        ringY += vy;
+        setPos(ring, ringX, ringY);
+        requestAnimationFrame(animateRing);
+    }
+    animateRing();
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Scroll Progress Bar ---

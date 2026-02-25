@@ -1,4 +1,3 @@
-
 (function() {
     const container = document.getElementById('particle-bg');
     if (!container) return;
@@ -13,7 +12,7 @@
     const connectionDistance = 120;
 
     // Colors
-    const accentColor = { r: 79, g: 70, b: 229 }; // #4F46E5
+    const accentColor = { r: 245, g: 158, b: 11 }; // #F59E0B
     const whiteColor = { r: 255, g: 255, b: 255 };
 
     class Particle {
@@ -61,7 +60,7 @@
                     this.x, this.y, this.radius * 3
                 );
                 gradient.addColorStop(0, `rgba(${accentColor.r}, ${accentColor.g}, ${accentColor.b}, 0.3)`);
-                gradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+                gradient.addColorStop(1, `rgba(${accentColor.r}, ${accentColor.g}, ${accentColor.b}, 0)`);
                 ctx.fillStyle = gradient;
                 ctx.fill();
             }
