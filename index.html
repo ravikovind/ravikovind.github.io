@@ -77,11 +77,11 @@
     <!-- Web App Manifest -->
     <link rel="manifest" href="assets/site.webmanifest" />
 
-    <!-- Google Fonts: Lato + JetBrains Mono -->
+    <!-- Google Fonts: Ubuntu + Geist Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Lato:wght@300;400;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -618,178 +618,75 @@
           It's not all about me — <a href="#contact">talk to me</a> to know
           <span class="accent">more</span>.
         </p>
-        <div class="projects-grid">
+        <div class="projects-list">
           <!-- Zoober -->
-          <div class="card project-card flagship">
-            <span class="flagship-badge">Flagship</span>
-            <div class="project-header">
-              <div class="project-icon" aria-hidden="true">
-                <i data-lucide="store"></i>
+          <div class="project-row">
+            <span class="project-num">01</span>
+            <div class="project-body">
+              <div class="project-title-line">
+                <h3>Zoober</h3>
+                <div class="project-links">
+                  <a href="https://zoober.in" target="_blank" rel="noopener noreferrer" aria-label="Zoober Web App" title="Web App"><i data-lucide="globe"></i></a>
+                  <a href="https://play.google.com/store/apps/details?id=com.voltvave.app" target="_blank" rel="noopener noreferrer" aria-label="Play Store" title="Play Store">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                  </a>
+                  <a href="https://apps.apple.com/in/app/zoober-buy-book-delivery/id6742256589" target="_blank" rel="noopener noreferrer" aria-label="App Store" title="App Store">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  </a>
+                </div>
               </div>
-              <div class="project-links">
-                <a
-                  href="https://zoober.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Zoober Web App"
-                  title="Web App"
-                >
-                  <i data-lucide="globe"></i>
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.voltvave.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Zoober on Play Store"
-                  title="Play Store"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://apps.apple.com/in/app/zoober-buy-book-delivery/id6742256589"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Zoober on App Store"
-                  title="App Store"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                    />
-                  </svg>
-                </a>
+              <div class="tags">
+                <span>Flutter</span><span>BLoC</span><span>Express</span><span>MongoDB</span><span>WebSocket</span><span>AWS</span><span>Firebase</span>
               </div>
+              <p>End-to-end hyperlocal commerce platform: 4 Flutter apps (BLoC + Dio), Express.js API with 23 MongoDB schemas, geospatial store discovery, 7-stage order lifecycle with WebSocket sync, and AWS infrastructure (EC2, S3, SES, CloudFront, WAF).</p>
             </div>
-            <h3>Zoober</h3>
-            <p>
-              End-to-end hyperlocal commerce platform: 4 Flutter apps (BLoC +
-              Dio), Express.js API with 23 MongoDB schemas, geospatial store
-              discovery, 7-stage order lifecycle with WebSocket sync, and AWS
-              infrastructure (EC2, S3, SES, CloudFront, WAF).
-            </p>
-            <div class="tags">
-              <span>Flutter</span>
-              <span>BLoC</span>
-              <span>Express</span>
-              <span>MongoDB</span>
-              <span>WebSocket</span>
-              <span>AWS</span>
-              <span>Firebase</span>
+            <div class="project-photo">
+              <img src="assets/projects/zoober.png" alt="Zoober" loading="lazy" />
             </div>
           </div>
 
           <!-- TingTing -->
-          <div class="card project-card">
-            <div class="project-header">
-              <div class="project-icon" aria-hidden="true">
-                <i data-lucide="shopping-cart"></i>
+          <div class="project-row">
+            <span class="project-num">02</span>
+            <div class="project-body">
+              <div class="project-title-line">
+                <h3>TingTing</h3>
+                <div class="project-links">
+                  <a href="https://apps.apple.com/in/app/tingting-groceries-in-mins/id646405128" target="_blank" rel="noopener noreferrer" aria-label="App Store">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.tingtingnow.app" target="_blank" rel="noopener noreferrer" aria-label="Play Store">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"/></svg>
+                  </a>
+                </div>
               </div>
-              <div class="project-links">
-                <a
-                  href="https://apps.apple.com/in/app/tingting-groceries-in-mins/id646405128"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TingTing on App Store"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.tingtingnow.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TingTing on Play Store"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 9.99l-2.302 2.302-8.634-8.634z"
-                    />
-                  </svg>
-                </a>
+              <div class="tags">
+                <span>Flutter</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>AWS</span><span>GCP</span><span>WebSocket</span><span>Firebase</span>
               </div>
+              <p>Hyperlocal grocery delivery ecosystem connecting customers, stores, pickers, and delivery partners. Built complete suite of apps with real-time order tracking and ERP integration.</p>
             </div>
-            <h3>TingTing</h3>
-            <p>
-              Hyperlocal grocery delivery ecosystem connecting customers,
-              stores, pickers, and delivery partners. Built complete suite of
-              apps with real-time order tracking and ERP integration.
-            </p>
-            <div class="tags">
-              <span>Flutter</span>
-              <span>Node.js</span>
-              <span>Express.js</span>
-              <span>MongoDB</span>
-              <span>AWS</span>
-              <span>GCP</span>
-              <span>WebSocket</span>
-              <span>Firebase</span>
-              <span>REST APIs</span>
+            <div class="project-photo">
+              <img src="assets/projects/ting-ting.png" alt="TingTing" loading="lazy" />
             </div>
           </div>
 
           <!-- Tredye -->
-          <div class="card project-card">
-            <div class="project-header">
-              <div class="project-icon" aria-hidden="true">
-                <i data-lucide="trending-up"></i>
+          <div class="project-row">
+            <span class="project-num">03</span>
+            <div class="project-body">
+              <div class="project-title-line">
+                <h3>Tredye</h3>
+                <div class="project-links">
+                  <a href="https://tredye.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Tredye"><i data-lucide="external-link"></i></a>
+                </div>
               </div>
-              <div class="project-links">
-                <a
-                  href="https://tredye.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visit Tredye"
-                >
-                  <i data-lucide="external-link"></i>
-                </a>
+              <div class="tags">
+                <span>Python</span><span>FastAPI</span><span>Next.js</span><span>React</span><span>Kafka</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span>
               </div>
+              <p>Real-time monitoring dashboard with microservices architecture. Features live market data streaming, RSI calculation engine, divergence detection, and news aggregation via Kafka.</p>
             </div>
-            <h3>Tredye</h3>
-            <p>
-              Real-time trading dashboard with microservices architecture.
-              Features live market data streaming, RSI calculation engine,
-              divergence detection, and news aggregation via Kafka.
-            </p>
-            <div class="tags">
-              <span>Python</span>
-              <span>FastAPI</span>
-              <span>Next.js</span>
-              <span>React</span>
-              <span>Kafka</span>
-              <span>PostgreSQL</span>
-              <span>Redis</span>
-              <span>Docker</span>
+            <div class="project-photo">
+              <img src="assets/projects/tredye.png" alt="Tredye" loading="lazy" />
             </div>
           </div>
         </div>
@@ -810,134 +707,31 @@
         <p class="section-tagline">
           Packages and tools I've built for the community.
         </p>
-        <div class="opensource-scroll-wrapper">
-          <div class="opensource-grid">
-            <!-- flutter_lucide & flutter_lucide_animated -->
-            <div class="card opensource-card">
-              <div class="opensource-header">
-                <div class="opensource-icon">
-                  <i data-lucide="sparkles"></i>
-                </div>
-                <div class="opensource-stats">
-                  <span class="stat-badge"><i data-lucide="star"></i> 6.8K</span>
-                  <span class="stat-badge"
-                    ><i data-lucide="download"></i> 4K/wk</span
-                  >
-                  <span class="stat-badge"
-                    ><i data-lucide="monitor-smartphone"></i> 6</span
-                  >
-                </div>
-              </div>
-              <h3>flutter_lucide & flutter_lucide_animated</h3>
-              <p>
-                Two Flutter packages: <strong>flutter_lucide</strong> (1,666+ static icons) and <strong>flutter_lucide_animated</strong> (smooth Lottie-style animations). Featured in <a href="https://github.com/pqoqubbw/icons" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">pqoqubbw/icons</a> — the <a href="https://lucide-animated.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">lucide-animated</a> ecosystem.
-              </p>
-              <div class="opensource-links" style="display: flex; gap: 12px; margin-bottom: 12px;">
-                <a href="https://pub.dev/packages/flutter_lucide" target="_blank" rel="noopener noreferrer" title="flutter_lucide on pub.dev" style="color: var(--text-secondary); font-size: 12px;">
-                  <i data-lucide="package" style="width: 14px; height: 14px; vertical-align: middle;"></i> flutter_lucide
-                </a>
-                <a href="https://pub.dev/packages/flutter_lucide_animated" target="_blank" rel="noopener noreferrer" title="flutter_lucide_animated on pub.dev" style="color: var(--text-secondary); font-size: 12px;">
-                  <i data-lucide="package" style="width: 14px; height: 14px; vertical-align: middle;"></i> flutter_lucide_animated
-                </a>
-                <a href="https://lucide-animated.com" target="_blank" rel="noopener noreferrer" title="lucide-animated.com" style="color: var(--text-secondary); font-size: 12px;">
-                  <i data-lucide="globe" style="width: 14px; height: 14px; vertical-align: middle;"></i> Demo
-                </a>
-              </div>
-              <div class="tags">
-                <span>Flutter</span>
-                <span>Static</span>
-                <span>Animated</span>
-                <span>Featured</span>
-              </div>
-            </div>
-            <!-- Bhagavad Gita -->
-            <a
-              href="https://play.google.com/store/apps/details?id=com.gita"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card opensource-card"
-            >
-              <div class="opensource-header">
-                <div class="opensource-icon">
-                  <i data-lucide="book-open"></i>
-                </div>
-                <div class="opensource-stats">
-                  <span class="stat-badge"
-                    ><i data-lucide="download"></i> 40K+</span
-                  >
-                  <span class="stat-badge"
-                    ><i data-lucide="users"></i> 2K/day</span
-                  >
-                </div>
-              </div>
-              <h3>Bhagavad Gita</h3>
-              <p>
-                Complete Bhagavad Gita with all 18 chapters. Free, no ads.
-                Released May 2021.
-              </p>
-              <div class="tags">
-                <span>Flutter</span>
-                <span>Android</span>
-                <span>Web</span>
-              </div>
-            </a>
-            <!-- gen-images -->
-            <a
-              href="https://github.com/ravikovind/gen-images"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card opensource-card"
-            >
-              <div class="opensource-header">
-                <div class="opensource-icon">
-                  <i data-lucide="image"></i>
-                </div>
-                <div class="opensource-stats">
-                  <span class="stat-badge"
-                    ><i data-lucide="github"></i> Repo</span
-                  >
-                </div>
-              </div>
-              <h3>gen-images</h3>
-              <p>
-                AI image generation pipeline using GPT for prompts and Gemini
-                for high-quality image output.
-              </p>
-              <div class="tags">
-                <span>Python</span>
-                <span>GPT</span>
-                <span>Gemini</span>
-              </div>
-            </a>
-            <!-- recipe_x -->
-            <a
-              href="https://github.com/ravikovind/recipe_x"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="card opensource-card"
-            >
-              <div class="opensource-header">
-                <div class="opensource-icon">
-                  <i data-lucide="chef-hat"></i>
-                </div>
-                <div class="opensource-stats">
-                  <span class="stat-badge"
-                    ><i data-lucide="github"></i> Repo</span
-                  >
-                </div>
-              </div>
-              <h3>recipe_x</h3>
-              <p>
-                45K+ recipes worldwide. Free app with no ads, no tracking. Built
-                2 years ago, still used daily.
-              </p>
-              <div class="tags">
-                <span>Flutter</span>
-                <span>Dart</span>
-                <span>Mobile</span>
-              </div>
-            </a>
-          </div>
+        <div class="oss-list">
+          <a href="https://pub.dev/packages/flutter_lucide" target="_blank" rel="noopener noreferrer" class="oss-line">
+            <span class="oss-line-name">flutter_lucide <span class="oss-dim">&</span> flutter_lucide_animated</span>
+            <span class="oss-line-dots"></span>
+            <span class="oss-line-stats">★ 6.8K &nbsp;·&nbsp; 4K/wk &nbsp;·&nbsp; 6 platforms</span>
+            <i data-lucide="arrow-up-right" class="oss-line-arrow"></i>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.gita" target="_blank" rel="noopener noreferrer" class="oss-line">
+            <span class="oss-line-name">Bhagavad Gita</span>
+            <span class="oss-line-dots"></span>
+            <span class="oss-line-stats">40K+ downloads &nbsp;·&nbsp; 2K/day active</span>
+            <i data-lucide="arrow-up-right" class="oss-line-arrow"></i>
+          </a>
+          <a href="https://github.com/ravikovind/gen-images" target="_blank" rel="noopener noreferrer" class="oss-line">
+            <span class="oss-line-name">gen-images</span>
+            <span class="oss-line-dots"></span>
+            <span class="oss-line-stats">Python &nbsp;·&nbsp; GPT + Gemini pipeline</span>
+            <i data-lucide="arrow-up-right" class="oss-line-arrow"></i>
+          </a>
+          <a href="https://github.com/ravikovind/recipe_x" target="_blank" rel="noopener noreferrer" class="oss-line">
+            <span class="oss-line-name">recipe_x</span>
+            <span class="oss-line-dots"></span>
+            <span class="oss-line-stats">45K+ recipes &nbsp;·&nbsp; Flutter &nbsp;·&nbsp; no ads</span>
+            <i data-lucide="arrow-up-right" class="oss-line-arrow"></i>
+          </a>
         </div>
         <p class="projects-more">
           <a
