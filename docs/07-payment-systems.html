@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Systems — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">07 / 09</div>
+      <h1>Payment Systems</h1>
+      <p class="subtitle">Juspay, PhonePe, Razorpay, idempotency keys, retry logic, graceful degradation, and admin recovery workflows.</p>
+    </div>
+
+    <h2 id="why-multiple">Why Multiple Payment Gateways?</h2>
+
+    <p>India's UPI payment infrastructure has a ~2-3% transaction failure rate. These failures are real and frequent: bank timeouts, UPI PIN issues, network drops, VPA resolution failures. A single gateway failure can also cause platform-wide payment outage.</p>
+
+    <div class="ascii">
+Payment Gateway Strategy:
+
+  Customer initiates payment
+           │
+           ▼
+     ┌─────────────┐
+     │   Juspay    │ ←── Primary: payment orchestration layer
+     │ (smart      │     Routes to best gateway based on:
+     │  routing)   │     - Success rate history
+     └──────┬──────┘     - Bank availability
+            │            - Card type / UPI handle
+     Routes to:
+            │
+     ┌──────┴──────┬──────────────┐
+     ▼             ▼              ▼
+ PhonePe       Razorpay     [future gateway]
+ (UPI-first)  (cards, netbanking)
+
+  If Juspay is down → direct PhonePe or Razorpay fallback
+  If PhonePe fails → retry via Razorpay</div>
+
+    <h3>What Juspay is</h3>
+    <p>Juspay is a payment orchestration platform — it provides a unified API that internally routes to Razorpay, PhonePe, Paytm, and others. Benefits:</p>
+    <ul>
+      <li>Smart routing based on real-time success rates per bank/gateway</li>
+      <li>Single integration, multiple underlying gateways</li>
+      <li>PCI DSS compliance handled by Juspay</li>
+      <li>Retry orchestration built-in</li>
+    </ul>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: How did you choose between Juspay and direct Razorpay/PhonePe integration?</strong></p>
+      <p>A: Juspay as the primary makes sense for a production platform because it abstracts gateway management. But we maintained direct PhonePe and Razorpay integrations as fallbacks in case Juspay itself goes down (which has happened). The triple-redundancy cost is justified at ₹1.5Cr GMV — a 2-hour payment outage could lose ₹25,000+ in orders.</p>
+    </div>
+
+    <h2 id="idempotency">Idempotency Keys</h2>
+
+    <h3>The problem idempotency solves</h3>
+    <div class="ascii">
+Without idempotency (dangerous):
+
+  Client ──── POST /payments/initiate ────▶ Server
+                                           Server processes
+  Network drops before response
+  Client retries:
+  Client ──── POST /payments/initiate ────▶ Server
+                                           Server processes AGAIN
+                                           → Customer charged twice!
+
+With idempotency (safe):
+
+  Client ──── POST /payments/initiate ────▶ Server
+              { idempotencyKey: "uuid-1" }   Server processes,
+                                             stores key+result
+  Network drops before response
+  Client retries:
+  Client ──── POST /payments/initiate ────▶ Server
+              { idempotencyKey: "uuid-1" }   Key exists → return
+                                             cached result, NO re-process
+                                           → Customer charged once only</div>
+
+    <pre><code class="language-javascript">// Idempotency middleware
+async function idempotencyGuard(req, res, next) {
+  const key = req.headers['idempotency-key'] || req.body.idempotencyKey;
+  if (!key) return next(); // optional for non-payment routes
+
+  const cacheKey = `idem:${req.user.tenantId}:${key}`;
+
+  // Check if we've seen this key before
+  const cached = await redis.get(cacheKey);
+  if (cached) {
+    // Return exact same response as first call
+    const { status, body } = JSON.parse(cached);
+    return res.status(status).json(body);
+  }
+
+  // Intercept response to cache it
+  const originalJson = res.json.bind(res);
+  res.json = (body) => {
+    // Cache for 24 hours (payment window)
+    redis.setex(cacheKey, 86400, JSON.stringify({
+      status: res.statusCode,
+      body,
+    }));
+    return originalJson(body);
+  };
+
+  next();
+}
+
+// Payment initiation with idempotency
+router.post('/payments/initiate',
+  authenticate,
+  idempotencyGuard,
+  async (req, res) => {
+    const { orderId, amount, gateway } = req.body;
+
+    // Store payment attempt with idempotency key in DB
+    const payment = await Payment.create({
+      orderId,
+      amount,
+      gateway,
+      idempotencyKey: req.body.idempotencyKey,
+      status: 'PENDING',
+      tenantId: req.user.tenantId,
+    });
+
+    // Initiate with gateway
+    const result = await initiateWithGateway(gateway, payment);
+    res.json({ paymentId: payment._id, ...result });
+  }
+);</code></pre>
+
+    <h2 id="webhook-flow">Webhook Handling Flow</h2>
+
+    <div class="ascii">
+Payment webhook processing:
+
+  Gateway (Juspay/Razorpay)
+         │
+         │ POST /webhooks/payment { event: 'payment.captured', ... }
+         ▼
+  [1] Verify HMAC signature ──── FAIL → 401, drop
+         │ PASS
+         ▼
+  [2] Deduplicate: has this webhookId been processed?
+      Redis SET NX webhookId (60min TTL)
+      ── Already exists → 200 (idempotent ack)
+         │ New
+         ▼
+  [3] Parse event type
+      payment.captured → update order PENDING→CONFIRMED
+      payment.failed   → update order PENDING→FAILED, notify user
+         │
+         ▼
+  [4] Atomic DB update (optimistic lock on order)
+         │
+         ▼
+  [5] Broadcast WebSocket event to customer/merchant/rider
+         │
+         ▼
+  [6] Respond 200 to gateway (must be fast — gateway retries on timeout)</div>
+
+    <pre><code class="language-javascript">async function handlePaymentWebhook(event, tenantId) {
+  const { paymentId, status, orderId } = parseGatewayEvent(event);
+
+  // Deduplicate: mark as processing (SETNX = atomic set if not exists)
+  const webhookKey = `webhook:${event.id}`;
+  const isNew = await redis.set(webhookKey, '1', 'NX', 'EX', 3600);
+  if (!isNew) return; // already processed — webhook deduplication
+
+  if (status === 'CAPTURED') {
+    // Update order from PENDING_PAYMENT → CONFIRMED
+    await transitionOrder(orderId, 'CONFIRMED', 'system', tenantId);
+    await Payment.findOneAndUpdate(
+      { gatewayPaymentId: paymentId },
+      { status: 'CAPTURED', capturedAt: new Date() }
+    );
+  } else if (status === 'FAILED') {
+    await transitionOrder(orderId, 'FAILED', 'system', tenantId);
+    // Trigger user notification
+    await sendPushNotification(orderId, 'Payment failed. Please retry.');
+  }
+}</code></pre>
+
+    <h2 id="graceful">Graceful Degradation</h2>
+
+    <pre><code class="language-javascript">async function initiatePayment(orderId, amount, preferredGateway = 'juspay') {
+  const gateways = [preferredGateway, 'phonepe', 'razorpay'].filter(
+    (g, i, arr) => arr.indexOf(g) === i // deduplicate
+  );
+
+  let lastError;
+  for (const gateway of gateways) {
+    try {
+      const result = await gatewayClients[gateway].initiatePayment({
+        orderId, amount,
+        callbackUrl: `${BASE_URL}/webhooks/${gateway}`,
+      });
+      return { gateway, ...result };
+    } catch (err) {
+      lastError = err;
+      console.error(`Gateway ${gateway} failed:`, err.message);
+      // Log for monitoring — alerting on repeated failures
+      await logGatewayFailure(gateway, err);
+      // Short delay before trying next gateway
+      await sleep(500);
+    }
+  }
+
+  // All gateways failed → hold order in PENDING_PAYMENT, notify admin
+  await notifyAdminGatewayOutage(orderId, lastError);
+  throw new ServiceUnavailableError('Payment services temporarily unavailable');
+}</code></pre>
+
+    <h2 id="retry">Retry Logic for Webhook Delivery Failures</h2>
+
+    <p>Sometimes our webhook endpoint is temporarily unavailable (deployment restart). Gateways retry with their own schedule. We implement our own retry for internal events:</p>
+
+    <pre><code class="language-javascript">// Exponential backoff retry for failed webhook processing
+const RETRY_DELAYS = [30, 300, 1800]; // 30s, 5min, 30min
+
+async function processWebhookWithRetry(event, attempt = 0) {
+  try {
+    await handlePaymentWebhook(event);
+  } catch (err) {
+    if (attempt >= RETRY_DELAYS.length) {
+      // Final failure: move to dead-letter queue, alert admin
+      await deadLetterQueue.add({ event, error: err.message });
+      await alertAdmin('Webhook processing exhausted retries', event);
+      return;
+    }
+    // Schedule retry
+    const delay = RETRY_DELAYS[attempt];
+    setTimeout(() => processWebhookWithRetry(event, attempt + 1), delay * 1000);
+  }
+}</code></pre>
+
+    <h2 id="recovery">Admin Recovery Workflow</h2>
+
+    <pre><code class="language-javascript">// Admin endpoint: manually override payment status with full audit trail
+router.post('/admin/payments/:id/override',
+  authenticate,
+  authorize('payment:admin-override'),
+  async (req, res) => {
+    const { status, reason, evidence } = req.body; // evidence = screenshot URL, etc.
+
+    const payment = await Payment.findOneAndUpdate(
+      { _id: req.params.id, tenantId: req.user.tenantId },
+      { status, adminNote: reason, overriddenAt: new Date(), overriddenBy: req.user.sub },
+      { new: true }
+    );
+
+    // Audit log — critical for financial reconciliation
+    await AuditLog.create({
+      action: 'payment.admin.override',
+      userId: req.user.sub,
+      resourceId: payment._id,
+      diff: { before: { status: payment.status }, after: { status } },
+      metadata: { reason, evidence },
+    });
+
+    // If overriding to CAPTURED, transition order
+    if (status === 'CAPTURED') {
+      await transitionOrder(payment.orderId, 'CONFIRMED', req.user.sub);
+    }
+
+    res.json({ payment });
+  }
+);</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What is a reconciliation cron job?</strong></p>
+      <p>A: Payment gateways provide a settlement report daily (CSV/API) with all transactions and their final status. Our reconciliation cron (runs at 2am daily) fetches this report, compares it against our Payment collection, and flags mismatches — orders marked CONFIRMED in our DB but marked FAILED by the gateway (or vice versa). These discrepancies require manual review. This is how you detect silent payment failures that didn't trigger webhooks.</p>
+    </div>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

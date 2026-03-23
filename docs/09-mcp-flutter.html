@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCP & Flutter — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+    th { background: var(--bg3); color: var(--accent); font-family: 'Saira', sans-serif; padding: 10px 12px; text-align: left; border: 1px solid var(--border); }
+    td { padding: 8px 12px; border: 1px solid var(--border); color: #ccc; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">09 / 09</div>
+      <h1>MCP &amp; Flutter</h1>
+      <p class="subtitle">Model Context Protocol (SSE/STDIO), the mcp_client &amp; llm_shared packages, BLoC state management, go_router, and the 4-app Flutter ecosystem.</p>
+    </div>
+
+    <!-- ─── MCP SECTION ─── -->
+    <h2 id="mcp">Model Context Protocol (MCP)</h2>
+
+    <h3>What MCP is</h3>
+    <p>MCP (Model Context Protocol) is an open standard created by Anthropic for connecting LLMs (Claude, GPT, Gemini) to external data sources and tools. Think of it like USB-C for AI — a universal interface so any LLM can access any data source without custom integration code per pair.</p>
+
+    <div class="ascii">
+Without MCP (N×M integrations):
+
+  Claude ──── custom code ────▶ MongoDB
+  Claude ──── custom code ────▶ REST API
+  Claude ──── custom code ────▶ File system
+  GPT    ──── custom code ────▶ MongoDB
+  GPT    ──── custom code ────▶ REST API
+  ...
+
+With MCP (N+M integrations):
+
+  Claude ─┐                  ┌─▶ MongoDB MCP Server
+  GPT    ─┤── MCP Protocol ──┤─▶ REST API MCP Server
+  Gemini ─┘                  └─▶ File system MCP Server
+
+  Any LLM speaks MCP → connects to any MCP server</div>
+
+    <h3>MCP concepts</h3>
+    <ul>
+      <li><strong>MCP Server</strong>: exposes tools (callable functions) and resources (readable data) to LLMs</li>
+      <li><strong>MCP Client</strong>: the LLM-side library that discovers and calls tools/resources</li>
+      <li><strong>Tool</strong>: a function the LLM can invoke (e.g., <code>get_inventory</code>, <code>place_order</code>)</li>
+      <li><strong>Resource</strong>: data the LLM can read (e.g., store catalog, order history)</li>
+      <li><strong>Prompt</strong>: pre-defined prompt templates the LLM can use</li>
+    </ul>
+
+    <h2 id="transports">SSE vs STDIO Transports</h2>
+
+    <table>
+      <tr><th>Transport</th><th>How it works</th><th>Used for</th></tr>
+      <tr><td><strong>STDIO</strong></td><td>Parent process communicates with MCP server child process via stdin/stdout</td><td>Desktop apps, CLI tools, local processes</td></tr>
+      <tr><td><strong>SSE</strong></td><td>Long-lived HTTP connection; server pushes events via Server-Sent Events</td><td>Web, mobile, cloud-hosted MCP servers</td></tr>
+    </table>
+
+    <div class="ascii">
+STDIO transport (desktop/CLI):
+
+  Flutter Desktop App
+         │ spawns process
+         ▼
+  mcp_client package ←──── stdin/stdout ────▶ MCP Server process
+  (Dart)                                       (Node.js or Python)
+
+SSE transport (web/mobile):
+
+  Flutter Web / Mobile App
+         │ HTTP GET /mcp/sse
+         ▼
+  mcp_client package ←──── SSE events ────▶ MCP Server (HTTP)
+  (Dart)                                     (hosted on our backend)
+         │
+         │ POST /mcp/messages (JSON-RPC)
+         ▼
+  MCP Server processes tool call → returns result</div>
+
+    <h3>Why both transports for 6-platform support</h3>
+    <ul>
+      <li><strong>Android, iOS, Web</strong>: cannot spawn local processes → SSE transport (remote server)</li>
+      <li><strong>Windows, macOS, Linux</strong>: can spawn processes → STDIO transport for local MCP servers (e.g., file system access without internet)</li>
+      <li>The <code>mcp_client</code> package abstracts this — same API regardless of transport</li>
+    </ul>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: How is MCP different from function calling in OpenAI or tool_use in Claude?</strong></p>
+      <p>A: Function calling and tool_use are LLM-specific APIs — you define tools in the LLM's API format and they only work with that specific model. MCP is a transport-level standard: the tool definitions live in a separate MCP server, and any MCP-compatible LLM can discover and use them without rewriting tool definitions. MCPVave's <code>llm_shared</code> package routes the same MCP tool calls to Claude, GPT, or Gemini depending on user preference — zero code change per model.</p>
+    </div>
+
+    <h2 id="packages">Internal Packages: mcp_client &amp; llm_shared</h2>
+
+    <h3>mcp_client (Dart package)</h3>
+    <pre><code class="language-dart">// mcp_client package API (simplified)
+class McpClient {
+  final McpTransport transport; // SseTransport or StdioTransport
+
+  McpClient({required this.transport});
+
+  Future&lt;void&gt; connect() async {
+    await transport.connect();
+    await _initialize(); // MCP handshake: version negotiation
+  }
+
+  // Discover what tools the server exposes
+  Future&lt;List&lt;McpTool&gt;&gt; listTools() async {
+    final response = await _request('tools/list', {});
+    return (response['tools'] as List).map(McpTool.fromJson).toList();
+  }
+
+  // Call a tool on the MCP server
+  Future&lt;McpResult&gt; callTool(String name, Map&lt;String, dynamic&gt; arguments) async {
+    return _request('tools/call', {'name': name, 'arguments': arguments});
+  }
+
+  // Read a resource (data)
+  Future&lt;McpResource&gt; readResource(String uri) async {
+    return _request('resources/read', {'uri': uri});
+  }
+}</code></pre>
+
+    <h3>llm_shared (Dart package)</h3>
+    <pre><code class="language-dart">// Unified interface: swap LLM providers without code change
+abstract class LlmProvider {
+  Future&lt;LlmResponse&gt; chat(List&lt;LlmMessage&gt; messages, {List&lt;McpTool&gt;? tools});
+  Stream&lt;String&gt; chatStream(List&lt;LlmMessage&gt; messages);
+}
+
+class ClaudeProvider implements LlmProvider {
+  @override
+  Future&lt;LlmResponse&gt; chat(List&lt;LlmMessage&gt; messages, {List&lt;McpTool&gt;? tools}) {
+    // Anthropic API — messages API with tool_use
+  }
+}
+
+class GptProvider implements LlmProvider {
+  @override
+  Future&lt;LlmResponse&gt; chat(List&lt;LlmMessage&gt; messages, {List&lt;McpTool&gt;? tools}) {
+    // OpenAI API — chat completions with function_call
+  }
+}
+
+// Usage: same code works for any provider
+final llm = GptProvider(); // or ClaudeProvider(), GeminiProvider()
+final tools = await mcpClient.listTools();
+final response = await llm.chat(messages, tools: tools);
+// If LLM wants to call a tool → mcpClient.callTool(name, args)</code></pre>
+
+    <!-- ─── FLUTTER SECTION ─── -->
+    <h2 id="bloc">BLoC State Management</h2>
+
+    <h3>Why BLoC over Provider or Riverpod?</h3>
+    <ul>
+      <li><strong>BLoC</strong> (Business Logic Component): events go in, states come out. Strictly separated. Good for complex state machines (order tracking with 7 states).</li>
+      <li><strong>Provider</strong>: simpler, great for small apps or dependency injection. Less strict — can lead to spaghetti in large apps.</li>
+      <li><strong>Riverpod</strong>: Provider evolution, compile-time safety. Good choice but BLoC was already established in the team.</li>
+    </ul>
+
+    <div class="ascii">
+BLoC pattern:
+
+  UI Widget
+     │ dispatches event
+     │ e.g., OrderStatusRequested(orderId: 'abc')
+     ▼
+  ┌─────────────────────────────┐
+  │           OrderBloc          │
+  │                             │
+  │  on&lt;OrderStatusRequested&gt;  │
+  │  → fetch from repo          │
+  │  → emit OrderLoaded(order)  │
+  │    or OrderError(message)   │
+  └─────────────────────────────┘
+     │ emits state
+     ▼
+  BlocBuilder&lt;OrderBloc, OrderState&gt;
+  → rebuilds only affected widgets</div>
+
+    <pre><code class="language-dart">// Order BLoC
+class OrderBloc extends Bloc&lt;OrderEvent, OrderState&gt; {
+  final OrderRepository orderRepository;
+  final OrderWebSocketService wsService;
+
+  OrderBloc({required this.orderRepository, required this.wsService})
+      : super(OrderInitial()) {
+
+    on&lt;OrderSubscribeRequested&gt;((event, emit) async {
+      emit(OrderLoading());
+      try {
+        // Initial fetch
+        final order = await orderRepository.getOrder(event.orderId);
+        emit(OrderLoaded(order: order));
+
+        // Subscribe to real-time updates
+        await emit.forEach(
+          wsService.orderUpdates(event.orderId),
+          onData: (updatedOrder) => OrderLoaded(order: updatedOrder),
+          onError: (_, __) => OrderError('Connection lost'),
+        );
+      } catch (e) {
+        emit(OrderError(e.toString()));
+      }
+    });
+  }
+}
+
+// States
+abstract class OrderState {}
+class OrderInitial extends OrderState {}
+class OrderLoading extends OrderState {}
+class OrderLoaded extends OrderState { final Order order; OrderLoaded({required this.order}); }
+class OrderError extends OrderState { final String message; OrderError(this.message); }</code></pre>
+
+    <h2 id="gorouter">go_router — Declarative Routing</h2>
+
+    <pre><code class="language-dart">final router = GoRouter(
+  initialLocation: '/splash',
+  redirect: (context, state) {
+    final isLoggedIn = context.read&lt;AuthBloc&gt;().state is AuthAuthenticated;
+    final isGoingToAuth = state.uri.toString().startsWith('/auth');
+
+    if (!isLoggedIn && !isGoingToAuth) return '/auth/login';
+    if (isLoggedIn && isGoingToAuth) return '/home';
+    return null; // no redirect
+  },
+  routes: [
+    GoRoute(path: '/splash', builder: (_, __) => const SplashScreen()),
+    GoRoute(path: '/auth/login', builder: (_, __) => const LoginScreen()),
+    GoRoute(
+      path: '/orders/:orderId',
+      builder: (context, state) {
+        final orderId = state.pathParameters['orderId']!;
+        return OrderDetailScreen(orderId: orderId);
+      },
+    ),
+    // Deep link: zoober://orders/abc123
+    // → opens OrderDetailScreen directly
+  ],
+);</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: How do deep links work with go_router?</strong></p>
+      <p>A: Deep links are URL-like identifiers that open a specific screen in the app. When a customer receives an SMS "Your order is ready: zoober://orders/abc123", tapping it launches the app and go_router matches the URL to the <code>/orders/:orderId</code> route, opening that order directly. go_router handles both web URLs (<code>https://zoober.in/orders/abc</code>) and custom scheme links (<code>zoober://orders/abc</code>) with the same route definition — no platform-specific code needed.</p>
+    </div>
+
+    <h2 id="four-apps">4-App Flutter Ecosystem</h2>
+
+    <div class="ascii">
+Zoober 4-app architecture:
+
+  Shared packages:
+  ┌─────────────────────────────────────────────┐
+  │  domain/          — Order, Product, User models
+  │  data/            — API clients, repositories
+  │  auth/            — JWT handling, token refresh
+  └─────────────────────────────────────────────┘
+         │ imported by all 4 apps
+         ▼
+  ┌────────────┐  ┌────────────┐  ┌────────────┐  ┌────────────┐
+  │  Customer  │  │  Merchant  │  │   Rider    │  │   Admin    │
+  │  App       │  │  App       │  │   App      │  │  Dashboard │
+  │            │  │            │  │            │  │            │
+  │ Browse     │  │ Orders     │  │ Pickup     │  │ Analytics  │
+  │ Order      │  │ Catalog    │  │ Navigate   │  │ Store mgmt │
+  │ Track      │  │ Inventory  │  │ Deliver    │  │ Users      │
+  └────────────┘  └────────────┘  └────────────┘  └────────────┘
+  Android+iOS     Android+iOS     Android         Web+Desktop
+  +Web            +Web</div>
+
+    <h3>Why 4 separate apps instead of one?</h3>
+    <ul>
+      <li><strong>Different user journeys</strong>: a customer's flow is entirely different from a rider's — shared navigation would be confusing</li>
+      <li><strong>Different permissions</strong>: merchants should never see customer PII; riders see only their assigned orders</li>
+      <li><strong>Smaller APK size</strong>: each app only bundles features relevant to that role</li>
+      <li><strong>Independent release cycles</strong>: merchant app can ship a catalog feature without triggering a customer app release</li>
+    </ul>
+
+    <h2 id="releases">15+ Releases — Release Process</h2>
+
+    <h3>Semantic versioning</h3>
+    <ul>
+      <li><code>MAJOR.MINOR.PATCH</code> → e.g., <code>2.3.1</code></li>
+      <li>MAJOR: breaking change (redesign, new auth flow)</li>
+      <li>MINOR: new feature (add review system)</li>
+      <li>PATCH: bug fix (fix payment timeout)</li>
+      <li>Flutter also uses <code>versionCode</code> (integer, increments each release) for Play Store/App Store</li>
+    </ul>
+
+    <h3>Release checklist</h3>
+    <ul>
+      <li>Bump <code>pubspec.yaml</code> version</li>
+      <li><code>flutter build appbundle --release</code> (Android) or <code>flutter build ipa --release</code> (iOS)</li>
+      <li>Play Store: upload AAB → staged rollout (10% → 50% → 100% over 3 days)</li>
+      <li>App Store: submit for review (1-3 day review period) → phased release (7 days)</li>
+      <li>Monitor crash rate and ANR rate in Play Console for 24h before expanding rollout</li>
+    </ul>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What is a staged rollout and why use it?</strong></p>
+      <p>A: Instead of releasing to all users at once, staged rollout deploys to a percentage of users first (10%). If crash rate or 1-star reviews spike, you halt the rollout and fix the issue before it affects everyone. At 30K users, a critical bug affecting 100% at launch = 30,000 bad experiences. At 10% rollout = 3,000, with the ability to halt before the remaining 90% update.</p>
+      <p><strong>Q: How do you handle a critical bug that slipped into production?</strong></p>
+      <p>A: If the bug is UI-only (not a security issue), we can push a patch via the backend (feature flags). If it requires app code change: halt the staged rollout, hotfix the code, fast-track a new release. Play Store allows expedited reviews for critical fixes. For iOS, Apple's App Store has an emergency review process. We also maintain the previous APK internally for sideloading to internal testers during the fix cycle.</p>
+    </div>
+
+    <h2 id="platform-channels">Platform Channels</h2>
+
+    <p>Flutter's platform channel system bridges Dart code to native Android (Kotlin) or iOS (Swift) code — used for features unavailable in Flutter's SDK:</p>
+
+    <pre><code class="language-dart">// Flutter (Dart) side
+const platform = MethodChannel('com.voltvave.zoober/biometrics');
+
+Future&lt;bool&gt; authenticateWithBiometrics() async {
+  try {
+    final bool authenticated = await platform.invokeMethod('authenticate');
+    return authenticated;
+  } on PlatformException catch (e) {
+    // Biometrics not available on device
+    return false;
+  }
+}
+
+// Android (Kotlin) side — in MainActivity.kt
+MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "com.voltvave.zoober/biometrics")
+    .setMethodCallHandler { call, result ->
+        if (call.method == "authenticate") {
+            // Use BiometricPrompt API
+            BiometricPrompt(this, ...).authenticate(promptInfo)
+        }
+    }</code></pre>
+
+    <p>Used in Zoober for: biometric authentication (fingerprint/face ID), native payment SDKs (Juspay's native Android SDK for UPI intent flow), and background location tracking for riders.</p>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

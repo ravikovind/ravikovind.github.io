@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Database Design — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+    .col-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin: 20px 0; }
+    .col-tag { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-family: 'Geo', monospace; font-size: 12px; color: #ccc; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">04 / 09</div>
+      <h1>Database Design</h1>
+      <p class="subtitle">23 MongoDB collections, Redis read/write separation, query optimization, write amplification, and connection pooling.</p>
+    </div>
+
+    <h2 id="collections">The 23 MongoDB Collections</h2>
+
+    <p>A hyperlocal commerce platform needs to model many independent domain entities. Here's the complete schema map:</p>
+
+    <div class="col-grid">
+      <div class="col-tag">users</div>
+      <div class="col-tag">stores</div>
+      <div class="col-tag">products</div>
+      <div class="col-tag">orders</div>
+      <div class="col-tag">orderItems</div>
+      <div class="col-tag">carts</div>
+      <div class="col-tag">riders</div>
+      <div class="col-tag">zones</div>
+      <div class="col-tag">addresses</div>
+      <div class="col-tag">payments</div>
+      <div class="col-tag">webhooks</div>
+      <div class="col-tag">sessions</div>
+      <div class="col-tag">auditLogs</div>
+      <div class="col-tag">notifications</div>
+      <div class="col-tag">settings</div>
+      <div class="col-tag">inventory</div>
+      <div class="col-tag">catalogs</div>
+      <div class="col-tag">categories</div>
+      <div class="col-tag">reviews</div>
+      <div class="col-tag">analytics</div>
+      <div class="col-tag">rateLimits</div>
+      <div class="col-tag">tokens</div>
+      <div class="col-tag">jobs</div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why so many collections? Why not embed more?</strong></p>
+      <p>A: MongoDB embedding works well when the embedded data is always accessed with the parent (e.g., order items always fetched with their order). But separate collections make sense when: (1) the child documents grow unboundedly (audit logs), (2) you need to query the child independently (payments, riders), (3) the child has its own lifecycle (notifications). The rule: embed if always accessed together and bounded size; reference if queried independently or unbounded.</p>
+    </div>
+
+    <h3>Key schema decisions: embed vs reference</h3>
+    <pre><code class="language-javascript">// EMBEDDED: orderItems inside order
+// Rationale: always fetched together, bounded (max 50 items per order)
+const OrderSchema = new Schema({
+  tenantId: ObjectId,
+  customerId: ObjectId,
+  storeId: ObjectId,
+  status: String,
+  items: [{ // EMBEDDED
+    productId: ObjectId,
+    name: String,       // denormalized — product name at order time
+    price: Number,      // denormalized — price at order time
+    quantity: Number,
+  }],
+  totalAmount: Number,
+  __v: Number,          // optimistic locking version
+});
+
+// REFERENCED: payments separate from order
+// Rationale: queried independently for reconciliation, has own lifecycle
+const PaymentSchema = new Schema({
+  tenantId: ObjectId,
+  orderId: { type: ObjectId, ref: 'Order' }, // reference
+  gatewayTxnId: String,
+  idempotencyKey: String, // UUID — prevents double-processing
+  status: String,
+  amount: Number,
+  gateway: String, // 'juspay' | 'phonepe' | 'razorpay'
+});</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why denormalize product name/price inside orderItems?</strong></p>
+      <p>A: If we stored only <code>productId</code> and the product price changes later, historical orders would show the wrong price. Denormalizing captures the price at the time of order. This is standard e-commerce practice — think of it as a receipt, not a live reference. The tradeoff is slightly larger order documents, but the data integrity benefit is worth it.</p>
+    </div>
+
+    <h2 id="readwrite">Read/Write Separation</h2>
+
+    <h3>MongoDB replica set architecture</h3>
+    <div class="ascii">
+MongoDB Replica Set (3 nodes):
+
+  ┌──────────────┐
+  │   PRIMARY    │ ◀── all writes go here
+  │  (r/w)       │     replicates to secondaries
+  └──────┬───────┘
+         │ replication (oplog streaming)
+         ├──────────────────────┐
+         ▼                      ▼
+  ┌──────────────┐   ┌──────────────┐
+  │  SECONDARY 1 │   │  SECONDARY 2 │
+  │  (read-only) │   │  (read-only) │
+  └──────────────┘   └──────────────┘
+         ▲                  ▲
+         │                  │
+  Read requests (catalog, store listings, analytics queries)
+  use readPreference: 'secondaryPreferred'</code></pre>
+
+    <pre><code class="language-javascript">// Mongoose read preference per query
+// Reads: go to secondary (reduces primary load)
+const stores = await Store
+  .find({ tenantId, isActive: true })
+  .read('secondaryPreferred');
+
+// Writes and order status reads: always primary (strong consistency)
+const order = await Order
+  .findOneAndUpdate(filter, update, { new: true })
+  .read('primary'); // default, explicit for clarity</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What's the replication lag risk with secondary reads?</strong></p>
+      <p>A: MongoDB replication lag is typically 10-500ms. For store catalog reads, this is acceptable — if a price updates and a user sees the old price for half a second, that's fine. For order status reads (what's my order doing?), we always read from primary to guarantee the latest state. The rule: eventual consistency is okay for catalog/discovery, strong consistency required for financial and order state data.</p>
+    </div>
+
+    <h2 id="writeamplification">Write Amplification &amp; Redis</h2>
+
+    <h3>What write amplification is</h3>
+    <p>Write amplification happens when a single logical write triggers multiple physical writes. In a commerce context: a rider updating their location every 5 seconds writes to <code>riders</code>, triggers a read of all nearby active orders, writes a notification document, pushes to WebSocket — one user action = 4+ DB operations.</p>
+
+    <h3>How Redis solves it</h3>
+    <pre><code class="language-javascript">// WITHOUT Redis: every product page load hits MongoDB
+// At 1000 concurrent users browsing: 1000+ DB reads/second
+app.get('/stores/:storeId/products', async (req, res) => {
+  const products = await Product.find({ storeId, isActive: true }); // always MongoDB
+  res.json(products);
+});
+
+// WITH Redis cache-aside:
+app.get('/stores/:storeId/products', async (req, res) => {
+  const cacheKey = `catalog:${storeId}`;
+
+  // 1. Check Redis first (sub-ms)
+  const cached = await redis.get(cacheKey);
+  if (cached) return res.json(JSON.parse(cached));
+
+  // 2. Cache miss: fetch from MongoDB
+  const products = await Product.find({ storeId, isActive: true });
+
+  // 3. Write to cache (TTL 5 min)
+  await redis.setex(cacheKey, 300, JSON.stringify(products));
+
+  res.json(products);
+});
+
+// On product update: invalidate cache
+async function updateProduct(productId, data) {
+  const product = await Product.findByIdAndUpdate(productId, data, { new: true });
+  await redis.del(`catalog:${product.storeId}`); // invalidate
+  return product;
+}</code></pre>
+
+    <p>Result: 80-90% of product catalog reads served from Redis (~0.1ms) instead of MongoDB (~5-20ms). MongoDB write load drops proportionally.</p>
+
+    <h2 id="indexes">MongoDB Index Strategy</h2>
+
+    <pre><code class="language-javascript">// Compound indexes — field order matters (ESR rule: Equality, Sort, Range)
+// Query: orders by store + status filter + date sort
+Order.createIndex({ storeId: 1, status: 1, createdAt: -1 });
+
+// Partial index — only index active stores (reduces index size by ~70%)
+Store.createIndex(
+  { tenantId: 1, location: '2dsphere' },
+  { partialFilterExpression: { isActive: true } }
+);
+
+// TTL index — auto-delete expired sessions after 30 days
+Session.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
+// MongoDB checks TTL indexes every 60s and deletes expired docs
+
+// TTL for rate limit keys
+RateLimit.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 });
+
+// Unique index — prevent duplicate idempotency keys
+Payment.createIndex({ idempotencyKey: 1 }, { unique: true });
+// Attempting to insert duplicate key → MongoDB throws E11000 → caught → 200 (dedup)</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What is the ESR rule for compound indexes?</strong></p>
+      <p>A: ESR = Equality, Sort, Range. Put equality fields first (exact match: storeId = "abc"), then sort fields (createdAt: -1), then range fields (amount: {">"} 100). This ordering lets MongoDB use the index for all three operations in one pass. Wrong order = index works for fewer operations or not at all.</p>
+    </div>
+
+    <h2 id="redis-patterns">Redis Patterns</h2>
+
+    <h3>Patterns used beyond caching</h3>
+    <pre><code class="language-javascript">// 1. SETNX for distributed locks (prevent double payment processing)
+const lockKey = `lock:payment:${orderId}`;
+const acquired = await redis.set(lockKey, '1', 'NX', 'EX', 30); // 30s TTL
+if (!acquired) throw new ConflictError('Payment already processing');
+try {
+  await processPayment(orderId);
+} finally {
+  await redis.del(lockKey); // always release
+}
+
+// 2. Sorted set for rider leaderboard / analytics
+// ZADD adds (score=totalDeliveries, member=riderId)
+await redis.zadd('rider:leaderboard', deliveries, riderId);
+// Top 10 riders
+const top10 = await redis.zrevrange('rider:leaderboard', 0, 9, 'WITHSCORES');
+
+// 3. Pub/Sub for WebSocket fan-out (covered in doc 05)
+redis.publish('order:updates', JSON.stringify({ orderId, status, tenantId }));</code></pre>
+
+    <h2 id="pooling">Connection Pooling</h2>
+
+    <pre><code class="language-javascript">// Mongoose pool: shared across all requests in the Node.js process
+// Default pool size = 5, increase for high concurrency
+mongoose.connect(MONGO_URI, {
+  maxPoolSize: 20,       // max open connections to MongoDB
+  minPoolSize: 5,        // keep this many warm (avoids cold connect)
+  connectTimeoutMS: 10000,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+  // heartbeatFrequencyMS: 10000 — ping MongoDB every 10s to keep alive
+});
+
+// ioredis pool (ioredis manages one connection per client instance)
+// For Redis cluster, use ioredis.Cluster
+const redis = new Redis({
+  host: process.env.REDIS_HOST,
+  port: 6379,
+  maxRetriesPerRequest: 3,
+  enableReadyCheck: true,
+  lazyConnect: false, // connect immediately on startup
+});</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What happens if the MongoDB pool is exhausted?</strong></p>
+      <p>A: New requests queue up waiting for a connection to become available. If they wait longer than <code>serverSelectionTimeoutMS</code> (5s), they throw a timeout error which becomes a 503 response. To avoid this: (1) increase pool size, (2) optimize slow queries so connections return faster, (3) add a circuit breaker to shed load gracefully instead of queuing indefinitely.</p>
+    </div>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

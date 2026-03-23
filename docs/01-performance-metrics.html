@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance Metrics — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin: 24px 0; }
+    .stat-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+    .stat-val { font-family: 'Saira', sans-serif; font-size: 24px; font-weight: 700; color: var(--accent); }
+    .stat-lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">01 / 09</div>
+      <h1>Performance Metrics</h1>
+      <p class="subtitle">Deep dive into every number on the resume — how it was measured, what it means operationally, and how to defend it in an interview.</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-val">&lt;200ms</div><div class="stat-lbl">P95 API Latency</div></div>
+      <div class="stat-box"><div class="stat-val">99.9%</div><div class="stat-lbl">Uptime</div></div>
+      <div class="stat-box"><div class="stat-val">80K+</div><div class="stat-lbl">Orders Processed</div></div>
+      <div class="stat-box"><div class="stat-val">30K+</div><div class="stat-lbl">Registered Users</div></div>
+      <div class="stat-box"><div class="stat-val">₹1.5Cr</div><div class="stat-lbl">GMV</div></div>
+      <div class="stat-box"><div class="stat-val">&lt;100ms</div><div class="stat-lbl">Geo Search</div></div>
+      <div class="stat-box"><div class="stat-val">&lt;50ms</div><div class="stat-lbl">Kafka E2E</div></div>
+    </div>
+
+    <!-- ─── P95 LATENCY ─── -->
+    <h2 id="p95">P95 Latency — What, Why, How</h2>
+
+    <h3>What is P95?</h3>
+    <p>Percentile latency means: <strong>95% of all requests complete within this time</strong>. P50 = median (half faster, half slower). P99 = worst 1%.</p>
+
+    <div class="ascii">
+Latency distribution for 10,000 requests:
+
+  Requests
+     │
+2000 ┤████████
+1800 ┤█████████████
+1500 ┤██████████████████
+ 800 ┤█████████████████████
+ 400 ┤████████████████████████
+ 200 ┤██████████████████████████████
+  50 ┤█████████████████████████████████████
+     └─────────────────────────────────────────▶ Latency (ms)
+     0    50   100   150  200   300   500  1000+
+
+     P50 ≈ 80ms    P95 ≈ 180ms    P99 ≈ 420ms
+     ↑ median      ↑ resume claim  ↑ slow tail</div>
+
+    <h3>Why P95 (not P50 or P99)?</h3>
+    <ul>
+      <li><strong>P50 is too optimistic</strong> — median hides outliers. A fast median with slow tail = bad UX.</li>
+      <li><strong>P99 is expensive to optimize</strong> — the final 1% often requires disproportionate infra spend for rare cold paths.</li>
+      <li><strong>P95 is the industry standard SLA</strong> — most APM alerts, SLOs (Google SRE book), and client SLAs use P95.</li>
+      <li>For a hyperlocal commerce platform, if a delivery rider's app is slow 5% of the time, that's still 4,000 bad experiences per 80K orders.</li>
+    </ul>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why did you choose P95 as your SLA target?</strong></p>
+      <p>A: P95 captures the experience for 95% of users. In a commerce platform, that's what determines perceived reliability. P99 optimization often hits diminishing returns — you're chasing GC pauses or cold DB connections that cost 10x the infra. P95 is where business impact lives.</p>
+    </div>
+
+    <h3>How was &lt;200ms P95 achieved?</h3>
+
+    <p><strong>1. MongoDB connection pooling (Mongoose):</strong> Pool size of 10-20 connections, kept warm. Cold connection overhead is 5-30ms per request — eliminated with pooling.</p>
+
+    <pre><code class="language-javascript">// mongoose connection pool config
+mongoose.connect(MONGO_URI, {
+  maxPoolSize: 20,        // max concurrent connections
+  minPoolSize: 5,         // keep warm connections
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+});</code></pre>
+
+    <p><strong>2. MongoDB compound indexes:</strong> Every query that filters + sorts has a covering index. Without indexes, a 80K-document collection scan takes 200-500ms. With indexes, &lt;5ms.</p>
+
+    <pre><code class="language-javascript">// Example: order listing by store + status + date
+db.orders.createIndex({ storeId: 1, status: 1, createdAt: -1 });
+
+// Geospatial for &lt;100ms radius search
+db.stores.createIndex({ location: "2dsphere" });</code></pre>
+
+    <p><strong>3. Redis caching hot reads:</strong> Store catalog, user sessions, and rate limit buckets hit Redis first. Redis P99 latency ≈ 0.1-1ms vs MongoDB P99 ≈ 5-50ms.</p>
+
+    <p><strong>4. Response payload discipline:</strong> Use MongoDB projections — never send entire documents. Each saved field = fewer bytes = faster serialization.</p>
+
+    <pre><code class="language-javascript">// BAD: sends entire product doc (5KB+)
+const products = await Product.find({ storeId });
+
+// GOOD: project only needed fields
+const products = await Product.find(
+  { storeId },
+  { name: 1, price: 1, imageUrl: 1, stock: 1 }
+);</code></pre>
+
+    <h3>How to measure P95 latency</h3>
+    <p>Three approaches, from simple to production-grade:</p>
+
+    <pre><code class="language-javascript">// 1. Express middleware (custom, zero-cost)
+app.use((req, res, next) => {
+  const start = process.hrtime.bigint();
+  res.on('finish', () => {
+    const ms = Number(process.hrtime.bigint() - start) / 1e6;
+    // Push to a histogram or log for percentile calculation
+    metrics.histogram('http_request_duration_ms', ms, {
+      method: req.method,
+      route: req.route?.path,
+      status: res.statusCode,
+    });
+  });
+  next();
+});
+
+// 2. MongoDB explain() — check query plan
+db.orders.find({ storeId: "abc" }).explain("executionStats");
+// Look for: executionTimeMillis, totalDocsExamined vs nReturned
+// If docsExamined >> nReturned → missing index
+
+// 3. APM (Datadog/New Relic) — production standard
+// dd-trace auto-instruments Express, MongoDB, Redis
+const tracer = require('dd-trace').init();</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: How do you know it was actually &lt;200ms P95?</strong></p>
+      <p>A: We instrumented every request with Express middleware logging response time with <code>process.hrtime.bigint()</code> for nanosecond precision, pushed to structured logs, and computed percentiles via MongoDB aggregation on our analytics collection. During traffic spikes we'd check the P95 in real-time. MongoDB's <code>explain("executionStats")</code> told us when we had slow queries that needed indexing.</p>
+    </div>
+
+    <!-- ─── UPTIME ─── -->
+    <h2 id="uptime">99.9% Uptime</h2>
+
+    <h3>What 99.9% means operationally</h3>
+    <ul>
+      <li>99.9% = <strong>8.76 hours/year</strong> max downtime allowed</li>
+      <li>99.99% = 52.6 minutes/year (requires full HA + redundancy)</li>
+      <li>99.9% per month = <strong>43.8 minutes/month</strong></li>
+    </ul>
+
+    <div class="ascii">
+Uptime SLA comparison:
+
+  99.0%  = 87.6 hours/year  downtime  ← dev project
+  99.5%  = 43.8 hours/year            ← basic prod
+  99.9%  =  8.76 hours/year ← resume claim (TingTing)
+  99.95% =  4.38 hours/year
+  99.99% = 52.6 minutes/year          ← 4 nines (expensive)
+  99.999%=  5.26 minutes/year         ← 5 nines (rare)</div>
+
+    <h3>How 99.9% was maintained</h3>
+    <ul>
+      <li><strong>Blue-green deployments</strong>: zero-downtime releases (covered in AWS doc)</li>
+      <li><strong>Health check auto-restart</strong>: PM2 with <code>--watch</code> + AWS ALB health checks auto-replace unhealthy instances</li>
+      <li><strong>Graceful shutdown</strong>: Express server closes existing connections before restart, no request drops</li>
+      <li><strong>MongoDB replica set</strong>: automatic failover in &lt;10s if primary goes down</li>
+      <li><strong>Redis persistence</strong>: AOF (append-only file) so session data survives restarts</li>
+    </ul>
+
+    <!-- ─── METRICS ─── -->
+    <h2 id="metrics">80K+ Orders, 30K+ Users, ₹1.5Cr GMV</h2>
+
+    <h3>How these were tracked</h3>
+    <p>Every order lifecycle event emits an analytics document to MongoDB. GMV is a MongoDB aggregation on completed orders:</p>
+
+    <pre><code class="language-javascript">// GMV aggregation
+db.orders.aggregate([
+  { $match: { status: "COMPLETED", storeId: { $in: storeIds } } },
+  { $group: {
+    _id: null,
+    totalGMV: { $sum: "$totalAmount" },
+    orderCount: { $sum: 1 },
+  }},
+]);</code></pre>
+
+    <ul>
+      <li><strong>Orders</strong>: count of documents in orders collection with <code>status != CANCELLED</code></li>
+      <li><strong>Users</strong>: unique documents in users collection with at least one order</li>
+      <li><strong>GMV</strong>: sum of <code>totalAmount</code> for completed orders (Gross Merchandise Value = before platform fee deduction)</li>
+    </ul>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: GMV vs Revenue — what's the difference?</strong></p>
+      <p>A: GMV (Gross Merchandise Value) is the total value of orders processed — what customers paid. Revenue is what the platform earns after paying stores/riders. For a hyperlocal commerce platform, GMV is the most meaningful scale metric because it shows total economic throughput. ₹1.5Cr GMV at a typical 3-5% platform take rate = ₹4.5–7.5L actual revenue.</p>
+    </div>
+
+    <!-- ─── GEO SEARCH ─── -->
+    <h2 id="geo">&lt;100ms Geospatial Search</h2>
+
+    <h3>How 2dsphere indexes enable sub-100ms radius queries</h3>
+
+    <pre><code class="language-javascript">// Schema: GeoJSON Point
+const StoreSchema = new Schema({
+  location: {
+    type: { type: String, enum: ['Point'], default: 'Point' },
+    coordinates: [Number], // [longitude, latitude]
+  },
+});
+StoreSchema.index({ location: '2dsphere' });
+
+// Query: stores within 5km radius
+const nearbyStores = await Store.find({
+  location: {
+    $near: {
+      $geometry: { type: 'Point', coordinates: [lng, lat] },
+      $maxDistance: 5000, // meters
+    },
+  },
+  isActive: true,
+  tenantId: req.user.tenantId,
+}).limit(20);</code></pre>
+
+    <p>Without the 2dsphere index, this query scans every document and computes haversine distance — O(n). With the index, MongoDB uses a geohash-based B-tree that narrows candidates to a tiny subset first — O(log n). At 30 stores, this means 1-2ms query time. Under load: &lt;100ms including network overhead.</p>
+
+    <!-- ─── KAFKA ─── -->
+    <h2 id="kafka">&lt;50ms Kafka End-to-End</h2>
+
+    <h3>What "end-to-end" means in the Tredye pipeline</h3>
+    <div class="ascii">
+Kite WebSocket tick arrives
+        │
+        ▼
+[data-ingestion] produces to raw-ticks   t=0ms
+        │
+        ▼
+[candle-builder] consumes, aggregates    t=5-10ms
+        │
+        ▼
+[rsi-calculator] incremental RSI         t=10-20ms
+        │
+        ▼
+[divergence-detector] signal detection   t=20-40ms
+        │
+        ▼
+Redis pub/sub → WebSocket client         t=40-50ms
+        │
+        ▼
+Browser receives alert                   total: &lt;50ms</div>
+
+    <p>Each stage adds a <strong>timestamp header</strong> to the Kafka message. The final consumer computes <code>finalTimestamp - ingressTimestamp</code>. Snappy compression reduces message size by ~40%, cutting serialization + network time per hop.</p>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Kafka isn't typically known for &lt;50ms latency. How did you achieve it?</strong></p>
+      <p>A: Three factors: (1) All services run in the same Docker network on OCI, so inter-service network latency is sub-millisecond. (2) Each consumer uses manual offset commit after processing, not auto-commit with a 5s interval — this avoids processing delay from commit batching. (3) Snappy compression cuts the payload, reducing serialization time per hop. The 4-stage pipeline adds roughly 5-15ms per stage, totaling &lt;50ms end-to-end.</p>
+    </div>
+
+    <!-- ─── CAPACITY ─── -->
+    <h2 id="capacity">Capacity Planning</h2>
+
+    <h3>How many concurrent users can the system handle?</h3>
+    <p>For a Node.js/Express single instance (t3.medium, 2 vCPU, 4GB RAM):</p>
+    <ul>
+      <li><strong>I/O-bound requests</strong> (DB reads): 500-2000 RPS per instance (event loop doesn't block)</li>
+      <li><strong>WebSocket connections</strong>: ~10,000 per instance (each ~40KB RSS)</li>
+      <li><strong>At 1000 concurrent users</strong> with ~1 req/sec each = 1000 RPS — comfortably within a single t3.medium with connection pooling</li>
+    </ul>
+    <p>Auto-scaling group adds instances at 60% CPU, providing headroom before degradation. At 80K orders (Aug 2022 – Mar 2025, ~32 months), the average rate is ~83 orders/day, not a high-frequency trading system — real peak load was evening delivery windows.</p>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

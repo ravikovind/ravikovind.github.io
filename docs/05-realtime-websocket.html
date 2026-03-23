@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real-Time & WebSocket — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+    th { background: var(--bg3); color: var(--accent); font-family: 'Saira', sans-serif; padding: 10px 12px; text-align: left; border: 1px solid var(--border); }
+    td { padding: 8px 12px; border: 1px solid var(--border); color: #ccc; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">05 / 09</div>
+      <h1>Real-Time &amp; WebSocket</h1>
+      <p class="subtitle">1000+ concurrent connections, automatic reconnection, event replay, and order state sync across 4 apps.</p>
+    </div>
+
+    <h2 id="comparison">WebSocket vs SSE vs Polling</h2>
+
+    <table>
+      <tr><th>Protocol</th><th>Direction</th><th>Use when</th><th>Overhead</th></tr>
+      <tr><td>HTTP Polling</td><td>Client → Server (repeated)</td><td>Simple, low-frequency updates</td><td>High (new request each time)</td></tr>
+      <tr><td>SSE</td><td>Server → Client only</td><td>One-way streams (news feed, notifications)</td><td>Low (persistent HTTP)</td></tr>
+      <tr><td><strong>WebSocket</strong></td><td>Bidirectional</td><td>Order sync (rider sends location, server sends status)</td><td>Very low (persistent TCP)</td></tr>
+    </table>
+
+    <p><strong>Why WebSocket for Zoober/TingTing</strong>: order sync is inherently bidirectional. Customers receive status updates (server → client) AND riders send location updates (client → server). SSE can't handle the rider → server direction without a separate HTTP request, creating two connections. WebSocket handles both in one persistent TCP connection.</p>
+
+    <h2 id="server">Node.js WebSocket Server</h2>
+
+    <pre><code class="language-javascript">const WebSocket = require('ws');
+const http = require('http');
+
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+// Room management: orderId → Set of client WebSockets
+const orderRooms = new Map();
+
+wss.on('connection', (ws, req) => {
+  // Authenticate via JWT in query param (can't set headers in WS from browser)
+  const token = new URL(req.url, 'ws://x').searchParams.get('token');
+  let user;
+  try {
+    user = verifyToken(token);
+  } catch {
+    ws.close(4001, 'Unauthorized');
+    return;
+  }
+
+  ws.user = user;
+  ws.isAlive = true;
+
+  // Client sends: { type: 'subscribe', orderId: 'abc123', lastEventId: '...' }
+  ws.on('message', (data) => {
+    const msg = JSON.parse(data);
+
+    if (msg.type === 'subscribe') {
+      // Join room
+      if (!orderRooms.has(msg.orderId)) orderRooms.set(msg.orderId, new Set());
+      orderRooms.get(msg.orderId).add(ws);
+      ws.subscribedOrders = ws.subscribedOrders || new Set();
+      ws.subscribedOrders.add(msg.orderId);
+
+      // Event replay: send missed events since lastEventId
+      if (msg.lastEventId) {
+        replayMissedEvents(ws, msg.orderId, msg.lastEventId);
+      }
+    }
+  });
+
+  // Ping-pong heartbeat: mark connection dead if no pong received
+  ws.on('pong', () => { ws.isAlive = true; });
+
+  ws.on('close', () => {
+    // Remove from all rooms on disconnect
+    ws.subscribedOrders?.forEach(orderId => {
+      orderRooms.get(orderId)?.delete(ws);
+      if (orderRooms.get(orderId)?.size === 0) orderRooms.delete(orderId);
+    });
+  });
+});
+
+// Heartbeat interval: detect and close zombie connections
+const heartbeat = setInterval(() => {
+  wss.clients.forEach(ws => {
+    if (!ws.isAlive) return ws.terminate(); // dead connection — remove
+    ws.isAlive = false;
+    ws.ping(); // client must respond with pong within next interval
+  });
+}, 30000); // every 30 seconds</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why ping-pong heartbeat? Can't you just check if the socket is connected?</strong></p>
+      <p>A: WebSocket has no built-in keep-alive at the application level. A TCP connection can become "half-open" — the server thinks it's connected but the client's network dropped without a clean close. Without heartbeat, these zombie connections accumulate and consume memory forever. Ping-pong forces a round-trip: if the client doesn't pong within 30s, we terminate the connection and free the memory (~40KB per connection).</p>
+    </div>
+
+    <h2 id="scale">1000+ Connections on Single EC2</h2>
+
+    <h3>Memory math</h3>
+    <ul>
+      <li>Each WebSocket connection: ~40-60KB RSS (socket buffer + ws overhead)</li>
+      <li>1000 connections: 40-60MB — well within t3.medium's 4GB RAM</li>
+      <li>Node.js event loop handles all I/O non-blockingly: 1000 idle connections = near-zero CPU</li>
+      <li>Active connections (messages flowing): each message is a microtask, processed in microseconds</li>
+    </ul>
+
+    <h3>Horizontal scaling with Redis pub/sub</h3>
+    <div class="ascii">
+Multi-instance WebSocket scaling:
+
+  EC2 Instance A              EC2 Instance B
+  ┌───────────────┐           ┌───────────────┐
+  │ ws-server     │           │ ws-server     │
+  │               │           │               │
+  │ customer1 ──┐ │           │ merchant1 ──┐ │
+  │ customer2 ──┤ │           │ rider1    ──┤ │
+  └─────────────┼─┘           └─────────────┼─┘
+                │                           │
+                └─────────┬─────────────────┘
+                          │
+                    Redis Pub/Sub
+                    channel: 'order:abc'
+                          │
+  When order updates:     │
+  Any instance publishes  │ → ALL instances receive
+  to Redis → ALL          │ → Each broadcasts to
+  instances broadcast     │   their local subscribers</code></pre>
+
+    <pre><code class="language-javascript">// Publisher (any instance that processes an order update)
+function broadcastOrderUpdate(order) {
+  const payload = JSON.stringify({
+    type: 'ORDER_UPDATE',
+    orderId: order._id,
+    status: order.status,
+    tenantId: order.tenantId,
+    eventId: generateEventId(), // for event replay
+    timestamp: Date.now(),
+  });
+
+  // Store in Redis sorted set for replay (score = timestamp)
+  redis.zadd(`events:order:${order._id}`, Date.now(), payload);
+  redis.expire(`events:order:${order._id}`, 600); // 10 min TTL
+
+  // Publish to all instances
+  redisPub.publish(`order:${order._id}`, payload);
+}
+
+// Subscriber setup (each ws-server instance)
+redisSub.subscribe('order:*'); // subscribe to all order channels
+redisSub.on('message', (channel, message) => {
+  const orderId = channel.split(':')[1];
+  const clients = orderRooms.get(orderId) || new Set();
+  clients.forEach(ws => {
+    if (ws.readyState === WebSocket.OPEN) ws.send(message);
+  });
+});</code></pre>
+
+    <h2 id="replay">Event Replay</h2>
+
+    <h3>Handling reconnects without missing updates</h3>
+    <pre><code class="language-javascript">// Client sends lastEventId on reconnect
+// { type: 'subscribe', orderId: 'abc', lastEventId: '1710000000000:abc' }
+
+async function replayMissedEvents(ws, orderId, lastEventId) {
+  const lastTimestamp = parseInt(lastEventId.split(':')[0]);
+
+  // Fetch all events after lastTimestamp from Redis sorted set
+  const events = await redis.zrangebyscore(
+    `events:order:${orderId}`,
+    lastTimestamp + 1,  // exclusive: after last seen
+    '+inf',
+    'WITHSCORES'
+  );
+
+  // Send missed events in order
+  events.forEach(event => {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(event);
+    }
+  });
+}</code></pre>
+
+    <h2 id="reconnect">Automatic Reconnection (Flutter Client)</h2>
+
+    <pre><code class="language-dart">// Flutter WebSocket with exponential backoff reconnection
+class OrderWebSocketService {
+  WebSocketChannel? _channel;
+  int _retryCount = 0;
+  static const maxRetries = 10;
+  String? _lastEventId;
+
+  void connect(String orderId) {
+    final uri = Uri.parse(
+      'wss://api.zoober.in/ws?token=${authToken}&lastEventId=$_lastEventId'
+    );
+    _channel = WebSocketChannel.connect(uri);
+    _channel!.stream.listen(
+      (message) {
+        _retryCount = 0; // reset on successful message
+        final data = jsonDecode(message);
+        _lastEventId = data['eventId']; // track for replay
+        _handleMessage(data);
+      },
+      onDone: () => _scheduleReconnect(orderId),
+      onError: (_) => _scheduleReconnect(orderId),
+    );
+    _channel!.sink.add(jsonEncode({
+      'type': 'subscribe',
+      'orderId': orderId,
+      'lastEventId': _lastEventId,
+    }));
+  }
+
+  void _scheduleReconnect(String orderId) {
+    if (_retryCount >= maxRetries) return;
+    // Exponential backoff with jitter to avoid thundering herd
+    final delay = Duration(
+      milliseconds: min(
+        (pow(2, _retryCount) * 1000 + Random().nextInt(1000)).toInt(),
+        30000, // cap at 30s
+      ),
+    );
+    Future.delayed(delay, () => connect(orderId));
+    _retryCount++;
+  }
+}</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What is "thundering herd" and why does jitter solve it?</strong></p>
+      <p>A: If all 1000 clients disconnect simultaneously (server restart) and retry at the same backoff interval (e.g., all retry after exactly 2s), they all reconnect at the same moment — creating a spike that can overwhelm the server. Adding random jitter (0-1000ms) spreads reconnections over a window, distributing load. Pure exponential backoff without jitter is still a thundering herd problem.</p>
+      <p><strong>Q: What happens to order state if a client misses events during disconnection?</strong></p>
+      <p>A: On reconnect, the client sends <code>lastEventId</code>. The server replays all events from Redis sorted set (TTL 10 minutes) that occurred after that timestamp. If the disconnection lasted &gt;10 minutes, the client falls back to a full HTTP GET for current order state — no gap in data.</p>
+    </div>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

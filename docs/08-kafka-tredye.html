@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kafka & Tredye — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+    th { background: var(--bg3); color: var(--accent); font-family: 'Saira', sans-serif; padding: 10px 12px; text-align: left; border: 1px solid var(--border); }
+    td { padding: 8px 12px; border: 1px solid var(--border); color: #ccc; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">08 / 09</div>
+      <h1>Kafka &amp; Tredye</h1>
+      <p class="subtitle">KRaft mode, Snappy compression, the 4-stage data pipeline, &lt;50ms latency, RSI (Wilder's smoothing), ZigZag peak/trough analysis, and divergence detection.</p>
+    </div>
+
+    <h2 id="kafka-fundamentals">Kafka Fundamentals</h2>
+
+    <h3>Core concepts</h3>
+    <ul>
+      <li><strong>Topic</strong>: named log of messages (e.g., <code>raw-ticks</code>, <code>candles</code>)</li>
+      <li><strong>Partition</strong>: horizontal shard of a topic — enables parallelism. Messages with the same key always go to the same partition (ordering guarantee per key)</li>
+      <li><strong>Consumer group</strong>: multiple consumers sharing a topic — each partition consumed by exactly one consumer in the group. Scale consumers up to partition count.</li>
+      <li><strong>Offset</strong>: position of a consumer in a partition. Commit offset after processing = acknowledgment.</li>
+    </ul>
+
+    <div class="ascii">
+Kafka topic with 3 partitions:
+
+Topic: raw-ticks
+  Partition 0: [msg0] [msg3] [msg6] ...   ← Consumer A reads these
+  Partition 1: [msg1] [msg4] [msg7] ...   ← Consumer B reads these
+  Partition 2: [msg2] [msg5] [msg8] ...   ← Consumer C reads these
+
+Key = instrument symbol (RELIANCE, TCS, INFY)
+RELIANCE ticks → always Partition 0 (consistent ordering per symbol)</div>
+
+    <h3>Commit strategies</h3>
+    <ul>
+      <li><strong>Auto-commit</strong>: commits offset every 5 seconds regardless of processing — can lose messages if process crashes mid-processing</li>
+      <li><strong>Manual commit</strong> (used in Tredye): commit only after successful processing → at-least-once delivery guarantee</li>
+    </ul>
+
+    <h2 id="kraft">KRaft Mode — Why Remove ZooKeeper?</h2>
+
+    <div class="ascii">
+Kafka with ZooKeeper (old):              Kafka KRaft (new):
+
+  ZooKeeper Ensemble                     Kafka Controller Quorum
+  ┌──────┐ ┌──────┐ ┌──────┐            ┌────────────────────┐
+  │  ZK1 │ │  ZK2 │ │  ZK3 │            │  Controller nodes  │
+  └──────┘ └──────┘ └──────┘            │  (Raft consensus)  │
+       ↕ cluster metadata ↕             └────────────────────┘
+  Kafka Brokers                               ↕ metadata
+  ┌──────┐ ┌──────┐                      Kafka Brokers
+  │  B1  │ │  B2  │                      ┌──────┐ ┌──────┐
+  └──────┘ └──────┘                      │  B1  │ │  B2  │
+                                         └──────┘ └──────┘
+  Problems:
+  - Separate ZK cluster to operate        Benefits of KRaft:
+  - ZK becomes bottleneck at scale        - Single system to operate
+  - Controller election via ZK = slow     - Faster controller election
+  - Split-brain risk                      - Higher partition count possible
+                                          - Simpler ops for small teams</div>
+
+    <p>For a startup, KRaft mode eliminates the need to run a separate ZooKeeper cluster. In Tredye's OCI deployment, this means 3 fewer containers to manage, fewer failure modes, and simpler debugging.</p>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: When would you NOT use KRaft?</strong></p>
+      <p>A: KRaft became production-ready in Kafka 3.3 (Nov 2022). If running Kafka &lt;3.3, or if your ops team has deep ZooKeeper expertise and existing tooling, ZooKeeper is still fine. KRaft is the future — Kafka 4.0 removes ZooKeeper support entirely. For a new system (Tredye, started 2025), KRaft is the obvious choice.</p>
+    </div>
+
+    <h2 id="snappy">Snappy Compression</h2>
+
+    <table>
+      <tr><th>Codec</th><th>Ratio</th><th>Compress Speed</th><th>Decompress Speed</th><th>Best for</th></tr>
+      <tr><td>None</td><td>1x</td><td>—</td><td>—</td><td>Very small messages</td></tr>
+      <tr><td><strong>Snappy</strong></td><td>1.5-2x</td><td>Fast</td><td>Very fast</td><td>High-throughput, CPU-sensitive</td></tr>
+      <tr><td>LZ4</td><td>1.5-2x</td><td>Very fast</td><td>Very fast</td><td>Similar to Snappy</td></tr>
+      <tr><td>Gzip</td><td>2.5-3x</td><td>Slow</td><td>Moderate</td><td>Storage-optimized, low throughput</td></tr>
+      <tr><td>ZSTD</td><td>2-3x</td><td>Moderate</td><td>Fast</td><td>Balance of ratio + speed</td></tr>
+    </table>
+
+    <p>Market tick data is repetitive numerical JSON — ideal for Snappy. Each tick looks like <code>{"symbol":"RELIANCE","ltp":2450.50,"vol":1234567,"ts":1710000000}</code>. Snappy compresses this ~40% with negligible CPU overhead, reducing network bandwidth between Kafka brokers and consumers.</p>
+
+    <h2 id="pipeline">The 4-Stage Pipeline</h2>
+
+    <div class="ascii">
+Tredye Data Pipeline:
+
+  Kite WebSocket API (Zerodha)
+         │ raw market tick every ~100ms
+         │ { symbol, ltp, volume, oi, timestamp }
+         ▼
+  ┌─────────────────────┐
+  │  Stage 1:           │
+  │  data-ingestion     │ Python FastAPI service
+  │                     │ Subscribes to Kite WS
+  └──────────┬──────────┘ Publishes to topic: raw-ticks
+             │            (key = symbol for partition ordering)
+             ▼
+  ┌─────────────────────┐
+  │  Stage 2:           │
+  │  candle-builder     │ Python service
+  │                     │ Aggregates ticks into OHLCV candles
+  └──────────┬──────────┘ by timeframe (1m, 5m, 15m, 1h)
+             │            Publishes to topic: candles
+             ▼
+  ┌─────────────────────┐
+  │  Stage 3:           │
+  │  rsi-calculator     │ Python service
+  │                     │ Incremental RSI (Wilder's EMA)
+  └──────────┬──────────┘ Per symbol, per timeframe
+             │            Publishes to topic: indicators
+             ▼
+  ┌─────────────────────┐
+  │  Stage 4:           │
+  │  divergence-detector│ Python service
+  │                     │ Compares RSI vs price using ZigZag
+  └──────────┬──────────┘ Publishes to topic: signals
+             │
+             ▼
+  Redis pub/sub → WebSocket → Browser (Next.js)</div>
+
+    <h3>How &lt;50ms is measured</h3>
+    <pre><code class="language-python"># Each service adds an ingress_ts header when producing
+producer.produce(
+    topic='candles',
+    key=symbol,
+    value=candle_data,
+    headers={
+        'ingress_ts': str(original_tick_timestamp),  # from stage 1
+        'stage2_ts': str(int(time.time() * 1000)),   # this stage
+    }
+)
+
+# Final consumer (divergence-detector) computes e2e latency
+ingress_ts = int(headers['ingress_ts'])
+e2e_ms = int(time.time() * 1000) - ingress_ts
+# Log to metrics: e2e_ms should be &lt;50</code></pre>
+
+    <h2 id="rsi">RSI — Wilder's Smoothing</h2>
+
+    <h3>Standard RSI formula</h3>
+    <pre><code class="language-python"># Naive RSI: recalculate from scratch each tick
+# For 14-period RSI on new candle:
+# Need last 14 closes → compute 14 gains/losses → average → RSI
+# Problem: requires storing and iterating 14+ candles every tick
+
+# Wilder's incremental RSI (used in Tredye):
+# Only need previous avg_gain and avg_loss — O(1) per tick
+
+class IncrementalRSI:
+    def __init__(self, period=14):
+        self.period = period
+        self.avg_gain = None
+        self.avg_loss = None
+        self.prev_close = None
+        self.candle_count = 0
+
+    def update(self, close: float) -> float | None:
+        if self.prev_close is None:
+            self.prev_close = close
+            return None
+
+        change = close - self.prev_close
+        gain = max(change, 0)
+        loss = max(-change, 0)
+        self.prev_close = close
+        self.candle_count += 1
+
+        if self.candle_count <= self.period:
+            # Initial period: simple average
+            if self.avg_gain is None:
+                self.avg_gain = gain
+                self.avg_loss = loss
+            else:
+                self.avg_gain = (self.avg_gain * (self.candle_count - 1) + gain) / self.candle_count
+                self.avg_loss = (self.avg_loss * (self.candle_count - 1) + loss) / self.candle_count
+
+            if self.candle_count < self.period:
+                return None
+        else:
+            # Wilder's smoothing: EMA-like with 1/period as alpha
+            self.avg_gain = (self.avg_gain * (self.period - 1) + gain) / self.period
+            self.avg_loss = (self.avg_loss * (self.period - 1) + loss) / self.period
+
+        if self.avg_loss == 0:
+            return 100.0  # no losses = overbought
+
+        rs = self.avg_gain / self.avg_loss
+        return 100 - (100 / (1 + rs))</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why not use standard Welles Wilder RSI calculation?</strong></p>
+      <p>A: Welles Wilder is the same algorithm — "Wilder's smoothing" IS Welles Wilder's method. The distinction is incremental vs batch: standard implementations recalculate from the full candle history each time. With 500 trading instruments each emitting ticks every 100ms, recalculating 300+ candles per tick per symbol = 500 × 300 = 150,000 candle operations per tick. Incremental RSI reduces this to 500 × 1 = 500 operations, enabling &lt;50ms throughput.</p>
+    </div>
+
+    <h2 id="zigzag">ZigZag Algorithm</h2>
+
+    <h3>What ZigZag does</h3>
+    <p>ZigZag filters out noise to identify only <strong>significant price swings</strong> — local maxima (highs) and minima (lows) that exceed a threshold percentage.</p>
+
+    <pre><code class="language-python">def zigzag(prices: list[float], threshold_pct: float = 0.02) -> list[dict]:
+    """
+    Returns significant pivot points (highs/lows) where price moved
+    at least threshold_pct (2%) from the previous pivot.
+    """
+    if len(prices) &lt; 2:
+        return []
+
+    pivots = []
+    direction = None  # 'up' or 'down'
+    last_pivot_price = prices[0]
+    last_pivot_idx = 0
+
+    for i, price in enumerate(prices[1:], 1):
+        change = (price - last_pivot_price) / last_pivot_price
+
+        if direction is None:
+            if change >= threshold_pct:
+                direction = 'up'
+                pivots.append({'idx': last_pivot_idx, 'price': last_pivot_price, 'type': 'low'})
+            elif change &lt;= -threshold_pct:
+                direction = 'down'
+                pivots.append({'idx': last_pivot_idx, 'price': last_pivot_price, 'type': 'high'})
+
+        elif direction == 'up':
+            if price > last_pivot_price:
+                # Extend the high
+                last_pivot_price = price
+                last_pivot_idx = i
+            elif (last_pivot_price - price) / last_pivot_price >= threshold_pct:
+                # Significant reversal down
+                pivots.append({'idx': last_pivot_idx, 'price': last_pivot_price, 'type': 'high'})
+                direction = 'down'
+                last_pivot_price = price
+                last_pivot_idx = i
+
+        elif direction == 'down':
+            if price &lt; last_pivot_price:
+                last_pivot_price = price
+                last_pivot_idx = i
+            elif (price - last_pivot_price) / last_pivot_price >= threshold_pct:
+                pivots.append({'idx': last_pivot_idx, 'price': last_pivot_price, 'type': 'low'})
+                direction = 'up'
+                last_pivot_price = price
+                last_pivot_idx = i
+
+    return pivots</code></pre>
+
+    <h2 id="divergence">Divergence Detection</h2>
+
+    <h3>Types of RSI divergence</h3>
+    <div class="ascii">
+Regular Bullish Divergence (buy signal):
+
+  Price:  Lower Low           RSI: Higher Low
+  ────────────────           ─────────────────
+         \    /                    \    /
+          \  /   ← lower           \  / ← higher
+  ─────────\/                 ──────\/
+  Price makes lower low       RSI makes higher low
+  → bearish momentum weakening → potential reversal up
+
+Regular Bearish Divergence (sell signal):
+
+  Price:  Higher High         RSI: Lower High
+  ───────────────            ─────────────────
+          /\                          /\
+         /  \ ← higher              /  \ ← lower
+  ──────/    \──             ──────/    \──
+  Price higher high          RSI lower high
+  → bullish momentum weakening → potential reversal down</div>
+
+    <pre><code class="language-python">def detect_divergence(price_pivots: list, rsi_pivots: list) -> list[dict]:
+    """Match corresponding price and RSI swing points, detect divergence."""
+    signals = []
+
+    # Align pivots by index (both derived from same candle series)
+    price_lows = [p for p in price_pivots if p['type'] == 'low']
+    rsi_lows   = [p for p in rsi_pivots   if p['type'] == 'low']
+    price_highs = [p for p in price_pivots if p['type'] == 'high']
+    rsi_highs   = [p for p in rsi_pivots   if p['type'] == 'high']
+
+    # Regular bullish: price lower low + RSI higher low
+    for i in range(1, min(len(price_lows), len(rsi_lows))):
+        p_prev, p_curr = price_lows[i-1], price_lows[i]
+        r_prev, r_curr = rsi_lows[i-1], rsi_lows[i]
+
+        if p_curr['price'] &lt; p_prev['price'] and r_curr['price'] > r_prev['price']:
+            signals.append({
+                'type': 'regular_bullish',
+                'candle_idx': p_curr['idx'],
+                'strength': (r_curr['price'] - r_prev['price']) / r_prev['price'],
+            })
+
+    # Regular bearish: price higher high + RSI lower high
+    for i in range(1, min(len(price_highs), len(rsi_highs))):
+        p_prev, p_curr = price_highs[i-1], price_highs[i]
+        r_prev, r_curr = rsi_highs[i-1], rsi_highs[i]
+
+        if p_curr['price'] > p_prev['price'] and r_curr['price'] &lt; r_prev['price']:
+            signals.append({
+                'type': 'regular_bearish',
+                'candle_idx': p_curr['idx'],
+                'strength': (r_prev['price'] - r_curr['price']) / r_prev['price'],
+            })
+
+    return signals</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What is "hidden divergence" vs "regular divergence"?</strong></p>
+      <p>A: Regular divergence signals a trend reversal. Hidden divergence signals trend continuation. Hidden bullish: price makes higher low (uptrend) but RSI makes lower low → bullish continuation. Hidden bearish: price makes lower high (downtrend) but RSI makes higher high → bearish continuation. Tredye detects both, labeling them separately so traders can use the right signal for their strategy.</p>
+      <p><strong>Q: Are RSI divergence signals reliable?</strong></p>
+      <p>A: They're indicators, not predictions. Divergence signals are more reliable at RSI extremes (&gt;70 or &lt;30) and on higher timeframes (15m, 1h vs 1m). The system presents them as alerts for human review, not automated trading signals. Backtesting showed ~60-65% accuracy on 15m timeframe with &gt;30% price move divergence — better than random, but requires confirmation.</p>
+    </div>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

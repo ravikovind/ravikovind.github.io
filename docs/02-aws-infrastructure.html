@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Infrastructure — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">02 / 09</div>
+      <h1>AWS Infrastructure</h1>
+      <p class="subtitle">EC2, NGINX, CloudFront, WAF, S3, SES, auto-scaling, and blue-green deployments — every service explained with config context.</p>
+    </div>
+
+    <div class="ascii">
+Production Architecture (TingTing / Zoober):
+
+  Internet
+     │
+     ▼
+ CloudFront CDN ──── WAF (OWASP rules, rate limiting)
+     │                    │ blocks bad traffic
+     ▼                    │
+   ALB (Application Load Balancer)
+     │
+     ├─── Target Group A (Blue)  ←── active
+     │      EC2 t3.medium
+     │      NGINX → Node.js :3000
+     │
+     └─── Target Group B (Green) ←── standby / new release
+            EC2 t3.medium
+            NGINX → Node.js :3000
+     │
+     ├─── MongoDB Atlas (replica set, 3 nodes)
+     ├─── Redis (ElastiCache or self-hosted)
+     └─── S3 (assets) ← CloudFront OAC</div>
+
+    <h2 id="ec2">EC2 — Instance Selection &amp; Strategy</h2>
+
+    <h3>Why t3/t3a for Node.js?</h3>
+    <ul>
+      <li><strong>t3.medium</strong> (2 vCPU, 4GB RAM): ideal for Node.js I/O-bound workloads. Node is single-threaded; you rarely saturate 2 vCPUs except under heavy CPU work (crypto, image processing).</li>
+      <li><strong>Burstable CPU</strong>: t3 instances accumulate CPU credits during low traffic, spend them during peaks. Perfect for a commerce platform with evening delivery spikes.</li>
+      <li><strong>t3a</strong> = AMD chips, ~10% cheaper than t3 (Intel), same performance for Node.js.</li>
+      <li><strong>AMI strategy</strong>: custom AMI with Node.js, PM2, and app dependencies pre-installed. Launch time: ~60s vs 3-5min if installing at boot. Faster auto-scaling response.</li>
+    </ul>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why not use Lambda or ECS instead of EC2?</strong></p>
+      <p>A: WebSocket connections require persistent, long-lived TCP connections — Lambda's 15-min max invocation time and ECS Fargate's cold start overhead make them unsuitable. EC2 gives us full control over the process lifecycle, connection pool warmup, and PM2-based cluster mode. For stateless APIs, Lambda would be fine, but the real-time WebSocket layer needs EC2.</p>
+    </div>
+
+    <h2 id="nginx">NGINX — Reverse Proxy Configuration</h2>
+
+    <pre><code class="language-nginx"># /etc/nginx/sites-available/app
+upstream nodejs {
+    server 127.0.0.1:3000;
+    keepalive 64;  # keep upstream connections alive — avoids TCP handshake per req
+}
+
+server {
+    listen 443 ssl http2;
+    server_name api.zoober.in;
+
+    # SSL termination here — Node.js handles plain HTTP internally
+    ssl_certificate     /etc/letsencrypt/live/api.zoober.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.zoober.in/privkey.pem;
+
+    # Gzip compression for JSON responses
+    gzip on;
+    gzip_types application/json text/plain;
+    gzip_min_length 1000;
+
+    # Rate limiting (token bucket) — 100 req/s per IP, burst 200
+    limit_req_zone $binary_remote_addr zone=api:10m rate=100r/s;
+
+    location /api/ {
+        limit_req zone=api burst=200 nodelay;
+        proxy_pass http://nodejs;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;    # WebSocket upgrade
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_read_timeout 86400;  # WebSocket long-lived connections
+    }
+
+    # Static files served directly by NGINX — bypasses Node.js entirely
+    location /public/ {
+        root /var/www/app;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+}</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What does <code>keepalive 64</code> do in the upstream block?</strong></p>
+      <p>A: Without keepalive, NGINX opens a new TCP connection to Node.js for every proxied request (connect → request → close). With <code>keepalive 64</code>, NGINX maintains a pool of 64 persistent connections to the upstream. This eliminates TCP handshake overhead (~1-3ms) on every request, directly improving P95 latency.</p>
+    </div>
+
+    <h2 id="cloudfront">CloudFront — CDN &amp; Cache Strategy</h2>
+
+    <h3>What CloudFront does in this architecture</h3>
+    <ul>
+      <li><strong>Static assets</strong>: JS/CSS/images served from edge locations, TTL=1 year. Cache hit = ~5ms vs 100-300ms to origin.</li>
+      <li><strong>API caching</strong>: Store catalog endpoints cached at edge with <code>Cache-Control: max-age=300</code>. Reduces backend load during traffic spikes.</li>
+      <li><strong>Origin group for HA</strong>: primary origin = ALB, failover origin = S3 static site. If ALB is down, static error page served from S3.</li>
+    </ul>
+
+    <h3>Cache behaviors by path</h3>
+    <ul>
+      <li><code>/api/*</code> → TTL=0 (no cache), forward all headers, forward cookies</li>
+      <li><code>/public/*</code> → TTL=31536000s (1 year), compress=true</li>
+      <li><code>/catalog/*</code> → TTL=300s (5 min), Vary: Accept-Encoding</li>
+    </ul>
+
+    <h3>Invalidation strategy</h3>
+    <p>When a store updates their catalog, the backend calls <code>CloudFront.createInvalidation({ paths: ['/catalog/store-id/*'] })</code>. Wildcard invalidations cost $0.005 each, so they're triggered only on catalog updates, not on every order.</p>
+
+    <h3>Signed URLs for private content</h3>
+    <pre><code class="language-javascript">// Generate a pre-signed URL for a private S3 object via CloudFront
+const { getSignedUrl } = require('@aws-sdk/cloudfront-signer');
+
+const url = getSignedUrl({
+  url: `https://cdn.zoober.in/uploads/${filename}`,
+  keyPairId: process.env.CF_KEY_PAIR_ID,
+  privateKey: process.env.CF_PRIVATE_KEY,
+  dateLessThan: new Date(Date.now() + 15 * 60 * 1000), // 15min expiry
+});</code></pre>
+
+    <h2 id="waf">WAF — Web Application Firewall</h2>
+
+    <h3>Rule groups in use</h3>
+    <ul>
+      <li><strong>AWS-AWSManagedRulesCommonRuleSet</strong>: OWASP Core — blocks LFI, XSS, RCE, scanner probes</li>
+      <li><strong>AWS-AWSManagedRulesSQLiRuleSet</strong>: SQL injection patterns</li>
+      <li><strong>Custom rate rule</strong>: 100 requests per 5 minutes per IP per path — triggers 429 before NGINX rate limiter</li>
+      <li><strong>Geo-blocking</strong>: optional, blocked suspicious regions during a scraping incident</li>
+    </ul>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why have both WAF rate limiting AND NGINX rate limiting?</strong></p>
+      <p>A: Defense in depth. WAF (CloudFront layer) blocks abuse before it reaches our EC2 instances — this protects against DDoS at the CDN edge. NGINX rate limiting is the second layer at the instance level, for cases where traffic bypasses CloudFront (e.g., direct IP access). Two layers means an attacker can't take down the origin even if they find the EC2 IP.</p>
+    </div>
+
+    <h2 id="s3">S3 — Storage Architecture</h2>
+
+    <h3>Bucket structure</h3>
+    <ul>
+      <li><code>zoober-public-assets</code>: product images, store logos — public read via CloudFront OAC (Origin Access Control), no direct public URL</li>
+      <li><code>zoober-private-uploads</code>: rider documents, payment receipts — private, accessed only via pre-signed URLs</li>
+      <li><code>zoober-logs</code>: ALB access logs, CloudFront logs — lifecycle policy: move to S3 Glacier after 30 days</li>
+    </ul>
+
+    <h3>Presigned URL upload flow</h3>
+    <pre><code class="language-javascript">// Client requests upload URL from backend
+// Backend generates presigned URL (never exposes S3 credentials to client)
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+
+const url = await getSignedUrl(s3Client, new PutObjectCommand({
+  Bucket: 'zoober-private-uploads',
+  Key: `riders/${riderId}/${filename}`,
+  ContentType: 'image/jpeg',
+}), { expiresIn: 300 }); // 5 min
+
+// Client uploads directly to S3 using presigned URL — zero load on our server
+// Backend then updates DB with S3 key after client confirms upload</code></pre>
+
+    <h2 id="ses">SES — Transactional Email</h2>
+
+    <h3>Use cases</h3>
+    <ul>
+      <li>Order confirmation emails (with itemized receipt)</li>
+      <li>OTP delivery for phone verification</li>
+      <li>Rider assignment notifications</li>
+      <li>Admin alerts for payment failures</li>
+    </ul>
+
+    <h3>Deliverability setup</h3>
+    <ul>
+      <li><strong>DKIM</strong>: SES-generated 2048-bit key, DNS TXT record</li>
+      <li><strong>SPF</strong>: <code>v=spf1 include:amazonses.com ~all</code></li>
+      <li><strong>DMARC</strong>: <code>v=DMARC1; p=quarantine; rua=mailto:dmarc@zoober.in</code></li>
+      <li><strong>Bounce handling</strong>: SNS topic → Lambda → marks email as invalid in DB. Prevents sending to bounced addresses (affects SES reputation score).</li>
+    </ul>
+
+    <h2 id="autoscaling">Auto-Scaling</h2>
+
+    <h3>ASG configuration</h3>
+    <ul>
+      <li><strong>Target tracking policy</strong>: CPU utilization target = 60%. ASG adds instances when CPU &gt; 60% sustained for 2 minutes.</li>
+      <li><strong>Scale-out cooldown</strong>: 300 seconds — prevents flapping (adding then immediately removing instances)</li>
+      <li><strong>Scale-in protection</strong>: instances with active WebSocket connections have a termination hook that waits for connections to drain (max 30s)</li>
+      <li><strong>Min/max</strong>: min=2 (HA, survives AZ failure), max=10</li>
+    </ul>
+
+    <h2 id="bluegreen">Blue-Green Deployments</h2>
+
+    <div class="ascii">
+Deployment flow:
+
+Step 1: Both environments running, Blue is active (100% traffic)
+  ALB → Blue (100%) → Green (0%)
+
+Step 2: Deploy new version to Green
+  ALB → Blue (100%) → Green (0%, updating)
+
+Step 3: Run smoke tests against Green directly (via ALB weighted routing)
+  ALB → Blue (90%) → Green (10%, testing)
+
+Step 4: Smoke tests pass → shift all traffic
+  ALB → Blue (0%) → Green (100%)
+
+Step 5: Keep Blue warm for 15min (rollback window)
+  If health checks fail → ALB → Blue (100%) in &lt;30s</div>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What triggers an automatic rollback?</strong></p>
+      <p>A: ALB monitors the Green target group's health check endpoint (<code>/health</code> returning 200). If more than 20% of health checks fail within 2 minutes of the traffic shift, the deployment pipeline triggers a rollback by shifting the ALB listener rule back to Blue. The whole rollback takes &lt;30 seconds — faster than any manual intervention.</p>
+      <p><strong>Q: What's in the smoke test?</strong></p>
+      <p>A: Basic end-to-end checks: (1) <code>GET /health</code> returns 200, (2) MongoDB connection is alive, (3) Redis is reachable, (4) A known store's catalog returns data, (5) Auth endpoint issues a valid JWT. These run against the Green environment before any real traffic hits it.</p>
+    </div>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

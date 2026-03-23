@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security & Auth — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">06 / 09</div>
+      <h1>Security &amp; Auth</h1>
+      <p class="subtitle">JWT + refresh token rotation, RBAC, audit logging, token-bucket rate limiting, WAF, and webhook HMAC verification.</p>
+    </div>
+
+    <h2 id="jwt">JWT + Refresh Token Rotation</h2>
+
+    <h3>Token lifecycle</h3>
+    <div class="ascii">
+Auth flow:
+
+  Client                     Server                      Redis
+    │                           │                           │
+    │── POST /auth/login ───────▶│                           │
+    │                           │── validate credentials    │
+    │                           │── issue tokens:           │
+    │                           │   access  (15min TTL)     │
+    │                           │   refresh (30day TTL)     │
+    │◀── { accessToken,         │                           │
+    │      refreshToken } ──────│── STORE refresh token ───▶│
+    │                           │                           │
+    │── API call with           │                           │
+    │   Authorization: Bearer   │                           │
+    │   &lt;accessToken&gt; ─────────▶│                           │
+    │                           │── verify JWT signature    │
+    │◀── 200 response ──────────│   (no DB hit)             │
+    │                           │                           │
+    │  [15 minutes later]       │                           │
+    │── POST /auth/refresh ─────▶│                           │
+    │   { refreshToken } ───────│── GET refresh token ─────▶│
+    │                           │◀── verify valid ──────────│
+    │                           │── DEL old refresh ───────▶│ (rotation)
+    │                           │── issue new pair:         │
+    │                           │   new access (15min)      │
+    │                           │   new refresh (30day)     │
+    │                           │── STORE new refresh ─────▶│
+    │◀── { new tokens } ────────│                           │</div>
+
+    <h3>Why short-lived access tokens (15 min)?</h3>
+    <ul>
+      <li>JWTs are stateless — they cannot be revoked before expiry (no DB check on each request)</li>
+      <li>If an access token is stolen, attacker access window is limited to 15 minutes</li>
+      <li>Tradeoff: client must refresh frequently — mitigated by silent refresh (refresh before expiry in background)</li>
+    </ul>
+
+    <pre><code class="language-javascript">const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
+
+// Issue token pair
+async function issueTokens(user) {
+  const accessToken = jwt.sign(
+    {
+      sub: user._id,
+      role: user.role,
+      tenantId: user.tenantId,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '15m', algorithm: 'HS256' }
+  );
+
+  const refreshTokenId = uuidv4();
+  const refreshToken = jwt.sign(
+    { sub: user._id, jti: refreshTokenId },
+    process.env.JWT_REFRESH_SECRET,
+    { expiresIn: '30d', algorithm: 'HS256' }
+  );
+
+  // Store refresh token ID in Redis (TTL = 30 days)
+  await redis.setex(`refresh:${refreshTokenId}`, 30 * 24 * 3600, user._id.toString());
+
+  return { accessToken, refreshToken };
+}
+
+// Rotate: validate old, issue new, invalidate old
+async function rotateTokens(oldRefreshToken) {
+  let payload;
+  try {
+    payload = jwt.verify(oldRefreshToken, process.env.JWT_REFRESH_SECRET);
+  } catch {
+    throw new UnauthorizedError('Invalid refresh token');
+  }
+
+  // Check Redis: is this token still valid?
+  const userId = await redis.get(`refresh:${payload.jti}`);
+  if (!userId) throw new UnauthorizedError('Refresh token revoked or expired');
+
+  // Invalidate old token immediately (rotation — one-time use)
+  await redis.del(`refresh:${payload.jti}`);
+
+  const user = await User.findById(userId);
+  return issueTokens(user); // issue fresh pair
+}</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What happens if a refresh token is stolen and used by an attacker?</strong></p>
+      <p>A: Token rotation detects this. When the attacker uses the stolen token, the server issues a new pair and invalidates the old one. When the legitimate user then tries to refresh with their (now invalidated) token, the server detects the double-use — both the attacker's and user's tokens are now invalid. The server should then force re-login. This is the refresh token rotation security guarantee: any stolen token can only be used once before detection.</p>
+      <p><strong>Q: How do you handle logout?</strong></p>
+      <p>A: On logout, we delete the refresh token from Redis (<code>DEL refresh:{jti}</code>). The access token remains technically valid until it expires in 15 minutes, but since it's short-lived, this window is acceptable. For forced logout (admin banning a user), we add the access token's <code>jti</code> to a Redis blacklist with TTL matching its remaining lifetime.</p>
+    </div>
+
+    <h2 id="audit">Audit Logging</h2>
+
+    <h3>Audit log schema</h3>
+    <pre><code class="language-javascript">const AuditLogSchema = new Schema({
+  tenantId:   { type: ObjectId, required: true, index: true },
+  userId:     { type: ObjectId, required: true },
+  action:     { type: String, required: true }, // e.g. 'order.status.update'
+  resource:   { type: String, required: true }, // e.g. 'Order'
+  resourceId: { type: ObjectId, required: true },
+  ip:         String,
+  userAgent:  String,
+  diff: {     // what changed
+    before: Schema.Types.Mixed,
+    after:  Schema.Types.Mixed,
+  },
+  timestamp:  { type: Date, default: Date.now, index: true },
+});
+
+// TTL: auto-delete logs older than 1 year
+AuditLogSchema.index({ timestamp: 1 }, { expireAfterSeconds: 365 * 24 * 3600 });
+
+// Middleware to auto-log changes
+function auditMiddleware(action, resource) {
+  return async (req, res, next) => {
+    const originalJson = res.json.bind(res);
+    res.json = (body) => {
+      if (res.statusCode < 400 && req.user) {
+        AuditLog.create({
+          tenantId: req.user.tenantId,
+          userId: req.user.sub,
+          action,
+          resource,
+          resourceId: req.params.id,
+          ip: req.ip,
+          userAgent: req.headers['user-agent'],
+          diff: { after: body },
+        }).catch(console.error); // non-blocking — don't fail request on audit error
+      }
+      return originalJson(body);
+    };
+    next();
+  };
+}</code></pre>
+
+    <h2 id="webhook-hmac">Webhook HMAC Verification</h2>
+
+    <h3>Why HMAC for webhooks?</h3>
+    <p>When Juspay/Razorpay sends a webhook (e.g., "payment succeeded"), anyone could POST to our webhook endpoint with fake data. HMAC-SHA256 with a shared secret proves the request genuinely came from the payment gateway.</p>
+
+    <pre><code class="language-javascript">const crypto = require('crypto');
+
+// Razorpay webhook verification
+function verifyRazorpayWebhook(rawBody, signature, secret) {
+  const expected = crypto
+    .createHmac('sha256', secret)
+    .update(rawBody) // raw Buffer — must NOT parse JSON before this
+    .digest('hex');
+
+  // Timing-safe comparison prevents timing attacks
+  // Regular string comparison leaks timing info about how many chars match
+  return crypto.timingSafeEqual(
+    Buffer.from(expected, 'hex'),
+    Buffer.from(signature, 'hex')
+  );
+}
+
+// Middleware usage
+app.post('/webhooks/razorpay',
+  express.raw({ type: 'application/json' }), // raw body required for HMAC
+  (req, res, next) => {
+    const sig = req.headers['x-razorpay-signature'];
+    if (!verifyRazorpayWebhook(req.body, sig, process.env.RAZORPAY_WEBHOOK_SECRET)) {
+      return res.status(401).json({ error: 'Invalid webhook signature' });
+    }
+    req.body = JSON.parse(req.body); // parse after verification
+    next();
+  },
+  webhookController.handleRazorpay
+);</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What is a timing attack and why does timingSafeEqual matter?</strong></p>
+      <p>A: Regular string comparison (<code>a === b</code>) short-circuits as soon as characters differ — it takes slightly longer if more characters match. An attacker can measure response times to learn how many bytes of their forged HMAC match the real one, allowing gradual reconstruction. <code>crypto.timingSafeEqual</code> always compares all bytes in constant time regardless of where the difference is, leaking no timing information.</p>
+    </div>
+
+    <h2 id="ratelimit">Token-Bucket Rate Limiting (Security Context)</h2>
+
+    <h3>Per-route limits</h3>
+    <ul>
+      <li><code>POST /auth/login</code>: 5 requests/minute per IP — brute-force protection</li>
+      <li><code>POST /auth/otp</code>: 3 requests/minute per phone — OTP abuse prevention</li>
+      <li><code>GET /api/*</code>: 100 requests/minute per authenticated user</li>
+      <li><code>POST /webhooks/*</code>: unlimited (gateways need reliability), but HMAC-verified</li>
+    </ul>
+
+    <h3>WAF custom rule (API abuse)</h3>
+    <pre><code class="language-json">{
+  "Name": "APIRateLimitRule",
+  "Priority": 1,
+  "Statement": {
+    "RateBasedStatement": {
+      "Limit": 100,
+      "AggregateKeyType": "IP",
+      "EvaluationWindowSec": 300,
+      "ScopeDownStatement": {
+        "ByteMatchStatement": {
+          "FieldToMatch": { "UriPath": {} },
+          "PositionalConstraint": "STARTS_WITH",
+          "SearchString": "/api/"
+        }
+      }
+    }
+  },
+  "Action": { "Block": {} }
+}</code></pre>
+
+    <p>This WAF rule blocks any IP making more than 100 requests in 5 minutes to <code>/api/*</code> — enforced at the CloudFront edge, before traffic reaches EC2. The NGINX <code>limit_req_zone</code> is the second layer for direct EC2 access.</p>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

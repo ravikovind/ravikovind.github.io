@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interview Prep — Ravi Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a;
+      --text: #ffffff; --muted: #888; --border: #222;
+      --accent: #F59E0B;
+    }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; min-height: 100vh; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover, nav a.active { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .hero { padding: 60px 32px 40px; max-width: 1000px; margin: 0 auto; }
+    .hero h1 { font-family: 'Saira', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { color: var(--muted); font-size: 16px; max-width: 600px; line-height: 1.6; margin-bottom: 24px; }
+    .search-wrap { position: relative; max-width: 400px; margin-bottom: 48px; }
+    .search-wrap input { width: 100%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 12px 16px; border-radius: 8px; font-size: 14px; outline: none; font-family: system-ui; }
+    .search-wrap input:focus { border-color: var(--accent); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; max-width: 1000px; margin: 0 auto 64px; padding: 0 32px; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px; transition: border-color .2s, transform .2s; }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; }
+    .card-title { font-family: 'Saira', sans-serif; font-weight: 600; font-size: 18px; }
+    .card-desc { color: var(--muted); font-size: 13px; line-height: 1.5; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .tag { background: var(--bg3); color: var(--muted); font-size: 11px; padding: 3px 8px; border-radius: 4px; font-family: 'Geo', monospace; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+    <a href="index.html" class="active">Interview Prep</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Interview Prep <span>Deep Dives</span></h1>
+    <p>Every technical claim, metric, and architecture decision from the resume — explained in depth. Use these before any interview.</p>
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search topics… (e.g. Kafka, JWT, P95)" />
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    <a class="card" href="00-glossary.html" data-tags="glossary terms rbac multitenant jwt hmac p95 kafka bloc mcp idempotency websocket">
+      <div class="card-num">00</div>
+      <div class="card-title">Technical Glossary</div>
+      <div class="card-desc">Every acronym and concept from the resume — RBAC, Multi-Tenant, JWT, HMAC, P95, KRaft, BLoC, and more. Searchable A–Z.</div>
+      <div class="card-tags">
+        <span class="tag">A–Z</span><span class="tag">RBAC</span><span class="tag">JWT</span><span class="tag">Searchable</span>
+      </div>
+    </a>
+
+    <a class="card" href="01-performance-metrics.html" data-tags="latency p95 uptime gmv orders redis mongodb apm">
+      <div class="card-num">01</div>
+      <div class="card-title">Performance Metrics</div>
+      <div class="card-desc">P95 latency, 99.9% uptime, 80K+ orders, ₹1.5Cr GMV, &lt;100ms geo search, &lt;50ms Kafka.</div>
+      <div class="card-tags">
+        <span class="tag">&lt;200ms P95</span><span class="tag">99.9% uptime</span><span class="tag">APM</span>
+      </div>
+    </a>
+
+    <a class="card" href="02-aws-infrastructure.html" data-tags="aws ec2 nginx cloudfront waf s3 ses autoscaling blue green">
+      <div class="card-num">02</div>
+      <div class="card-title">AWS Infrastructure</div>
+      <div class="card-desc">EC2, NGINX, CloudFront, WAF, S3, SES, auto-scaling, blue-green deployments.</div>
+      <div class="card-tags">
+        <span class="tag">EC2</span><span class="tag">CloudFront</span><span class="tag">WAF</span><span class="tag">Blue-Green</span>
+      </div>
+    </a>
+
+    <a class="card" href="03-system-design.html" data-tags="multitenant rbac state machine geospatial optimistic locking rate limiting">
+      <div class="card-num">03</div>
+      <div class="card-title">System Design</div>
+      <div class="card-desc">Multi-tenant SaaS, RBAC, 7-stage order state machine, event-driven architecture, geospatial queries.</div>
+      <div class="card-tags">
+        <span class="tag">Multi-tenant</span><span class="tag">RBAC</span><span class="tag">State Machine</span>
+      </div>
+    </a>
+
+    <a class="card" href="04-database-design.html" data-tags="mongodb redis collections schema indexes read write separation write amplification">
+      <div class="card-num">04</div>
+      <div class="card-title">Database Design</div>
+      <div class="card-desc">23 MongoDB collections, Redis read/write separation, query optimization, write amplification.</div>
+      <div class="card-tags">
+        <span class="tag">MongoDB</span><span class="tag">Redis</span><span class="tag">Indexes</span>
+      </div>
+    </a>
+
+    <a class="card" href="05-realtime-websocket.html" data-tags="websocket 1000 connections event replay reconnection heartbeat flutter sync">
+      <div class="card-num">05</div>
+      <div class="card-title">Real-Time &amp; WebSocket</div>
+      <div class="card-desc">1000+ concurrent connections, automatic reconnection, event replay, order state sync across 4 apps.</div>
+      <div class="card-tags">
+        <span class="tag">WebSocket</span><span class="tag">1000+ conns</span><span class="tag">Event Replay</span>
+      </div>
+    </a>
+
+    <a class="card" href="06-security-auth.html" data-tags="jwt refresh token rbac audit log rate limiting hmac webhook waf">
+      <div class="card-num">06</div>
+      <div class="card-title">Security &amp; Auth</div>
+      <div class="card-desc">JWT + refresh token rotation, RBAC, audit logging, token-bucket rate limiting, webhook HMAC.</div>
+      <div class="card-tags">
+        <span class="tag">JWT</span><span class="tag">Token Rotation</span><span class="tag">HMAC</span>
+      </div>
+    </a>
+
+    <a class="card" href="07-payment-systems.html" data-tags="juspay phonepe razorpay idempotency retry webhook payment gateway">
+      <div class="card-num">07</div>
+      <div class="card-title">Payment Systems</div>
+      <div class="card-desc">Juspay, PhonePe, Razorpay, idempotency, retry logic, graceful degradation, admin recovery.</div>
+      <div class="card-tags">
+        <span class="tag">Juspay</span><span class="tag">Idempotency</span><span class="tag">Retry Logic</span>
+      </div>
+    </a>
+
+    <a class="card" href="08-kafka-tredye.html" data-tags="kafka kraft snappy rsi zigzag divergence pipeline latency">
+      <div class="card-num">08</div>
+      <div class="card-title">Kafka &amp; Tredye</div>
+      <div class="card-desc">KRaft mode, Snappy compression, 4-stage pipeline, &lt;50ms latency, RSI (Wilder's), ZigZag divergence.</div>
+      <div class="card-tags">
+        <span class="tag">Kafka KRaft</span><span class="tag">RSI</span><span class="tag">ZigZag</span>
+      </div>
+    </a>
+
+    <a class="card" href="09-mcp-flutter.html" data-tags="mcp model context protocol sse stdio flutter bloc gorouter 4 apps platform">
+      <div class="card-num">09</div>
+      <div class="card-title">MCP &amp; Flutter</div>
+      <div class="card-desc">Model Context Protocol, SSE/STDIO transports, BLoC, go_router, 4-app ecosystem, 15+ releases.</div>
+      <div class="card-tags">
+        <span class="tag">MCP</span><span class="tag">SSE/STDIO</span><span class="tag">BLoC</span><span class="tag">Flutter</span>
+      </div>
+    </a>
+  </div>
+
+  <script>
+    const input = document.getElementById('search');
+    const cards = document.querySelectorAll('.card');
+    input.addEventListener('input', () => {
+      const q = input.value.toLowerCase();
+      cards.forEach(c => {
+        const text = (c.textContent + c.dataset.tags).toLowerCase();
+        c.classList.toggle('hidden', q.length > 0 && !text.includes(q));
+      });
+    });
+  </script>
+</body>
+</html>

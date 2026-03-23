@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technical Glossary — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 48px 32px 80px; }
+
+    .page-header { margin-bottom: 40px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; max-width: 600px; line-height: 1.6; }
+
+    /* Search */
+    .search-wrap { position: relative; max-width: 400px; margin: 28px 0; }
+    .search-wrap input {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border);
+      color: var(--text); padding: 11px 16px; border-radius: 8px;
+      font-size: 14px; outline: none; font-family: system-ui;
+    }
+    .search-wrap input:focus { border-color: var(--accent); }
+    .search-wrap input::placeholder { color: var(--muted); }
+
+    /* Alphabet jump bar */
+    .alpha-bar { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 36px; }
+    .alpha-bar a {
+      display: inline-block; width: 30px; height: 30px; line-height: 30px;
+      text-align: center; border-radius: 4px; font-family: 'Geo', monospace;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      background: var(--bg2); border: 1px solid var(--border); transition: all .15s;
+    }
+    .alpha-bar a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Category sections */
+    .cat-section { margin-bottom: 48px; }
+    .cat-title {
+      font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
+      margin-bottom: 16px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    }
+
+    /* Term cards */
+    .letter-group { margin-bottom: 8px; }
+    .letter-anchor {
+      font-family: 'Geo', monospace; font-size: 13px; color: var(--accent);
+      padding: 4px 0; display: block; margin-top: 28px; margin-bottom: 8px;
+    }
+
+    .term-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 18px 20px; margin-bottom: 8px;
+      transition: border-color .15s;
+    }
+    .term-card:hover { border-color: #333; }
+
+    .term-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+    .term-name {
+      font-family: 'Saira', sans-serif; font-weight: 700; font-size: 16px;
+      color: var(--text);
+    }
+    .term-abbr {
+      font-family: 'Geo', monospace; font-size: 12px; color: var(--accent);
+      background: #1a1200; border: 1px solid #4a3000; padding: 2px 7px; border-radius: 4px;
+    }
+    .term-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-left: auto; }
+    .tag {
+      font-size: 11px; color: var(--muted); background: var(--bg3);
+      padding: 2px 7px; border-radius: 4px; font-family: 'Geo', monospace;
+    }
+    .tag.infra { color: #60a5fa; background: #0d1f33; }
+    .tag.security { color: #f87171; background: #1f0d0d; }
+    .tag.db { color: #a78bfa; background: #150d1f; }
+    .tag.arch { color: #34d399; background: #0d1f17; }
+    .tag.payments { color: #fb923c; background: #1f120d; }
+    .tag.realtime { color: #38bdf8; background: #0d1a1f; }
+    .tag.flutter { color: #67e8f9; background: #0d1b1f; }
+    .tag.kafka { color: #fbbf24; background: #1f1800; }
+    .tag.ai { color: #c084fc; background: #150d20; }
+    .tag.perf { color: #86efac; background: #0d1a11; }
+
+    .term-def { color: #ccc; font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
+    .term-example {
+      font-family: 'Geo', monospace; font-size: 12px; color: #888;
+      background: var(--bg3); border-left: 3px solid var(--border);
+      padding: 8px 12px; border-radius: 0 4px 4px 0; margin-top: 8px;
+    }
+    .term-example strong { color: var(--accent); font-family: 'Geo', monospace; }
+    .term-see { margin-top: 8px; font-size: 12px; color: var(--muted); }
+    .term-see a { color: var(--accent); text-decoration: none; }
+    .term-see a:hover { text-decoration: underline; }
+
+    .hidden { display: none !important; }
+
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 1px 5px; border-radius: 3px; font-size: 12px; color: var(--accent); }
+
+    strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">00 / 09</div>
+      <h1>Technical Glossary</h1>
+      <p class="subtitle">Every term, acronym, and concept from the resume — defined plainly with context for how it was used in production.</p>
+    </div>
+
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search terms… (e.g. RBAC, P95, idempotent)" />
+    </div>
+
+    <div class="alpha-bar" id="alphaBar"></div>
+
+    <div id="glossary">
+
+      <!-- ─── A ─── -->
+      <div class="letter-group" data-letter="A">
+        <span class="letter-anchor" id="A">A</span>
+
+        <div class="term-card" data-search="amqp message broker queue">
+          <div class="term-header">
+            <span class="term-name">ALB</span>
+            <span class="term-abbr">Application Load Balancer</span>
+            <div class="term-tags"><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">AWS load balancer that distributes incoming HTTP/HTTPS/WebSocket traffic across multiple EC2 instances. Operates at Layer 7 (application layer), enabling path-based and host-based routing. Used to switch traffic between Blue and Green environments during deployments.</div>
+          <div class="term-example"><strong>In use:</strong> ALB routes 100% traffic to Blue target group, then switches to Green after smoke tests pass. Rollback = flip the listener rule back. Takes &lt;30s.</div>
+        </div>
+
+        <div class="term-card" data-search="apm application performance monitoring datadog newrelic">
+          <div class="term-header">
+            <span class="term-name">APM</span>
+            <span class="term-abbr">Application Performance Monitoring</span>
+            <div class="term-tags"><span class="tag perf">perf</span></div>
+          </div>
+          <div class="term-def">Tools like Datadog, New Relic, or custom middleware that trace every request through a system — measuring latency, error rate, and throughput. Used to compute percentile latency (P50/P95/P99) across millions of requests in production.</div>
+          <div class="term-example"><strong>In use:</strong> Express middleware using <code>process.hrtime.bigint()</code> records request duration on <code>res.finish</code>. Aggregated into percentiles to verify &lt;200ms P95 claim.</div>
+        </div>
+
+        <div class="term-card" data-search="asg auto scaling group ec2 scale">
+          <div class="term-header">
+            <span class="term-name">ASG</span>
+            <span class="term-abbr">Auto Scaling Group</span>
+            <div class="term-tags"><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">AWS feature that automatically adds or removes EC2 instances based on demand. A target tracking policy watches a metric (e.g., CPU utilization) and adds instances when it exceeds the target (60%), removes them when demand drops.</div>
+          <div class="term-example"><strong>In use:</strong> min=2 (for AZ redundancy), max=10. Scale-out cooldown=300s to prevent flapping. Scale-in protection for instances with active WebSocket connections.</div>
+          <div class="term-see">See also: <a href="02-aws-infrastructure.html#autoscaling">AWS Infrastructure → Auto-Scaling</a></div>
+        </div>
+
+        <div class="term-card" data-search="audit log trail event history">
+          <div class="term-header">
+            <span class="term-name">Audit Log</span>
+            <div class="term-tags"><span class="tag security">security</span></div>
+          </div>
+          <div class="term-def">An immutable, append-only record of every significant action in the system — who did what, to which resource, from which IP, and what changed. Required for compliance, debugging, and forensics.</div>
+          <div class="term-example"><strong>Schema:</strong> <code>&#123; userId, action, resource, resourceId, ip, userAgent, diff: &#123;before, after&#125;, timestamp &#125;</code>. TTL index auto-deletes logs older than 1 year.</div>
+          <div class="term-see">See also: <a href="06-security-auth.html#audit">Security → Audit Logging</a></div>
+        </div>
+      </div>
+
+      <!-- ─── B ─── -->
+      <div class="letter-group" data-letter="B">
+        <span class="letter-anchor" id="B">B</span>
+
+        <div class="term-card" data-search="bloc business logic component flutter state management">
+          <div class="term-header">
+            <span class="term-name">BLoC</span>
+            <span class="term-abbr">Business Logic Component</span>
+            <div class="term-tags"><span class="tag flutter">flutter</span></div>
+          </div>
+          <div class="term-def">Flutter state management pattern where UI dispatches <em>Events</em>, the Bloc processes them and emits <em>States</em>. Enforces strict separation between UI and business logic. Well-suited for complex state machines like 7-stage order tracking.</div>
+          <div class="term-example"><strong>Flow:</strong> Widget dispatches <code>OrderSubscribeRequested(orderId)</code> → Bloc fetches + subscribes to WebSocket → emits <code>OrderLoaded(order)</code> or <code>OrderError(msg)</code> → <code>BlocBuilder</code> rebuilds only affected widgets.</div>
+          <div class="term-see">See also: <a href="09-mcp-flutter.html#bloc">MCP & Flutter → BLoC</a></div>
+        </div>
+
+        <div class="term-card" data-search="blue green deployment zero downtime release rollback">
+          <div class="term-header">
+            <span class="term-name">Blue-Green Deployment</span>
+            <div class="term-tags"><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">A zero-downtime deployment strategy using two identical production environments (Blue = live, Green = new version). Traffic is shifted from Blue to Green after smoke tests pass. Rollback = shift traffic back to Blue instantly.</div>
+          <div class="term-example"><strong>Rollback time:</strong> &lt;30s (ALB listener rule change). Deployment pipeline auto-rolls back if Green's health checks fail within 2 minutes of cutover.</div>
+          <div class="term-see">See also: <a href="02-aws-infrastructure.html#bluegreen">AWS Infrastructure → Blue-Green</a></div>
+        </div>
+      </div>
+
+      <!-- ─── C ─── -->
+      <div class="letter-group" data-letter="C">
+        <span class="letter-anchor" id="C">C</span>
+
+        <div class="term-card" data-search="cache aside pattern redis read through write through">
+          <div class="term-header">
+            <span class="term-name">Cache-Aside</span>
+            <div class="term-tags"><span class="tag db">db</span></div>
+          </div>
+          <div class="term-def">Caching pattern where the application checks the cache first; on miss, reads from the DB and writes to the cache for future requests. The application code manages the cache — it's "aside" from the main data flow. Most common Redis pattern.</div>
+          <div class="term-example"><strong>Pattern:</strong> Check Redis → hit: return → miss: query MongoDB → write to Redis with TTL → return. On data update: invalidate Redis key immediately.</div>
+          <div class="term-see">See also: <a href="04-database-design.html#writeamplification">DB Design → Write Amplification</a></div>
+        </div>
+
+        <div class="term-card" data-search="consumer group kafka offset partition">
+          <div class="term-header">
+            <span class="term-name">Consumer Group</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span></div>
+          </div>
+          <div class="term-def">In Kafka, a named group of consumers that together consume all partitions of a topic. Each partition is consumed by exactly one consumer in the group at a time. Scale by adding consumers up to the number of partitions.</div>
+          <div class="term-example"><strong>In Tredye:</strong> <code>rsi-calculator</code> consumer group reads from <code>candles</code> topic. Adding a second instance splits partitions — both process in parallel without duplicate processing.</div>
+        </div>
+
+        <div class="term-card" data-search="cloudfront cdn content delivery network edge cache">
+          <div class="term-header">
+            <span class="term-name">CloudFront</span>
+            <div class="term-tags"><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">AWS Content Delivery Network (CDN). Caches static assets at 400+ edge locations globally, serving them with ~5ms latency vs 100-300ms to origin. Also integrates with WAF for DDoS protection and supports signed URLs for private content.</div>
+          <div class="term-example"><strong>Cache strategy:</strong> <code>/public/*</code> → TTL=1 year. <code>/catalog/*</code> → TTL=5 min. <code>/api/*</code> → TTL=0 (no cache, forward all). Invalidation triggered on catalog updates.</div>
+        </div>
+
+        <div class="term-card" data-search="connection pool mongoose pooling tcp">
+          <div class="term-header">
+            <span class="term-name">Connection Pooling</span>
+            <div class="term-tags"><span class="tag db">db</span><span class="tag perf">perf</span></div>
+          </div>
+          <div class="term-def">Maintaining a pool of pre-established database connections reused across requests, avoiding the overhead of opening a new TCP connection (5-30ms) per query. Mongoose's default pool is 5; increased to 20 for production workloads.</div>
+          <div class="term-example"><strong>Config:</strong> <code>maxPoolSize: 20, minPoolSize: 5</code>. Pool exhaustion → requests queue until a connection frees. If queue waits &gt;5s → 503 error.</div>
+        </div>
+      </div>
+
+      <!-- ─── D ─── -->
+      <div class="letter-group" data-letter="D">
+        <span class="letter-anchor" id="D">D</span>
+
+        <div class="term-card" data-search="dkim spf dmarc email authentication deliverability">
+          <div class="term-header">
+            <span class="term-name">DKIM / SPF / DMARC</span>
+            <div class="term-tags"><span class="tag security">security</span><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">Email authentication standards. <strong>SPF</strong> (Sender Policy Framework): DNS record listing which servers can send email for your domain. <strong>DKIM</strong> (DomainKeys Identified Mail): cryptographic signature on outgoing emails proving they weren't tampered with. <strong>DMARC</strong>: policy specifying what to do with emails failing SPF/DKIM (reject, quarantine, or allow).</div>
+          <div class="term-example"><strong>In use:</strong> Required for SES transactional email to avoid spam folders. DKIM with 2048-bit key, DMARC policy=quarantine, SPF includes amazonses.com.</div>
+        </div>
+
+        <div class="term-card" data-search="divergence rsi price momentum technical analysis">
+          <div class="term-header">
+            <span class="term-name">Divergence (RSI)</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span></div>
+          </div>
+          <div class="term-def">A technical analysis signal where price and RSI move in opposite directions. <strong>Regular bullish</strong>: price makes lower low, RSI makes higher low → bearish momentum weakening → potential upward reversal. <strong>Regular bearish</strong>: price makes higher high, RSI makes lower high → bullish momentum weakening → potential downward reversal.</div>
+          <div class="term-example"><strong>In Tredye:</strong> Detected by comparing ZigZag pivot points of price series vs RSI series. Streamed as signals via Redis pub/sub to browser in real-time.</div>
+          <div class="term-see">See also: <a href="08-kafka-tredye.html#divergence">Kafka & Tredye → Divergence Detection</a></div>
+        </div>
+      </div>
+
+      <!-- ─── E ─── -->
+      <div class="letter-group" data-letter="E">
+        <span class="letter-anchor" id="E">E</span>
+
+        <div class="term-card" data-search="event driven architecture async messaging decoupled">
+          <div class="term-header">
+            <span class="term-name">Event-Driven Architecture</span>
+            <div class="term-tags"><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">System design where components communicate by producing and consuming events, rather than direct synchronous calls. Producers don't know who consumes their events. Enables loose coupling, independent scaling, and natural audit trails.</div>
+          <div class="term-example"><strong>In TingTing:</strong> Order placed → <code>order.created</code> event → triggers: inventory deduction, push notification, rider assignment, analytics recording — all independently, without the order service knowing about any of them.</div>
+        </div>
+
+        <div class="term-card" data-search="esr equality sort range index mongodb compound">
+          <div class="term-header">
+            <span class="term-name">ESR Rule</span>
+            <span class="term-abbr">Equality, Sort, Range</span>
+            <div class="term-tags"><span class="tag db">db</span></div>
+          </div>
+          <div class="term-def">MongoDB compound index field ordering rule. Put <strong>E</strong>quality fields first (exact match, highest cardinality reduction), then <strong>S</strong>ort fields (eliminates in-memory sort), then <strong>R</strong>ange fields (inequality: $gt, $lt). Wrong order means the index can't cover all three operations.</div>
+          <div class="term-example"><strong>Example:</strong> <code>&#123; storeId: 1, status: 1, createdAt: -1 &#125;</code> — storeId (equality), status (equality), createdAt (sort). Query: find orders for storeId X with status PENDING, sorted by date.</div>
+        </div>
+
+        <div class="term-card" data-search="exponential backoff retry jitter reconnect">
+          <div class="term-header">
+            <span class="term-name">Exponential Backoff</span>
+            <div class="term-tags"><span class="tag arch">arch</span><span class="tag realtime">realtime</span></div>
+          </div>
+          <div class="term-def">Retry strategy where wait time doubles with each failed attempt (1s → 2s → 4s → 8s → …), capped at a maximum. Prevents overwhelming a struggling service with rapid retries. Combined with jitter (random offset) to prevent thundering herd when many clients retry simultaneously.</div>
+          <div class="term-example"><strong>Flutter WebSocket:</strong> retry delay = <code>min(2^n * 1000 + random(0-1000), 30000)</code>ms. At attempt 5: ~32s wait ± jitter. Max 10 retries before giving up.</div>
+        </div>
+      </div>
+
+      <!-- ─── G ─── -->
+      <div class="letter-group" data-letter="G">
+        <span class="letter-anchor" id="G">G</span>
+
+        <div class="term-card" data-search="gmv gross merchandise value revenue ecommerce">
+          <div class="term-header">
+            <span class="term-name">GMV</span>
+            <span class="term-abbr">Gross Merchandise Value</span>
+            <div class="term-tags"><span class="tag perf">perf</span></div>
+          </div>
+          <div class="term-def">Total monetary value of all orders processed through the platform — what customers paid in total. GMV ≠ Revenue. Revenue = GMV × platform take rate (typically 3-5%). GMV is the standard scale metric for commerce platforms.</div>
+          <div class="term-example"><strong>₹1.5Cr GMV</strong> = ~₹150,000,000 total order value processed through TingTing over ~32 months. At 3% take rate ≈ ₹4.5L in platform revenue.</div>
+        </div>
+
+        <div class="term-card" data-search="go router flutter navigation deep link routing declarative">
+          <div class="term-header">
+            <span class="term-name">go_router</span>
+            <div class="term-tags"><span class="tag flutter">flutter</span></div>
+          </div>
+          <div class="term-def">Flutter routing package providing declarative, URL-based navigation. Supports deep links (open a specific screen from an external URL), route guards (auth redirects), and named routes. Works identically on mobile (custom scheme) and web (real URLs).</div>
+          <div class="term-example"><strong>Deep link:</strong> <code>zoober://orders/abc123</code> → user taps SMS link → app opens directly to OrderDetailScreen with orderId=abc123. Route guard checks if user is logged in, redirects to login if not.</div>
+        </div>
+
+        <div class="term-card" data-search="geospatial 2dsphere near geowithin mongodb location radius">
+          <div class="term-header">
+            <span class="term-name">Geospatial Index (2dsphere)</span>
+            <div class="term-tags"><span class="tag db">db</span></div>
+          </div>
+          <div class="term-def">MongoDB index type for GeoJSON data (Points, Polygons, LineStrings). Enables efficient proximity queries like "find all stores within 5km of this coordinate" using geohash-based B-tree traversal instead of full collection scan.</div>
+          <div class="term-example"><strong>Query:</strong> <code>$near: &#123; $geometry: &#123;type:'Point', coordinates:[lng,lat]&#125;, $maxDistance: 5000 &#125;</code> returns stores sorted nearest-first. Without index: O(n) scan. With index: O(log n). Result: &lt;100ms at 30+ stores.</div>
+          <div class="term-see">See also: <a href="01-performance-metrics.html#geo">Performance → Geo Search</a></div>
+        </div>
+
+        <div class="term-card" data-search="graceful degradation fallback resilience availability">
+          <div class="term-header">
+            <span class="term-name">Graceful Degradation</span>
+            <div class="term-tags"><span class="tag arch">arch</span><span class="tag payments">payments</span></div>
+          </div>
+          <div class="term-def">System design principle where a component failure causes reduced functionality rather than total failure. The system continues operating at a lower capability level instead of crashing entirely.</div>
+          <div class="term-example"><strong>Payment fallback:</strong> Juspay fails → try PhonePe directly → try Razorpay → all fail → hold order in PENDING, notify admin. Customer sees "retry" instead of error, not stuck.</div>
+        </div>
+      </div>
+
+      <!-- ─── H ─── -->
+      <div class="letter-group" data-letter="H">
+        <span class="letter-anchor" id="H">H</span>
+
+        <div class="term-card" data-search="hmac sha256 webhook signature verification tamper">
+          <div class="term-header">
+            <span class="term-name">HMAC</span>
+            <span class="term-abbr">Hash-based Message Authentication Code</span>
+            <div class="term-tags"><span class="tag security">security</span></div>
+          </div>
+          <div class="term-def">Cryptographic mechanism to verify both the integrity and authenticity of a message. Computed as <code>HMAC-SHA256(secret, message)</code>. The shared secret ensures only someone who knows it can produce a valid HMAC — used to verify that webhook payloads genuinely came from the payment gateway.</div>
+          <div class="term-example"><strong>Razorpay webhook:</strong> Gateway sends <code>X-Razorpay-Signature</code> header. Server computes HMAC of raw request body with shared secret and compares using <code>crypto.timingSafeEqual()</code> to prevent timing attacks.</div>
+          <div class="term-see">See also: <a href="06-security-auth.html#webhook-hmac">Security → Webhook HMAC</a></div>
+        </div>
+
+        <div class="term-card" data-search="heartbeat ping pong websocket keepalive zombie connection">
+          <div class="term-header">
+            <span class="term-name">Heartbeat (WebSocket)</span>
+            <div class="term-tags"><span class="tag realtime">realtime</span></div>
+          </div>
+          <div class="term-def">Periodic ping-pong exchange between WebSocket server and clients to detect broken "zombie" connections. Without heartbeat, a TCP connection that dropped without a clean close looks alive to the server indefinitely — consuming memory and slots. Server sends ping every 30s; no pong = terminate.</div>
+          <div class="term-example"><strong>Memory impact:</strong> At 1000 connections × 40-60KB each = 40-60MB. Without heartbeat cleanup, zombie connections accumulate until process OOM-kills.</div>
+        </div>
+      </div>
+
+      <!-- ─── I ─── -->
+      <div class="letter-group" data-letter="I">
+        <span class="letter-anchor" id="I">I</span>
+
+        <div class="term-card" data-search="idempotency idempotent key deduplication payments retry">
+          <div class="term-header">
+            <span class="term-name">Idempotency</span>
+            <div class="term-tags"><span class="tag payments">payments</span><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">Property of an operation where executing it multiple times produces the same result as executing it once. Critical for payment systems and retried webhooks — ensures a network retry doesn't double-charge a customer or double-process a webhook.</div>
+          <div class="term-example"><strong>Implementation:</strong> Client sends <code>Idempotency-Key: uuid-v4</code> header. Server stores the key + response in Redis (24h TTL). On duplicate request: return cached response, skip processing entirely.</div>
+          <div class="term-see">See also: <a href="07-payment-systems.html#idempotency">Payment Systems → Idempotency</a></div>
+        </div>
+      </div>
+
+      <!-- ─── J ─── -->
+      <div class="letter-group" data-letter="J">
+        <span class="letter-anchor" id="J">J</span>
+
+        <div class="term-card" data-search="jwt json web token access refresh authentication stateless">
+          <div class="term-header">
+            <span class="term-name">JWT</span>
+            <span class="term-abbr">JSON Web Token</span>
+            <div class="term-tags"><span class="tag security">security</span></div>
+          </div>
+          <div class="term-def">Compact, URL-safe token format for representing claims between parties. Consists of three base64url-encoded parts: Header (algorithm), Payload (claims: sub, role, tenantId, exp), and Signature (HMAC of header+payload). Stateless — server verifies without a DB lookup.</div>
+          <div class="term-example"><strong>Access token:</strong> 15-min TTL (short-lived to limit stolen token window). <strong>Refresh token:</strong> 30-day TTL, stored in Redis. Stateless access = no DB hit per API request = major performance benefit at scale.</div>
+          <div class="term-see">See also: <a href="06-security-auth.html#jwt">Security → JWT</a></div>
+        </div>
+
+        <div class="term-card" data-search="juspay payment orchestration india gateway routing">
+          <div class="term-header">
+            <span class="term-name">Juspay</span>
+            <div class="term-tags"><span class="tag payments">payments</span></div>
+          </div>
+          <div class="term-def">Indian payment orchestration platform that provides a unified API over multiple underlying gateways (Razorpay, PhonePe, Paytm, etc.). Routes each transaction to the best-performing gateway based on real-time success rates. Handles PCI DSS compliance, retry logic, and UPI.</div>
+          <div class="term-example"><strong>Why primary:</strong> India's UPI failure rate is ~2-3%. Juspay's smart routing picks the gateway with the highest success rate for the user's bank at that moment. One integration → multiple gateway coverage.</div>
+        </div>
+      </div>
+
+      <!-- ─── K ─── -->
+      <div class="letter-group" data-letter="K">
+        <span class="letter-anchor" id="K">K</span>
+
+        <div class="term-card" data-search="kafka topic partition consumer producer streaming">
+          <div class="term-header">
+            <span class="term-name">Kafka</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">Distributed event streaming platform. Publishers produce messages to <em>topics</em>; consumers read from them. Topics are split into <em>partitions</em> for parallelism. Messages are retained on disk (log) for a configurable duration — consumers can replay past events.</div>
+          <div class="term-example"><strong>In Tredye:</strong> 4 topics: <code>raw-ticks</code>, <code>candles</code>, <code>indicators</code>, <code>signals</code>. Each stage is a separate Python service — completely decoupled. If the RSI calculator restarts, it resumes from its last committed offset.</div>
+        </div>
+
+        <div class="term-card" data-search="kraft kafka raft zookeeper metadata quorum controller">
+          <div class="term-header">
+            <span class="term-name">KRaft</span>
+            <span class="term-abbr">Kafka Raft</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span></div>
+          </div>
+          <div class="term-def">Kafka's built-in consensus protocol (from Kafka 2.8+, production-ready in 3.3) that replaces ZooKeeper for cluster metadata management. Controllers use Raft consensus to maintain metadata quorum, eliminating ZooKeeper as a separate dependency.</div>
+          <div class="term-example"><strong>Benefit:</strong> Fewer systems to operate (no ZK cluster). Faster controller election. Higher partition limit (millions vs ~200K with ZK). Kafka 4.0 removes ZK support entirely — KRaft is the future.</div>
+        </div>
+      </div>
+
+      <!-- ─── M ─── -->
+      <div class="letter-group" data-letter="M">
+        <span class="letter-anchor" id="M">M</span>
+
+        <div class="term-card" data-search="mcp model context protocol llm tools resources anthropic">
+          <div class="term-header">
+            <span class="term-name">MCP</span>
+            <span class="term-abbr">Model Context Protocol</span>
+            <div class="term-tags"><span class="tag ai">ai</span></div>
+          </div>
+          <div class="term-def">Open standard by Anthropic for connecting LLMs to external data and tools. Like USB-C for AI — any MCP-compatible LLM (Claude, GPT, Gemini) can use any MCP server (database, API, file system) without custom integration per pair. Supports SSE and STDIO transports.</div>
+          <div class="term-example"><strong>MCPVave:</strong> MCP engine built in Flutter, connects to Zoober backend via SSE. LLMs can call tools like <code>get_inventory</code>, <code>forecast_demand</code>, <code>route_order</code> — enabling AI-powered commerce management.</div>
+          <div class="term-see">See also: <a href="09-mcp-flutter.html#mcp">MCP & Flutter → Model Context Protocol</a></div>
+        </div>
+
+        <div class="term-card" data-search="multi tenant saas tenant isolation shared database">
+          <div class="term-header">
+            <span class="term-name">Multi-Tenant</span>
+            <div class="term-tags"><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">Architecture where a single application instance serves multiple customers (tenants), with their data logically isolated. Three approaches: separate DB per tenant (expensive, strong isolation), schema-per-tenant (complex migrations), shared DB + <code>tenantId</code> field (simplest, chosen for Zoober/TingTing).</div>
+          <div class="term-example"><strong>Enforcement:</strong> BaseService class injects <code>&#123; tenantId: req.user.tenantId &#125;</code> into every MongoDB query automatically. Impossible to read another tenant's data without bypassing the service layer intentionally.</div>
+          <div class="term-see">See also: <a href="03-system-design.html#multitenant">System Design → Multi-Tenant</a></div>
+        </div>
+      </div>
+
+      <!-- ─── O ─── -->
+      <div class="letter-group" data-letter="O">
+        <span class="letter-anchor" id="O">O</span>
+
+        <div class="term-card" data-search="ohlcv candle open high low close volume chart">
+          <div class="term-header">
+            <span class="term-name">OHLCV</span>
+            <span class="term-abbr">Open, High, Low, Close, Volume</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span></div>
+          </div>
+          <div class="term-def">Standard candlestick data format for financial time series. Each candle aggregates all trades within a time interval (1m, 5m, 15m, 1h) into five values: opening price, highest price, lowest price, closing price, and total volume.</div>
+          <div class="term-example"><strong>In Tredye:</strong> <code>candle-builder</code> service consumes raw ticks from Kafka and aggregates them into OHLCV candles per symbol per timeframe, then produces to the <code>candles</code> topic for RSI calculation.</div>
+        </div>
+
+        <div class="term-card" data-search="optimistic locking version concurrency conflict mongoose">
+          <div class="term-header">
+            <span class="term-name">Optimistic Locking</span>
+            <div class="term-tags"><span class="tag db">db</span><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">Concurrency control where a version field (<code>__v</code> in Mongoose) is included in update conditions. The update only succeeds if the document hasn't changed since it was read. If two processes try to update simultaneously, only the first succeeds; the second finds no matching document (version mismatch) → conflict detected.</div>
+          <div class="term-example"><strong>Order state machine:</strong> <code>findOneAndUpdate(&#123; _id, __v: currentVersion &#125;, &#123; $set: &#123;status&#125;, $inc: &#123;__v: 1&#125; &#125;)</code>. Returns null if version changed → throw ConflictError. Prevents duplicate WebSocket events from double-transitioning an order.</div>
+        </div>
+      </div>
+
+      <!-- ─── P ─── -->
+      <div class="letter-group" data-letter="P">
+        <span class="letter-anchor" id="P">P</span>
+
+        <div class="term-card" data-search="p50 p95 p99 percentile latency tail sla">
+          <div class="term-header">
+            <span class="term-name">P50 / P95 / P99</span>
+            <span class="term-abbr">Percentile Latency</span>
+            <div class="term-tags"><span class="tag perf">perf</span></div>
+          </div>
+          <div class="term-def">Latency percentiles. <strong>P50</strong> = median: 50% of requests are faster than this. <strong>P95</strong>: 95% of requests complete within this time — the industry standard SLA metric. <strong>P99</strong>: slowest 1% — often represents GC pauses, cold paths, or lock contention. P95 is preferred over P99 for SLOs because the last 1% is expensive to optimize.</div>
+          <div class="term-example"><strong>Claim:</strong> &lt;200ms P95 means 95% of API responses complete in &lt;200ms. At 80K orders, 4,000 requests were slower — typically catalog refreshes or first-time cold queries.</div>
+          <div class="term-see">See also: <a href="01-performance-metrics.html#p95">Performance Metrics → P95 Latency</a></div>
+        </div>
+
+        <div class="term-card" data-search="partial index mongodb filter expression sparse index size">
+          <div class="term-header">
+            <span class="term-name">Partial Index</span>
+            <div class="term-tags"><span class="tag db">db</span></div>
+          </div>
+          <div class="term-def">MongoDB index that only indexes documents matching a filter expression. Smaller index = faster writes and less RAM. Ideal for collections where queries always include a condition matching the filter (e.g., only index <code>isActive: true</code> stores).</div>
+          <div class="term-example"><code>createIndex(&#123;tenantId:1, location:'2dsphere'&#125;, &#123;partialFilterExpression: &#123;isActive:true&#125;&#125;)</code> — indexes only active stores (~30% of total). 70% smaller index, faster geo queries.</div>
+        </div>
+
+        <div class="term-card" data-search="platform channel flutter native android ios kotlin swift">
+          <div class="term-header">
+            <span class="term-name">Platform Channel</span>
+            <div class="term-tags"><span class="tag flutter">flutter</span></div>
+          </div>
+          <div class="term-def">Flutter's bridge between Dart code and native Android (Kotlin/Java) or iOS (Swift/ObjC) code. Used when Flutter's built-in APIs don't cover a native feature — biometrics, native payment SDKs, background location, Bluetooth.</div>
+          <div class="term-example"><strong>Used for:</strong> Juspay's native Android SDK (UPI intent flow requires native code), biometric authentication (fingerprint/face ID), background location tracking for riders.</div>
+        </div>
+
+        <div class="term-card" data-search="presigned url s3 upload private file aws">
+          <div class="term-header">
+            <span class="term-name">Presigned URL</span>
+            <div class="term-tags"><span class="tag infra">infra</span><span class="tag security">security</span></div>
+          </div>
+          <div class="term-def">Temporary, signed URL for a private S3 object. The server generates it (using AWS credentials) and gives it to the client. The client can then upload/download directly from S3 for a limited time window — without the server proxying the file or exposing AWS credentials.</div>
+          <div class="term-example"><strong>Rider document upload:</strong> App requests presigned PUT URL → backend generates 5-min URL → app uploads JPEG directly to S3 → backend updates DB with S3 key. Server never touches the file data.</div>
+        </div>
+      </div>
+
+      <!-- ─── R ─── -->
+      <div class="letter-group" data-letter="R">
+        <span class="letter-anchor" id="R">R</span>
+
+        <div class="term-card" data-search="rbac role based access control permission role user">
+          <div class="term-header">
+            <span class="term-name">RBAC</span>
+            <span class="term-abbr">Role-Based Access Control</span>
+            <div class="term-tags"><span class="tag security">security</span><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">Authorization model where permissions are assigned to roles, and users are assigned roles. Each API endpoint specifies required permissions; middleware checks if the user's role has those permissions. Cleaner than per-user permission management at scale.</div>
+          <div class="term-example"><strong>Roles:</strong> ADMIN, MERCHANT, RIDER, CUSTOMER. <code>PATCH /orders/:id/status</code> requires <code>order:update-status</code> permission → only ADMIN, MERCHANT, RIDER have it. CUSTOMER gets 403.</div>
+          <div class="term-see">See also: <a href="03-system-design.html#rbac">System Design → RBAC</a></div>
+        </div>
+
+        <div class="term-card" data-search="read preference secondary primary mongodb replica set">
+          <div class="term-header">
+            <span class="term-name">Read/Write Separation</span>
+            <div class="term-tags"><span class="tag db">db</span><span class="tag perf">perf</span></div>
+          </div>
+          <div class="term-def">Routing read queries to MongoDB replica secondaries and writes to the primary. Distributes load — catalog browsing (reads) don't compete with order updates (writes) on the same node. Replication lag (~10-500ms) is acceptable for catalog reads, not for financial/order state reads.</div>
+          <div class="term-example"><strong>Mongoose:</strong> <code>.read('secondaryPreferred')</code> on store/product queries. Primary-only for order state transitions, payments, and sessions where strong consistency is required.</div>
+        </div>
+
+        <div class="term-card" data-search="redis cache pub sub sorted set setnx lock">
+          <div class="term-header">
+            <span class="term-name">Redis</span>
+            <div class="term-tags"><span class="tag db">db</span><span class="tag realtime">realtime</span></div>
+          </div>
+          <div class="term-def">In-memory data store used as cache, pub/sub broker, and distributed lock manager. Sub-millisecond read/write latency. Persistence options: RDB (periodic snapshot) or AOF (append-only file for durability). Single-threaded core — operations are atomic by design.</div>
+          <div class="term-example"><strong>Used for:</strong> Cache-aside (catalog), session storage (JWT refresh tokens), WebSocket event replay (sorted set), rate limiting (INCR+EXPIRE), distributed locks (SETNX), pub/sub (order broadcasts).</div>
+        </div>
+
+        <div class="term-card" data-search="rsi relative strength index wilder smoothing ema momentum">
+          <div class="term-header">
+            <span class="term-name">RSI</span>
+            <span class="term-abbr">Relative Strength Index</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span></div>
+          </div>
+          <div class="term-def">Momentum oscillator (0-100) measuring the speed and magnitude of price changes. RSI &gt; 70 = overbought (potential sell), RSI &lt; 30 = oversold (potential buy). Calculated as <code>100 - (100 / (1 + RS))</code> where RS = average gain / average loss over N periods (typically 14).</div>
+          <div class="term-example"><strong>Wilder's smoothing</strong> (used in Tredye): incremental calculation — only needs previous avg_gain and avg_loss. O(1) per tick vs O(n) for full recalculation. Avoids processing 300+ candles on every market tick.</div>
+          <div class="term-see">See also: <a href="08-kafka-tredye.html#rsi">Kafka & Tredye → RSI</a></div>
+        </div>
+
+        <div class="term-card" data-search="row level isolation tenant guard service layer query">
+          <div class="term-header">
+            <span class="term-name">Row-Level Isolation</span>
+            <div class="term-tags"><span class="tag security">security</span><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">Ensuring every database query is scoped to the current tenant's data. Implemented at the service layer (not DB layer) — a BaseService class automatically injects <code>&#123; tenantId: req.user.tenantId &#125;</code> into every query filter, making cross-tenant data access structurally impossible through normal code paths.</div>
+          <div class="term-see">See also: <a href="03-system-design.html#multitenant">System Design → Row-Level Isolation</a></div>
+        </div>
+      </div>
+
+      <!-- ─── S ─── -->
+      <div class="letter-group" data-letter="S">
+        <span class="letter-anchor" id="S">S</span>
+
+        <div class="term-card" data-search="ses simple email service aws transactional email otp">
+          <div class="term-header">
+            <span class="term-name">SES</span>
+            <span class="term-abbr">Simple Email Service</span>
+            <div class="term-tags"><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">AWS managed email sending service. Used for transactional emails (order confirmations, OTPs, admin alerts). Requires DKIM/SPF/DMARC setup for deliverability. Monitors bounce and complaint rates — high rates trigger sending limits or account suspension.</div>
+        </div>
+
+        <div class="term-card" data-search="snappy compression codec kafka lz4 gzip throughput">
+          <div class="term-header">
+            <span class="term-name">Snappy Compression</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span></div>
+          </div>
+          <div class="term-def">Google's compression algorithm optimized for speed over ratio (~1.5-2x compression). CPU overhead is negligible vs gzip (2.5-3x ratio but much slower). Best for high-throughput systems where decompression speed matters more than maximum compression ratio.</div>
+          <div class="term-example"><strong>In Tredye:</strong> Market tick JSON is repetitive numeric data — Snappy compresses ~40%. Reduces Kafka broker network bandwidth and disk I/O with near-zero CPU cost. Chosen over gzip because the pipeline processes thousands of ticks/second.</div>
+        </div>
+
+        <div class="term-card" data-search="sse server sent events http stream one way push">
+          <div class="term-header">
+            <span class="term-name">SSE</span>
+            <span class="term-abbr">Server-Sent Events</span>
+            <div class="term-tags"><span class="tag realtime">realtime</span><span class="tag ai">ai</span></div>
+          </div>
+          <div class="term-def">HTTP-based protocol for server-to-client streaming. A single long-lived HTTP GET connection; the server pushes text events. Simpler than WebSocket (plain HTTP, no upgrade) but unidirectional — client can't send data back over the same connection.</div>
+          <div class="term-example"><strong>MCP SSE transport:</strong> Flutter app connects to <code>GET /mcp/sse</code> and keeps it open. Server streams MCP protocol messages. Client sends tool calls as separate <code>POST /mcp/messages</code> requests.</div>
+        </div>
+
+        <div class="term-card" data-search="state machine fsm order lifecycle transition guard">
+          <div class="term-header">
+            <span class="term-name">State Machine</span>
+            <div class="term-tags"><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">System with a finite set of states, explicit transitions between them, and guards that validate whether a transition is permitted. Prevents invalid state changes (e.g., DELIVERED → PENDING) by making only legal transitions possible.</div>
+          <div class="term-example"><strong>7-stage order machine:</strong> PENDING → CONFIRMED → PREPARING → READY → PICKED_UP → DELIVERED → COMPLETED. CANCELLED reachable from most states. <code>findOneAndUpdate</code> with <code>__v</code> optimistic lock makes transitions atomic.</div>
+          <div class="term-see">See also: <a href="03-system-design.html#statemachine">System Design → State Machine</a></div>
+        </div>
+
+        <div class="term-card" data-search="stdio standard input output process pipe desktop local">
+          <div class="term-header">
+            <span class="term-name">STDIO</span>
+            <span class="term-abbr">Standard Input/Output</span>
+            <div class="term-tags"><span class="tag ai">ai</span></div>
+          </div>
+          <div class="term-def">Inter-process communication via standard streams (stdin/stdout). The MCP STDIO transport runs the MCP server as a child process; the parent (Flutter app) communicates via piped stdin/stdout. Fast, no network overhead, works offline — but requires process spawning, which is only possible on desktop platforms.</div>
+          <div class="term-example"><strong>Desktop only:</strong> Flutter on Windows/macOS/Linux can spawn a local MCP server process. On Android/iOS/Web, STDIO isn't available — SSE transport is used instead.</div>
+        </div>
+      </div>
+
+      <!-- ─── T ─── -->
+      <div class="letter-group" data-letter="T">
+        <span class="letter-anchor" id="T">T</span>
+
+        <div class="term-card" data-search="thundering herd reconnect jitter backoff spike">
+          <div class="term-header">
+            <span class="term-name">Thundering Herd</span>
+            <div class="term-tags"><span class="tag arch">arch</span><span class="tag realtime">realtime</span></div>
+          </div>
+          <div class="term-def">When many clients simultaneously experience the same failure (e.g., server restart) and all retry at the same time, creating a traffic spike that overwhelms the recovering server. Solved with jitter — adding random delay to backoff intervals so retries are spread across a time window.</div>
+          <div class="term-example"><strong>At 1000 WebSocket clients:</strong> Server restarts → all 1000 retry after exactly 2s (no jitter) → 1000 simultaneous connections in &lt;1s → server overwhelmed → crashes again → loop. With jitter: retries spread over 0-3s → ~333 connections/s → manageable.</div>
+        </div>
+
+        <div class="term-card" data-search="timing attack side channel hmac comparison safe">
+          <div class="term-header">
+            <span class="term-name">Timing Attack</span>
+            <div class="term-tags"><span class="tag security">security</span></div>
+          </div>
+          <div class="term-def">Side-channel attack where an attacker infers information by measuring how long a comparison takes. Regular string comparison short-circuits on first differing byte — comparing "abc" vs "abd" takes longer than "abc" vs "xyz". Mitigated with constant-time comparison (<code>crypto.timingSafeEqual</code>) that always compares all bytes.</div>
+        </div>
+
+        <div class="term-card" data-search="token bucket rate limiting algorithm redis incr refill">
+          <div class="term-header">
+            <span class="term-name">Token Bucket</span>
+            <div class="term-tags"><span class="tag security">security</span><span class="tag arch">arch</span></div>
+          </div>
+          <div class="term-def">Rate limiting algorithm. A bucket holds tokens (max = capacity). Each request consumes one token. Tokens refill at a fixed rate. When empty → requests rejected (429). Allows bursting up to bucket capacity while enforcing average rate. Implemented in Redis using INCR + EXPIRE per key.</div>
+          <div class="term-example"><strong>Login rate limit:</strong> capacity=5 tokens, refill=1/min per IP. A user can make 5 rapid login attempts, then must wait 1 min per attempt. Prevents brute-force without penalizing normal usage.</div>
+          <div class="term-see">See also: <a href="03-system-design.html#ratelimiting">System Design → Token Bucket</a></div>
+        </div>
+
+        <div class="term-card" data-search="ttl time to live index mongodb redis expiry">
+          <div class="term-header">
+            <span class="term-name">TTL Index</span>
+            <span class="term-abbr">Time-To-Live Index</span>
+            <div class="term-tags"><span class="tag db">db</span></div>
+          </div>
+          <div class="term-def">MongoDB index that automatically deletes documents after a specified time. MongoDB scans TTL indexes every 60 seconds and removes expired documents. Used to auto-clean sessions, rate limit records, webhook deduplication keys, and audit logs older than a year.</div>
+          <div class="term-example"><code>createIndex(&#123; expiresAt: 1 &#125;, &#123; expireAfterSeconds: 0 &#125;)</code> — deletes documents when <code>expiresAt</code> date passes. Alternative: <code>createIndex(&#123; createdAt: 1 &#125;, &#123; expireAfterSeconds: 86400 &#125;)</code> — deletes 24h after creation.</div>
+        </div>
+      </div>
+
+      <!-- ─── U ─── -->
+      <div class="letter-group" data-letter="U">
+        <span class="letter-anchor" id="U">U</span>
+
+        <div class="term-card" data-search="uptime availability sla nine downtime">
+          <div class="term-header">
+            <span class="term-name">Uptime / Availability</span>
+            <div class="term-tags"><span class="tag perf">perf</span><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">Percentage of time a system is operational. 99.9% uptime = 8.76 hours/year max downtime. Achieved through redundancy (multi-AZ, replica sets), zero-downtime deploys (blue-green), health check auto-recovery, and graceful shutdown on process restart.</div>
+          <div class="term-example"><strong>99.9% operationally means:</strong> A deployment that takes 5 minutes counts as 5 minutes of "downtime" unless zero-downtime deploy is used. Blue-green + PM2 graceful reload keeps this at effectively 0 for users.</div>
+          <div class="term-see">See also: <a href="01-performance-metrics.html#uptime">Performance Metrics → 99.9% Uptime</a></div>
+        </div>
+      </div>
+
+      <!-- ─── W ─── -->
+      <div class="letter-group" data-letter="W">
+        <span class="letter-anchor" id="W">W</span>
+
+        <div class="term-card" data-search="waf web application firewall owasp rules cloudfront">
+          <div class="term-header">
+            <span class="term-name">WAF</span>
+            <span class="term-abbr">Web Application Firewall</span>
+            <div class="term-tags"><span class="tag security">security</span><span class="tag infra">infra</span></div>
+          </div>
+          <div class="term-def">Filters and monitors HTTP requests before they reach your servers. Blocks common attacks (OWASP Top 10: SQLi, XSS, LFI, RCE) and enforces rate limits at the CDN edge (CloudFront layer) — before traffic hits EC2. AWS WAF uses managed rule groups updated by AWS security team.</div>
+          <div class="term-example"><strong>Rules active:</strong> OWASP Core Rule Set, SQLi rule set, custom rate rule (100 req/5min per IP per route). Triggered during a scraping incident — geo-blocking was temporarily added.</div>
+          <div class="term-see">See also: <a href="02-aws-infrastructure.html#waf">AWS Infrastructure → WAF</a></div>
+        </div>
+
+        <div class="term-card" data-search="websocket ws realtime bidirectional persistent tcp connection">
+          <div class="term-header">
+            <span class="term-name">WebSocket</span>
+            <div class="term-tags"><span class="tag realtime">realtime</span></div>
+          </div>
+          <div class="term-def">Protocol providing full-duplex communication over a single persistent TCP connection. Starts as an HTTP request then upgrades. Enables true bidirectional real-time communication — server can push data to client at any time without the client polling. ~40-60KB memory per connection.</div>
+          <div class="term-example"><strong>In Zoober:</strong> Customer app receives order status updates. Rider app sends location updates. Merchant app receives new orders. All via the same WebSocket server — 1000+ concurrent connections on a single t3.medium Node.js process.</div>
+          <div class="term-see">See also: <a href="05-realtime-websocket.html">Real-Time & WebSocket doc</a></div>
+        </div>
+
+        <div class="term-card" data-search="write amplification mongodb redis cache hot read write">
+          <div class="term-header">
+            <span class="term-name">Write Amplification</span>
+            <div class="term-tags"><span class="tag db">db</span><span class="tag perf">perf</span></div>
+          </div>
+          <div class="term-def">When a single logical write triggers multiple physical writes to disk/memory. In a commerce context: order placed → write order doc, write payment doc, update inventory, write notification, write audit log, update analytics = 6+ writes per user action. Avoided by batching, caching hot reads, and using Redis to absorb read traffic so MongoDB only handles actual writes.</div>
+        </div>
+      </div>
+
+      <!-- ─── Z ─── -->
+      <div class="letter-group" data-letter="Z">
+        <span class="letter-anchor" id="Z">Z</span>
+
+        <div class="term-card" data-search="zigzag pivot high low swing point filter noise">
+          <div class="term-header">
+            <span class="term-name">ZigZag Algorithm</span>
+            <div class="term-tags"><span class="tag kafka">kafka</span></div>
+          </div>
+          <div class="term-def">Technical analysis algorithm that filters price noise to identify only significant swing points (local highs and lows) where price moved at least N% from the previous pivot. Produces a simplified zigzag line through major price swings, used to find meaningful highs/lows for divergence comparison.</div>
+          <div class="term-example"><strong>In Tredye:</strong> 2% threshold — only pivots where price moved &gt;2% from last pivot are recorded. Applied to both price series and RSI values, then corresponding pivot pairs are compared to detect divergence.</div>
+          <div class="term-see">See also: <a href="08-kafka-tredye.html#zigzag">Kafka & Tredye → ZigZag</a></div>
+        </div>
+      </div>
+
+    </div><!-- /glossary -->
+  </div>
+
+  <script>
+    // Build alphabet jump bar dynamically
+    const letters = [...document.querySelectorAll('.letter-anchor')].map(el => el.id);
+    const bar = document.getElementById('alphaBar');
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l => {
+      const a = document.createElement('a');
+      a.textContent = l;
+      if (letters.includes(l)) {
+        a.href = `#${l}`;
+      } else {
+        a.style.opacity = '0.25';
+        a.style.pointerEvents = 'none';
+      }
+      bar.appendChild(a);
+    });
+
+    // Search
+    const input = document.getElementById('search');
+    const cards = document.querySelectorAll('.term-card');
+    const groups = document.querySelectorAll('.letter-group');
+    const anchors = document.querySelectorAll('.letter-anchor');
+
+    input.addEventListener('input', () => {
+      const q = input.value.toLowerCase().trim();
+      cards.forEach(c => {
+        const text = (c.textContent + (c.dataset.search || '')).toLowerCase();
+        c.classList.toggle('hidden', q.length > 0 && !text.includes(q));
+      });
+      // Hide letter headers that have no visible cards
+      groups.forEach(g => {
+        const visible = [...g.querySelectorAll('.term-card')].some(c => !c.classList.contains('hidden'));
+        g.classList.toggle('hidden', !visible);
+      });
+    });
+  </script>
+</body>
+</html>

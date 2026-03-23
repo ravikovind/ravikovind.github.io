@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Design — Interview Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&family=Geo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --text: #ffffff; --muted: #888; --border: #222; --accent: #F59E0B; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; line-height: 1.7; }
+    nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; gap: 20px; align-items: center; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+    nav a:hover { color: var(--accent); }
+    nav .logo { font-family: 'Saira', sans-serif; font-weight: 700; color: var(--text); font-size: 16px; margin-right: auto; }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    .page-header { margin-bottom: 48px; }
+    .page-num { font-family: 'Geo', monospace; color: var(--accent); font-size: 13px; margin-bottom: 8px; }
+    h1 { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: var(--muted); font-size: 15px; }
+    h2 { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 600; color: var(--accent); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+    h3 { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 14px; color: #ccc; }
+    ul { margin: 0 0 16px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    code { font-family: 'Geo', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
+    pre { margin: 16px 0 24px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+    .qa { background: #1a1200; border: 1px solid #4a3000; border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+    .qa-label { font-family: 'Saira', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+    .qa p { color: #ddd; margin-bottom: 8px; }
+    .qa p:last-child { margin-bottom: 0; }
+    .ascii { font-family: 'Geo', monospace; font-size: 12px; color: #aaa; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; white-space: pre; overflow-x: auto; line-height: 1.4; }
+    strong { color: var(--text); }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+    th { background: var(--bg3); color: var(--accent); font-family: 'Saira', sans-serif; padding: 10px 12px; text-align: left; border: 1px solid var(--border); }
+    td { padding: 8px 12px; border: 1px solid var(--border); color: #ccc; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Ravi Kumar</span>
+    <a href="index.html">← All Docs</a>
+    <a href="../resume.html">Resume</a>
+    <a href="../index.html">Portfolio</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="page-num">03 / 09</div>
+      <h1>System Design</h1>
+      <p class="subtitle">Multi-tenant SaaS architecture, RBAC, the 7-stage order state machine, geospatial queries, and event-driven patterns.</p>
+    </div>
+
+    <h2 id="multitenant">Multi-Tenant SaaS Architecture</h2>
+
+    <h3>The three approaches to multi-tenancy</h3>
+    <table>
+      <tr><th>Approach</th><th>How</th><th>Pro</th><th>Con</th></tr>
+      <tr><td>Separate DB per tenant</td><td>Each tenant has own MongoDB instance</td><td>Full isolation, easy backup</td><td>Expensive, hard to operate at scale</td></tr>
+      <tr><td>Schema-per-tenant</td><td>Each tenant has own collection prefix</td><td>Good isolation</td><td>Collection explosion, migration hell</td></tr>
+      <tr><td><strong>Shared DB + tenant_id</strong></td><td>All tenants in same collections, every doc has tenantId</td><td>Simple, cheap, scales well</td><td>Application-layer isolation enforcement required</td></tr>
+    </table>
+
+    <p><strong>Chosen approach</strong>: Shared DB + <code>tenantId</code> discrimination. At the scale of 30-35 stores, separate databases would cost 30x MongoDB Atlas fees with zero performance benefit.</p>
+
+    <h3>Row-level isolation implementation</h3>
+    <p>Every DB query at the service layer includes <code>tenantId</code> as a mandatory filter. This is enforced in a base service class, not per-route:</p>
+
+    <pre><code class="language-javascript">// Base service — all operations scoped to tenant
+class BaseService {
+  constructor(model, tenantId) {
+    this.model = model;
+    this.tenantId = tenantId;
+  }
+
+  async findOne(filter, projection = {}) {
+    // tenantId guard is ALWAYS injected — cannot be bypassed by caller
+    return this.model.findOne({ ...filter, tenantId: this.tenantId }, projection);
+  }
+
+  async find(filter, options = {}) {
+    return this.model.find(
+      { ...filter, tenantId: this.tenantId },
+      options.projection,
+      options
+    );
+  }
+}
+
+// Usage in route handler
+const orderService = new OrderService(Order, req.user.tenantId);
+const orders = await orderService.find({ status: 'PENDING' });
+// ↑ impossible to see another tenant's orders</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What happens if a developer forgets to include tenantId in a query?</strong></p>
+      <p>A: The BaseService pattern makes it structurally impossible — the tenantId is injected by the service constructor, not the caller. To bypass it, a developer would have to explicitly use the raw Mongoose model. Code reviews catch any direct model access. We also have MongoDB-level access controls — the API user doesn't have admin credentials, limiting blast radius.</p>
+    </div>
+
+    <h2 id="rbac">RBAC — Role-Based Access Control</h2>
+
+    <h3>Roles in Zoober</h3>
+    <table>
+      <tr><th>Role</th><th>Can do</th><th>Cannot do</th></tr>
+      <tr><td>ADMIN</td><td>Everything within their tenant</td><td>Cross-tenant operations</td></tr>
+      <tr><td>MERCHANT</td><td>Manage own store, view orders, update stock</td><td>Access other stores, rider management</td></tr>
+      <tr><td>RIDER</td><td>View assigned orders, update delivery status</td><td>Catalog, payments, user data</td></tr>
+      <tr><td>CUSTOMER</td><td>Browse, order, track own orders</td><td>Any management actions</td></tr>
+    </table>
+
+    <h3>Permission matrix enforcement</h3>
+    <pre><code class="language-javascript">// Permissions map
+const PERMISSIONS = {
+  'order:read': ['ADMIN', 'MERCHANT', 'RIDER', 'CUSTOMER'],
+  'order:update-status': ['ADMIN', 'MERCHANT', 'RIDER'],
+  'catalog:write': ['ADMIN', 'MERCHANT'],
+  'user:manage': ['ADMIN'],
+  'rider:assign': ['ADMIN', 'MERCHANT'],
+};
+
+// Middleware factory
+const authorize = (...permissions) => (req, res, next) => {
+  const { role } = req.user; // role from JWT claims
+  const hasPermission = permissions.every(p =>
+    PERMISSIONS[p]?.includes(role)
+  );
+  if (!hasPermission) return res.status(403).json({ error: 'Forbidden' });
+  next();
+};
+
+// Route usage
+router.patch('/orders/:id/status',
+  authenticate,                         // verify JWT
+  authorize('order:update-status'),     // check role
+  orderController.updateStatus
+);</code></pre>
+
+    <h2 id="statemachine">7-Stage Order State Machine</h2>
+
+    <div class="ascii">
+Order lifecycle state machine:
+
+  [PENDING] ──────────────────────────────────────▶ [CANCELLED]
+      │                                                  ▲
+      │ merchant confirms                                │ any stage
+      ▼                                                  │
+  [CONFIRMED] ─────────────────────────────────────────▶┤
+      │                                                  │
+      │ kitchen starts                                   │
+      ▼                                                  │
+  [PREPARING] ─────────────────────────────────────────▶┤
+      │                                                  │
+      │ ready for pickup                                 │
+      ▼                                                  │
+  [READY] ──────────────────────────────────────────────┤
+      │                                                  │
+      │ rider picks up                                   │
+      ▼                                                  │
+  [PICKED_UP] ─────────────────────────────────────────▶┤
+      │                                                  │
+      │ rider delivers                                   │
+      ▼                                                  │
+  [DELIVERED] ─────────────────────────────────────────▶┤
+      │                                                  │
+      │ customer confirms / auto-confirm after 15min     │
+      ▼                                                  │
+  [COMPLETED]     Also: [FAILED] for payment failures ──┘</div>
+
+    <h3>State machine implementation with guards</h3>
+    <pre><code class="language-javascript">const VALID_TRANSITIONS = {
+  PENDING:    ['CONFIRMED', 'CANCELLED'],
+  CONFIRMED:  ['PREPARING', 'CANCELLED'],
+  PREPARING:  ['READY', 'CANCELLED'],
+  READY:      ['PICKED_UP', 'CANCELLED'],
+  PICKED_UP:  ['DELIVERED'],
+  DELIVERED:  ['COMPLETED'],
+  COMPLETED:  [],
+  CANCELLED:  [],
+  FAILED:     [],
+};
+
+async function transitionOrder(orderId, newStatus, actor, tenantId) {
+  // Optimistic locking — read current version
+  const order = await Order.findOne({ _id: orderId, tenantId });
+  if (!order) throw new NotFoundError('Order not found');
+
+  // Guard: is this transition valid?
+  if (!VALID_TRANSITIONS[order.status].includes(newStatus)) {
+    throw new BadRequestError(
+      `Cannot transition from ${order.status} to ${newStatus}`
+    );
+  }
+
+  // Atomic update with version check (optimistic locking)
+  const updated = await Order.findOneAndUpdate(
+    { _id: orderId, __v: order.__v, tenantId }, // version check
+    {
+      $set: { status: newStatus, [`timestamps.${newStatus.toLowerCase()}`]: new Date() },
+      $push: { statusHistory: { status: newStatus, actor, at: new Date() } },
+      $inc: { __v: 1 }, // increment version
+    },
+    { new: true }
+  );
+
+  if (!updated) throw new ConflictError('Order was modified concurrently');
+
+  // Emit WebSocket event to all relevant clients
+  broadcastOrderUpdate(updated);
+  return updated;
+}</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: Why is idempotency important in the state machine?</strong></p>
+      <p>A: WebSocket connections can drop and reconnect. A rider app might send "PICKED_UP" twice if the first acknowledgment was lost. Without idempotency, that would cause a double transition. With the <code>__v</code> optimistic locking check, the second identical update hits the same version number — the <code>findOneAndUpdate</code> finds no document matching both <code>_id</code> AND <code>__v</code>, returns null, and we throw a ConflictError (which the client ignores since the state is already correct).</p>
+    </div>
+
+    <h2 id="geospatial">Geospatial Queries</h2>
+
+    <h3>2dsphere index setup</h3>
+    <pre><code class="language-javascript">// Mongoose schema with GeoJSON
+const StoreSchema = new Schema({
+  name: String,
+  tenantId: { type: Schema.Types.ObjectId, ref: 'Tenant', required: true },
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true,
+    },
+    coordinates: {
+      type: [Number], // [longitude, latitude] — GeoJSON order!
+      required: true,
+    },
+  },
+  deliveryRadius: Number, // meters
+  isActive: Boolean,
+});
+
+// 2dsphere index required for $near/$geoWithin queries
+StoreSchema.index({ location: '2dsphere' });
+// Compound index for filtered queries
+StoreSchema.index({ tenantId: 1, isActive: 1, location: '2dsphere' });</code></pre>
+
+    <pre><code class="language-javascript">// Query: find stores within 5km of user
+const stores = await Store.find({
+  tenantId: req.user.tenantId,
+  isActive: true,
+  location: {
+    $near: {
+      $geometry: { type: 'Point', coordinates: [userLng, userLat] },
+      $maxDistance: 5000, // 5km in meters
+    },
+  },
+}).limit(20).select('name location deliveryRadius imageUrl');
+// Results sorted by distance ascending (nearest first) — automatic with $near</code></pre>
+
+    <div class="qa">
+      <div class="qa-label">Interview Q&A</div>
+      <p><strong>Q: What's the difference between $near and $geoWithin?</strong></p>
+      <p>A: <code>$near</code> finds documents sorted by distance from a point — perfect for "stores near me" (returns nearest first). <code>$geoWithin</code> finds documents within a shape (polygon, circle) without sorting — perfect for "is this delivery address within our zone?" The 2dsphere index accelerates both. We use <code>$near</code> for store discovery and <code>$geoWithin</code> with delivery zones (polygon shapes per rider zone).</p>
+    </div>
+
+    <h2 id="ratelimiting">Token-Bucket Rate Limiting</h2>
+
+    <h3>Algorithm explained</h3>
+    <div class="ascii">
+Token Bucket Algorithm:
+
+  Bucket capacity: 100 tokens
+  Refill rate: 10 tokens/second
+
+  Time 0s:   [██████████] 100 tokens (full)
+  Request:   [-1 token]
+  Time 0s:   [█████████ ]  99 tokens
+
+  10 requests arrive:
+  Time 0.1s: [████████  ]  90 tokens
+
+  Burst: 100 requests in 0.5s:
+  Time 0.5s: [          ]   0 tokens → 429 Too Many Requests
+
+  Refill: 5s pass → +50 tokens
+  Time 5.5s: [█████     ]  50 tokens</div>
+
+    <pre><code class="language-javascript">// Redis-based token bucket implementation
+async function checkRateLimit(key, capacity, refillRate, ttl) {
+  const now = Date.now();
+  const refillKey = `rl:${key}:refill`;
+  const countKey = `rl:${key}:count`;
+
+  const [count, lastRefill] = await redis.mget(countKey, refillKey);
+  const tokens = parseInt(count ?? capacity);
+  const last = parseInt(lastRefill ?? now);
+
+  // Add tokens based on elapsed time
+  const elapsed = (now - last) / 1000;
+  const newTokens = Math.min(capacity, tokens + elapsed * refillRate);
+
+  if (newTokens < 1) {
+    return { allowed: false, remaining: 0 };
+  }
+
+  // Atomic decrement
+  const pipeline = redis.multi();
+  pipeline.set(countKey, Math.floor(newTokens - 1), 'EX', ttl);
+  pipeline.set(refillKey, now, 'EX', ttl);
+  await pipeline.exec();
+
+  return { allowed: true, remaining: Math.floor(newTokens - 1) };
+}</code></pre>
+
+  </div>
+
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
