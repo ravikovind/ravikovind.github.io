@@ -477,10 +477,10 @@
       <section class="section">
         <h2 class="section-title">Summary</h2>
         <p class="summary">
-          Backend-focused full-stack engineer specializing in high-scale Node.js
-          systems, Flutter, real-time infrastructure and AI integration. Built
+          Backend-focused full-stack engineer specialising in high-scale Node.js
+          systems, Python, Flutter, real-time infrastructure, cloud deployments and AI/MCP integration. Built
           production platforms processing 80K+ orders at &lt;200ms P95 latency
-          with 99.9% uptime. Strong bias toward system design, production
+          with 99.9% uptime. Strong bias toward system design, end-to-end
           ownership, and pragmatic architecture. NIT Allahabad.
         </p>
       </section>
@@ -496,18 +496,8 @@
           </div>
           <p class="role">Founding Engineer</p>
           <p class="location">Bengaluru, Karnataka, India</p>
-          <ul>
-            <li>
-              Architected <strong>multi-tenant SaaS infrastructure</strong> from scratch: JWT +
-              refresh token rotation, RBAC with row-level isolation,
-              comprehensive audit logging, and token-bucket rate limiting
-            </li>
-            <li>
-              Deployed production systems on AWS (EC2, NGINX, CloudFront, WAF, S3, SES) achieving <strong>99.9% uptime</strong> across <strong>30+ stores</strong>
-            </li>
-          </ul>
           <p class="role" style="margin-top: 8px">
-            Flagship Product: Zoober
+            Zoober
             <a
               href="https://zoober.in"
               title="Web App"
@@ -565,33 +555,17 @@
             ></a>
           </p>
           <p class="location" style="margin-top: 2px">
-            Multi-Tenant Hyperlocal Commerce Platform | 30+ Store Segments |
-            Express + MongoDB + Flutter
+            connects you with trusted local businesses for quick deliveries and hassle-free bookings
           </p>
           <ul>
             <li>
-              Designed Express.js REST API with <strong>23 MongoDB collections</strong> using
-              2dsphere geospatial indexes for <strong>&lt;100ms</strong> radius-based store
-              discovery under concurrent load
+              Architected Zoober from scratch (0→1) — mobile apps (Play Store/App Store), production-grade servers and cloud infrastructure. Deployed on AWS (EC2, ALB, NGINX, CloudFront, WAF, S3, SES) achieving <strong>99.9% uptime</strong> across restaurant, salon, meat shop, grocery and fruit store segments near Gummanahalli and Kothanur, Bengaluru.
             </li>
             <li>
-              Implemented idempotent <strong>7-stage order state machine</strong> with optimistic
-              locking to handle duplicate WebSocket events during network
-              partitions
+              Designed Monolithic Express.js server, REST API with <strong>optimised MongoDB collections</strong> using 2dsphere geospatial indexes (aggregation pipeline) for <strong>&lt;100ms</strong> radius-based store discovery under concurrent load and built a <strong>real-time WebSocket sync</strong> layer broadcasting order/rider position updates with automatic reconnection.
             </li>
             <li>
-              Built <strong>real-time WebSocket sync</strong> layer broadcasting order updates to
-              <strong>1000+ concurrent connections</strong> with automatic reconnection and event
-              replay
-            </li>
-            <li>
-              Architected <strong>4-app Flutter ecosystem</strong> (Customer, Merchant, Rider,
-              Admin) with BLoC state management and go_router deep linking
-              across Android, iOS, Web
-            </li>
-            <li>
-              Integrated payment gateways (<strong>Juspay, PhonePe, Razorpay</strong>) with
-              webhook signature verification and idempotent transaction handling
+              Architected <strong>Multiple Flutter apps ecosystem</strong> (Customer, Merchant, Rider, Admin, CRM, Notification Panel, etc) with BLoC state management, Adaptive + Responsive Server Driven UI and go_router deep linking across Android, iOS and Web. Windows/Web panels for handling high-level operations. Full release app cycles across the Play Store and App Store.
             </li>
           </ul>
           <p class="role" style="margin-top: 8px">
@@ -619,24 +593,19 @@
             ></a>
           </p>
           <p class="location" style="margin-top: 2px">
-            AI Engine — Cross-Platform MCP Client | Foundation for AI-Powered
-            Commerce
+            AI Engine — Cross-Platform (Mobile, Desktop and Web) MCP Client | Foundation for AI-Powered Commerce
           </p>
           <ul>
             <li>
-              Built <strong>Model Context Protocol (MCP) engine</strong> enabling standardized
-              AI/LLM-to-data communication via SSE/STDIO across <strong>6 platforms</strong> (Android, iOS,
-              Windows, macOS, Linux, Web)
+              Built <strong>Model Context Protocol (MCP) engine</strong> enabling standardised AI/LLM-to-data communication via SSE/STDIO across <strong>6 platforms</strong> (Android, iOS, Windows, macOS, Linux, Web)
             </li>
             <li>
               Developed internal packages: <strong>mcp_client</strong> (protocol implementation)
-              and <strong>llm_shared</strong> (unified LLM provider interface for Claude, GPT,
-              Gemini)
+              and <strong>llm_shared</strong> (unified LLM provider interface for Claude, GPT, Gemini etc)
             </li>
             <li>
-              Powering AI capabilities: <strong>intelligent inventory management</strong>, demand
-              forecasting, automated customer support, and smart order routing
-              across Voltvave products
+              Powering AI capabilities: <strong>intelligent inventory management</strong>, reports, demand
+              forecasting, automated customer support, and smart ordering — an internal tool for making Zoober AI-powered
             </li>
           </ul>
         </div>
@@ -682,6 +651,7 @@
           </div>
           <p class="role">Founding Engineer</p>
           <p class="location">Bengaluru, Karnataka, India</p>
+          <p class="location" style="margin-bottom: 4px">Groceries Delivery in minutes</p>
           <div class="stats">
             <span class="stat"><span class="stat-value">35+</span> Stores</span>
             <span class="stat"
@@ -697,25 +667,17 @@
           </div>
           <ul>
             <li>
-              Architected event-driven Node.js backend processing <strong>80K+ orders</strong>
-              with <strong>&lt;200ms P95 latency</strong>; separated read/write workloads using
-              MongoDB + Redis to avoid write amplification
+              Architected Node.js Express.js backend server processing a total of <strong>80K+ orders</strong>
+              with <strong>&lt;200ms P95 latency</strong>; and a <strong>real-time WebSocket sync</strong> layer broadcasting order/rider position/CRM message exchange/alerts and updates with automatic reconnection. Deployed <strong>Cloud infrastructure</strong> on AWS/GCP with CI/CD pipelines
             </li>
             <li>
-              Built <strong>real-time WebSocket infrastructure</strong> syncing order state
-              across <strong>4 client apps</strong> with automatic reconnection; integrated Zoho
-              Gofrugal ERP for automated stock sync and catalog management
-              across <strong>35+ stores</strong>
+              Built a <strong>Multiple Flutter apps ecosystem</strong> (TingTing, Store, Delivery, Admin, CRM, Notification Panel, Control Panel etc) across Android, iOS and Web. Windows (Admin)/Web (CRM and Control Panel) panels for handling high-level operations &amp; smooth monitoring.
             </li>
             <li>
-              Designed graceful degradation for payment gateway failures
-              (<strong>Juspay, PhonePe, Razorpay</strong>) with retry logic and admin recovery
-              workflows, processing <strong>₹1.5Cr+ GMV</strong>
+              Built Zoho Gofrugal ERP automated stock sync crons in Dart, deployed on GCP Cloud Run — syncing <strong>35+ stores</strong> × <strong>12K+/store products</strong> to keep physical inventory aligned with TingTing in real-time.
             </li>
             <li>
-              Deployed <strong>HA infrastructure</strong> on AWS/GCP with blue-green deployments
-              and automated rollback on health check failures, maintaining <strong>99.9%
-              uptime</strong>
+              Integrated Google Maps, Firebase (messaging, analytics, crashlytics), Facebook app events, deep links, MP2 ONDC (on-demand rider provider) and payment gateways (<strong>Juspay, PhonePe, Razorpay, BillDesk</strong>) with webhook signature verification and idempotent order handling.
             </li>
           </ul>
         </div>
@@ -726,9 +688,10 @@
             <span class="date">Jun 2021 - Aug 2022</span>
           </div>
           <p class="role">Software Engineer (Remote)</p>
+          <p class="location"><a href="https://workrush.co.uk" target="_blank" style="color: var(--text-secondary);">workrush.co.uk</a></p>
           <ul>
             <li>
-              Built consumer-facing Flutter apps (<strong>Footbus, Livehappy</strong>) with BLoC
+              Built consumer-facing Flutter apps (<strong>Footbus, Livehappy and more</strong>) with BLoC
               state management and shipped <strong>15+ releases</strong> across Play Store and
               App Store
             </li>
@@ -755,8 +718,8 @@
           <div class="skill-row">
             <span class="skill-label">Databases:</span>
             <span class="skill-value"
-              >MongoDB, PostgreSQL, Redis, Mongoose ODM, Query
-              Optimization</span
+              >MongoDB, PostgreSQL, Redis, Query
+              Optimisation</span
             >
           </div>
           <div class="skill-row">
@@ -1026,7 +989,7 @@
           <p class="role">Flutter Icon Libraries | Static + Animated | lucide-animated Ecosystem</p>
           <ul>
             <li>
-              Published and maintaining two Flutter packages: <strong>flutter_lucide</strong> (1,666+ static icons) and <strong>flutter_lucide_animated</strong> (smooth Lottie-style animations) with tree-shaking optimization
+              Publishing and maintaining two Flutter packages: <strong>flutter_lucide</strong> (1,666+ static icons) and <strong>flutter_lucide_animated</strong> (smooth Lottie-style animations) with tree-shaking optimization
             </li>
             <li>
               flutter_lucide_animated officially featured in <strong>pqoqubbw/icons</strong> — the lucide-animated ecosystem alongside Svelte, Vue, and Angular implementations
