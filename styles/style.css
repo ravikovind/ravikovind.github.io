@@ -410,9 +410,15 @@ p {
 
 .hero-actions {
     display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+}
+
+.hero-actions-row {
+    display: flex;
     gap: var(--spacing-sm);
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .btn-ghost {
