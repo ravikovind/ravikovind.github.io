@@ -106,6 +106,36 @@ Stack: Python, FastAPI, Next.js 16, React 19, Kafka, PostgreSQL, Redis, Docker, 
 
 ---
 
+### GrihaHomes — Freelance Project
+[grihahomes.com](https://grihahomes.com)
+
+**Agent-Centric Property Listing Platform | Geo Search + AI Chat**
+
+Stack: NestJS, Next.js, PostgreSQL, PostGIS, Redis, Cloudinary, OCI ARM, Claude AI, Docker, Tailwind CSS, TypeScript
+
+- Built full-stack property listing platform with **NestJS + Prisma** REST API, **PostGIS** powered geo-search, and **Next.js + Tailwind CSS** frontend — connecting property seekers with verified agents in Bangalore
+
+- Implemented complete visit booking lifecycle (pending → scheduled → visited → confirmed/cancelled), agent time-slot management, role-based access (user/agent/admin), and rate-limited **SMS OTP auth** with daily password fallback
+
+- Integrated **Claude AI** conversational assistant for natural-language property search; deployed on **OCI ARM free tier** with Docker + Cloudflare Tunnel — zero infra cost, scalable to 50K+ users
+
+---
+
+### Open Notifier — Micro SaaS
+[open-notifier.io](https://open-notifier.io)
+
+**Self-Hostable Push Notification Platform | MCP-Powered for AI Agents**
+
+Stack: Node.js, TypeScript, Express 5, Prisma, PostgreSQL, BullMQ, Valkey, Flutter, MCP, FCM, SigNoz (OTel), Sentry
+
+- Built a **self-hostable, multi-tenant push notification platform** with **MCP (Model Context Protocol)** support — letting AI agents (Claude Desktop etc.) send FCM push notifications directly to users' phones via natural language
+
+- Architected horizontally scalable system with **BullMQ on Valkey** for async delivery queuing, **PgBouncer** for connection pooling, and separate stateless API / MCP / Worker processes — each independently scalable
+
+- Shipped full **Flutter** mobile app for device registration, channel management, and notification history; wired end-to-end observability with **SigNoz (OpenTelemetry) + Sentry**
+
+---
+
 ### Bhagavad Gita — Side Project
 [Play Store](https://play.google.com/store/apps/details?id=com.gita) | [Web](https://bhagavad-gita-india.web.app/)
 
