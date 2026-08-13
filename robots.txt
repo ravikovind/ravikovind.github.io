@@ -3,5 +3,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap
 Sitemap: https://ravikovind.github.io/sitemap.xml
+
+# LLMs.txt (AI agent index)
+# https://ravikovind.github.io/llms.txt

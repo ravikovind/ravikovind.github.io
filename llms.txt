@@ -1,0 +1,59 @@
+# Ravi Kovind
+
+> Software Engineer with 5+ years of experience designing, building, deploying, and maintaining production-grade applications. Specialises in full-stack, mobile (Flutter), backend, and infrastructure.
+
+## About
+
+Ravi Kovind is a Founding Engineer based in Bengaluru, Karnataka, India. He has worked across the full product lifecycle — from greenfield architecture to production deployments — building systems that serve real users at scale.
+
+- Email: hey.ravikovind@gmail.com
+- Website: https://ravikovind.github.io
+- GitHub: https://github.com/ravikovind
+- LinkedIn: https://linkedin.com/in/ravikovind
+- Location: Bengaluru, Karnataka, India
+
+## Experience
+
+### Voltvave Innovations Pvt Ltd — Founding Engineer (Mar 2025 – Jul 2026)
+Built Tredye, a real-time market monitoring dashboard: 12-service Kafka-based event-driven system (<50ms latency), RSI/divergence detection, multi-source news aggregation, Next.js 16 + TradingView frontend. Also built MCPVave, an MCP (Model Context Protocol) server for AI agent integration.
+
+### TingTing — Senior Flutter Engineer (Aug 2022 – Mar 2025)
+Architected a 6-app Flutter ecosystem (Customer, Merchant, Rider, Admin, CRM, Notification Panel) with BLoC, adaptive server-driven UI, and go_router. Built Zoho Gofrugal ERP stock sync on GCP Cloud Run syncing 35+ stores × 12K+ products. Led full release cycles on Play Store and App Store.
+
+### Workrush — Software Engineer (prior)
+Built end-to-end hyperlocal commerce platform: 4 Flutter apps, Express.js API with 23 MongoDB schemas, geospatial store discovery, 7-stage order lifecycle with WebSocket sync, AWS infrastructure (EC2, S3, SES, CloudFront, WAF).
+
+## Selected Projects
+
+- [GrihaHomes](https://grihahomes.com): Agent-centric property listing platform (Bengaluru). NestJS + Prisma + PostGIS backend, Next.js + Tailwind frontend, SMS OTP auth, visit booking lifecycle, role-based access, Claude AI chat. Deployed on OCI ARM free tier.
+- [Open Notifier](https://open-notifier.io): Self-hostable multi-tenant push notification platform with MCP support. AI agents send FCM push to users' phones. Node.js + Express 5 + BullMQ + Valkey + Flutter mobile app + SigNoz observability.
+- [Tredye](https://tredye.com): Real-time trading dashboard. 12-service Kafka pipeline, RSI/ZigZag divergence detection, Next.js 16 + TradingView charts.
+- [Bhagavad Gita](https://play.google.com/store/apps/details?id=com.gita): Flutter app, 40K+ downloads, 2K DAU, offline-first with Isolate-based multithreading and Hydrated BLoC.
+
+## Open Source
+
+- [flutter_lucide](https://pub.dev/packages/flutter_lucide): 1,666+ Lucide icons for Flutter. 4K weekly downloads, 6 platforms.
+- [flutter_lucide_animated](https://pub.dev/packages/flutter_lucide_animated): Animated icon library featured in pqoqubbw/icons (6.8K GitHub stars).
+
+## Skills
+
+- **Languages**: TypeScript, Dart, Python, JavaScript, Java, SQL
+- **Mobile**: Flutter, BLoC, go_router, Hive, Hydrated BLoC, FCM
+- **Backend**: Node.js, Express, NestJS, FastAPI, Prisma, REST, WebSocket, MCP
+- **Frontend**: React, Next.js, Tailwind CSS, SWR
+- **Data**: PostgreSQL, PostGIS, MongoDB, Redis, Kafka, BullMQ, Valkey
+- **Infra**: AWS (EC2, S3, SES, CloudFront, WAF), OCI ARM, Docker, GCP Cloud Run, Cloudflare
+- **AI**: Claude (Anthropic), MCP (Model Context Protocol), OpenAI, Gemini
+- **Observability**: SigNoz (OpenTelemetry), Sentry
+
+## Education
+
+- B.Tech, Computer Science — National Institute of Technology, Allahabad (NIT Prayagraj)
+
+## Pages
+
+- [Portfolio / Homepage](https://ravikovind.github.io/): Full portfolio with experience, projects, and open source work.
+- [Resume](https://ravikovind.github.io/resume.html): Detailed resume — all experience, projects, and skills.
+- [Flutter Resume](https://ravikovind.github.io/resume-flutter.html): Flutter/mobile-focused resume variant.
+- [Full-Stack Resume](https://ravikovind.github.io/resume-react.html): Full-stack/React-focused resume variant.
+- [Docs](https://ravikovind.github.io/docs/): Technical write-ups on system design, Kafka, MCP, auth, payments, and more.
