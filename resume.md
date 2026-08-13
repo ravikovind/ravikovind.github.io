@@ -15,7 +15,7 @@ Backend-focused full-stack engineer specialising in high-scale Node.js systems, 
 ## Professional Experience
 
 ### Voltvave Innovations Pvt Ltd
-**Founding Engineer** | Mar 2025 - Present | Bengaluru, Karnataka, India
+**Founding Engineer** | Mar 2025 - Jul 2026 | Bengaluru, Karnataka, India
 
 #### Zoober
 
