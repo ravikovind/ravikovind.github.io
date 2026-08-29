@@ -115,7 +115,7 @@ Stack: NestJS, Next.js, PostgreSQL, PostGIS, Redis, Cloudinary, OCI ARM, Claude 
 
 - Implemented complete visit booking lifecycle (pending → scheduled → visited → confirmed/cancelled), agent time-slot management, role-based access (user/agent/admin), and rate-limited **SMS OTP auth** with daily password fallback
 
-- Integrated **Claude AI** conversational assistant for natural-language property search; deployed on **OCI ARM free tier** with Docker + Cloudflare Tunnel — zero infra cost, scalable to 50K+ users
+- Integrated **Claude AI** conversational assistant for natural-language property search; deployed on **OCI ARM free tier** with Docker — zero infra cost, scalable to 50K+ users
 
 ---
 
@@ -124,13 +124,13 @@ Stack: NestJS, Next.js, PostgreSQL, PostGIS, Redis, Cloudinary, OCI ARM, Claude 
 
 **Self-Hostable Push Notification Platform | MCP-Powered for AI Agents**
 
-Stack: Node.js, TypeScript, Express 5, Prisma, PostgreSQL, BullMQ, Valkey, Flutter, MCP, FCM, SigNoz (OTel), Sentry
+Stack: Node.js, TypeScript, Express 5, Prisma, PostgreSQL, BullMQ, Valkey, Flutter, MCP, FCM
 
 - Built a **self-hostable, multi-tenant push notification platform** with **MCP (Model Context Protocol)** support — letting AI agents (Claude Desktop etc.) send FCM push notifications directly to users' phones via natural language
 
 - Architected horizontally scalable system with **BullMQ on Valkey** for async delivery queuing, **PgBouncer** for connection pooling, and separate stateless API / MCP / Worker processes — each independently scalable
 
-- Shipped full **Flutter** mobile app for device registration, channel management, and notification history; wired end-to-end observability with **SigNoz (OpenTelemetry) + Sentry**
+- Shipped full **Flutter** mobile app for device registration, channel management, and notification history
 
 ---
 
