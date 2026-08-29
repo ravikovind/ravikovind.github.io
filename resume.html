@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ravi Kovind | Resume — Software Engineer</title>
-    <meta name="description" content="Resume of Ravi Kovind, Software Engineer with 5+ years building full-stack, mobile (Flutter), and backend systems. Founding Engineer at Voltvave." />
+    <title>Ravi Kovind | Founding Engineer</title>
+    <meta name="description" content="Founding Engineer with 5+ years taking products from 0 to 1, operating production systems, and building AI/MCP infrastructure." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://ravikovind.github.io/resume.html" />
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://ravikovind.github.io/resume.html" />
-    <meta property="og:title" content="Ravi Kovind | Resume — Software Engineer" />
-    <meta property="og:description" content="Resume of Ravi Kovind, Software Engineer with 5+ years building full-stack, mobile (Flutter), and backend systems." />
+    <meta property="og:title" content="Ravi Kovind | Founding Engineer" />
+    <meta property="og:description" content="Founding Engineer with 5+ years taking products from 0 to 1, operating production systems, and building AI/MCP infrastructure." />
     <meta property="og:image" content="https://ravikovind.github.io/assets/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ravi Kovind | Resume — Software Engineer" />
-    <meta name="twitter:description" content="Resume of Ravi Kovind, Software Engineer with 5+ years building full-stack, mobile (Flutter), and backend systems." />
+    <meta name="twitter:title" content="Ravi Kovind | Founding Engineer" />
+    <meta name="twitter:description" content="Founding Engineer with 5+ years taking products from 0 to 1, operating production systems, and building AI/MCP infrastructure." />
     <meta name="twitter:image" content="https://ravikovind.github.io/assets/og-image.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ravi Kovind","url":"https://ravikovind.github.io","jobTitle":"Software Engineer","sameAs":["https://github.com/ravikovind","https://linkedin.com/in/ravikovind"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ravi Kovind","url":"https://ravikovind.github.io","jobTitle":"Founding Engineer","sameAs":["https://github.com/ravikovind","https://linkedin.com/in/ravikovind"]}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,459 +24,124 @@
       rel="stylesheet"
     />
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
+      * { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
-        --accent: #B45309;
-        --text-primary: #1a1a1a;
-        --text-secondary: #555;
-        --border: #e0e0e0;
-        --bg: #ffffff;
+        --ink: #1a1a1a;
+        --muted: #555;
+        --subtle: #555;
+        --accent: #b45309;
+        --accent-soft: #fef3c7;
+        --line: #e0e0e0;
+        --text-primary: var(--ink);
+        --text-secondary: var(--muted);
+        --border: var(--line);
       }
-
       body {
-        font-family: 'Lato', sans-serif;
-        font-size: 14px;
-        line-height: 1.4;
-        color: var(--text-primary);
         background: #f0f0f0;
-        padding: 32px 16px;
-        margin: 0;
-      }
-
-      .resume {
-        max-width: 860px;
-        margin: 0 auto;
-        padding: 32px 36px;
-        background: white;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-        border-radius: 4px;
-      }
-
-      /* Header */
-      .header {
-        margin-bottom: 14px;
-        padding-bottom: 12px;
-        border-bottom: 2.5px solid var(--accent);
-      }
-
-      .name {
-        font-size: 30px;
-        font-weight: 900;
-        color: var(--text-primary);
-        margin-bottom: 2px;
-        letter-spacing: -0.5px;
-      }
-
-      .title {
+        color: var(--ink);
+        font-family: "Lato", sans-serif;
         font-size: 15px;
-        color: var(--accent);
-        font-weight: 600;
-        margin-bottom: 2px;
+        line-height: 1.5;
+        padding: 28px 16px;
       }
-
-      .title-secondary {
-        font-size: 12px;
-        color: var(--text-secondary);
+      .resume {
+        width: min(900px, 100%);
+        margin: 0 auto;
+        padding: 42px 48px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+      }
+      .header {
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 3px solid var(--accent);
+      }
+      .name {
+        color: var(--ink);
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: -0.8px;
+        line-height: 1.05;
         margin-bottom: 6px;
       }
-
-      .contact {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 12px;
-        font-size: 12px;
-        color: var(--text-secondary);
-      }
-
-      .contact a {
-        color: var(--text-secondary);
-        text-decoration: none;
-      }
-
-      .contact a:hover {
-        color: var(--accent);
-      }
-
-      .contact span {
-        color: var(--border);
-      }
-
-      /* Sections */
-      .section {
-        margin-bottom: 18px;
-      }
-
+      .title { color: var(--accent); font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+      .title-secondary { color: var(--muted); font-size: 13px; margin-bottom: 9px; }
+      .contact { color: var(--muted); display: flex; flex-wrap: wrap; font-size: 12px; gap: 4px 10px; }
+      a { color: inherit; text-decoration: none; }
+      .contact a:hover, .company a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+      .contact span { color: var(--border); }
+      .section { margin-bottom: 27px; }
       .section-title {
-        font-size: 11px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
         color: var(--accent);
-        border-bottom: 1.5px solid var(--border);
-        padding-bottom: 4px;
+        font-family: "Saira", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.55px;
         margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid var(--line);
+        text-transform: none;
       }
-
-      /* Summary */
-      .summary {
-        color: var(--text-secondary);
-        font-size: 13.5px;
-        line-height: 1.6;
-      }
-
-      .summary-callout {
-        font-size: 12px;
-        color: var(--text-secondary);
-        margin-top: 4px;
-      }
-
-      .summary-callout a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      /* Experience */
-      .experience-item {
-        margin-bottom: 14px;
-        padding-left: 0;
-      }
-
-      .experience-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        margin-bottom: 1px;
-      }
-
-      .company {
-        font-size: 15px;
-        font-weight: 700;
-        color: var(--text-primary);
-      }
-
-      .date {
-        font-family: 'Saira', sans-serif;
-        font-size: 12px;
-        color: var(--text-secondary);
-        white-space: nowrap;
-      }
-
-      .role {
-        font-size: 13px;
-        color: var(--accent);
-        font-weight: 600;
-        margin-bottom: 1px;
-      }
-
-      .location {
-        font-size: 12px;
-        color: var(--text-secondary);
-        margin-bottom: 4px;
-      }
-
-      .experience-item ul {
-        margin-left: 16px;
-        color: var(--text-secondary);
-        font-size: 13px;
-        line-height: 1.55;
-      }
-
-      .experience-item li {
-        margin-bottom: 5px;
-      }
-
-      .stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin: 6px 0 8px;
-        font-family: 'Saira', sans-serif;
-        font-size: 12px;
-      }
-
-      .stat {
-        background: #fef3c7;
-        border: 1px solid #fde68a;
-        padding: 3px 10px;
-        border-radius: 20px;
-      }
-
-      .stat-value {
-        color: var(--accent);
-        font-weight: 700;
-      }
-
-      /* Skills */
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5px 24px;
-        font-size: 13px;
-      }
-
-      .skill-row {
-        display: flex;
-        gap: 8px;
-        align-items: baseline;
-      }
-
-      .skill-label {
-        font-weight: 700;
-        color: var(--text-primary);
-        min-width: 96px;
-        flex-shrink: 0;
-      }
-
-      .skill-value {
-        color: var(--text-secondary);
-        font-family: 'Saira', sans-serif;
-        font-size: 12px;
-      }
-
-      /* Projects */
-      .projects-list {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .project-row {
-        display: grid;
-        grid-template-columns: 100px 50px 1fr 160px;
-        align-items: center;
-        gap: 10px;
-        padding: 5px 10px;
-        background: #f9f9f9;
-        border-radius: 4px;
-        border-left: 3px solid var(--accent);
-      }
-
-      .project-name {
-        font-weight: 700;
-        font-family: 'Saira', sans-serif;
-        font-size: 12px;
-        color: var(--text-primary);
-      }
-
-      .project-links {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
-
-      .project-links a {
-        text-decoration: none;
-        color: var(--text-secondary);
-        display: flex;
-        align-items: center;
-        transition: color 0.2s;
-      }
-
-      .project-links a:hover {
-        color: var(--accent);
-      }
-
-      .project-links svg,
-      .company a svg {
-        width: 14px;
-        height: 14px;
-        fill: currentColor;
-      }
-
-      .project-desc {
-        color: var(--text-secondary);
-        font-size: 12px;
-      }
-
-      .project-tech {
-        font-family: 'Saira', sans-serif;
-        font-size: 10px;
-        color: var(--accent);
-        text-align: left;
-      }
-
-      /* Education */
-      .education-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        font-size: 13px;
-      }
-
-      .degree {
-        font-weight: 700;
-      }
-
-      .school {
-        color: var(--text-secondary);
-      }
-
-      /* Print Button */
-      .print-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 12px 24px;
-        background: var(--accent);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-family: 'Lato', sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-        transition: all 0.2s;
-      }
-
-      .print-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-      }
-
-      .back-link {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 14px;
-      }
-
-      .back-link:hover {
-        color: var(--accent);
-      }
-
-      /* Print Styles - Standard A4 Resume */
-      @page {
-        margin: 0;
-      }
-
+      .summary { color: var(--muted); font-size: 14px; line-height: 1.6; }
+      .experience-item { break-inside: avoid; margin-bottom: 17px; }
+      .experience-item:last-child { margin-bottom: 0; }
+      .experience-header { align-items: baseline; display: flex; gap: 16px; justify-content: space-between; margin-bottom: 2px; }
+      .company { color: var(--ink); font-family: "Saira", sans-serif; font-size: 15px; font-weight: 700; line-height: 1.25; }
+      .company a { color: inherit; }
+      .date { color: var(--subtle); flex: 0 0 auto; font-family: "Saira", sans-serif; font-size: 11.5px; font-weight: 500; white-space: nowrap; }
+      .role { color: var(--accent); font-size: 12.5px; font-weight: 700; margin-bottom: 2px; }
+      .location { color: var(--subtle); font-size: 11.5px; margin-bottom: 6px; }
+      .experience-item ul { color: var(--muted); font-size: 12.5px; line-height: 1.5; margin-left: 18px; }
+      .experience-item li { margin-bottom: 4px; padding-left: 1px; }
+      strong { color: var(--ink); font-weight: 700; }
+      .stats { display: flex; flex-wrap: wrap; gap: 5px; margin: 6px 0 8px; font-family: "Saira", sans-serif; font-size: 11px; }
+      .stat { background: var(--accent-soft); border: 1px solid #fde68a; border-radius: 999px; color: var(--ink); padding: 2px 8px; }
+      .stat-value { color: var(--accent); font-weight: 700; }
+      .skills-grid { display: grid; gap: 7px 26px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .skill-row { align-items: baseline; display: flex; gap: 7px; }
+      .skill-label { color: var(--ink); flex: 0 0 112px; font-size: 12px; font-weight: 700; }
+      .skill-value { color: var(--muted); font-family: "Saira", sans-serif; font-size: 11.5px; line-height: 1.4; }
+      .education-item { align-items: baseline; display: flex; font-size: 12.5px; justify-content: space-between; }
+      .degree { font-weight: 700; } .school { color: var(--muted); }
+      .project-links, .projects-list, .project-row { display: none; }
+      .print-btn { background: var(--accent); border: 0; border-radius: 6px; box-shadow: none; color: #fff; cursor: pointer; font: 700 13px "Lato", sans-serif; padding: 10px 16px; position: fixed; right: 18px; top: 18px; }
+      .back-link { color: var(--muted); font-size: 13px; left: 18px; position: fixed; top: 18px; }
+      @page { size: A4; margin: 10mm; }
       @media print {
-        body {
-          font-size: 11px;
-          line-height: 1.3;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-          padding: 24px 32px;
-        }
-
-        .resume {
-          padding: 0;
-          max-width: 100%;
-        }
-
-        .print-btn,
-        .back-link {
-          display: none;
-        }
-
-        .section {
-          margin-bottom: 8px;
-        }
-
-        .section-title {
-          font-size: 11px;
-          margin-bottom: 4px;
-          padding-bottom: 3px;
-          page-break-after: avoid;
-        }
-
-        .header {
-          margin-bottom: 8px;
-          padding-bottom: 6px;
-        }
-
-        .name {
-          font-size: 20px;
-        }
-
-        .title {
-          font-size: 11px;
-          margin-bottom: 2px;
-        }
-
-        .title-secondary {
-          font-size: 10px;
-          margin-bottom: 3px;
-        }
-
-        .contact {
-          font-size: 10px;
-          gap: 6px;
-        }
-
-        .summary {
-          font-size: 11px;
-          line-height: 1.4;
-        }
-
-        .experience-item {
-          margin-bottom: 8px;
-          page-break-inside: avoid;
-        }
-
-        .experience-item ul {
-          font-size: 11px;
-          line-height: 1.35;
-          margin-left: 12px;
-        }
-
-        .experience-item li {
-          margin-bottom: 2px;
-        }
-
-        .company {
-          font-size: 13px;
-        }
-
-        .role,
-        .date {
-          font-size: 11px;
-        }
-
-        .location {
-          font-size: 10px;
-          margin-bottom: 2px;
-        }
-
-        .stats {
-          margin: 3px 0;
-          gap: 4px;
-          font-size: 10px;
-        }
-
-        .stat {
-          padding: 2px 5px;
-        }
-
-        .skills-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 3px 14px;
-          font-size: 11px;
-        }
-
-        .skill-label {
-          min-width: 80px;
-        }
-
-        .skill-value {
-          font-size: 10px;
-        }
-
-        .education-item {
-          font-size: 11px;
-        }
-
-        @page {
-          size: A4;
-          margin: 10mm;
-        }
+        body { background: #fff; font-size: 16px; line-height: 1.3; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .resume { border: 0; margin: 0; padding: 0; width: 100%; }
+        .print-btn, .back-link { display: none; }
+        .header { margin-bottom: 9px; padding-bottom: 6px; }
+        .name { font-size: 35px; margin-bottom: 2px; }
+        .title { font-size: 17.5px; margin-bottom: 1px; }
+        .title-secondary, .contact { font-size: 14.5px; margin-bottom: 3px; }
+        .contact { gap: 3px 6px; }
+        .section { margin-bottom: 10px; }
+        .section-title { font-size: 14.5px; margin-bottom: 4px; padding-bottom: 2px; }
+        .summary { font-size: 16px; line-height: 1.35; }
+        .experience-item { margin-bottom: 8px; }
+        .experience-header { gap: 8px; }
+        .company { font-size: 17.5px; }
+        .date { font-size: 14.5px; }
+        .role { font-size: 15px; margin-bottom: 1px; }
+        .location { font-size: 14.5px; margin-bottom: 2px; }
+        .experience-item ul { font-size: 15px; line-height: 1.32; margin-left: 13px; }
+        .experience-item li { margin-bottom: 2px; }
+        .stats { font-size: 14.5px; gap: 3px; margin: 2px 0 3px; }
+        .stat { padding: 1px 5px; }
+        .skills-grid { gap: 3px 15px; }
+        .skill-label { flex-basis: 81px; font-size: 15px; }
+        .skill-value { font-size: 14.5px; }
+        .education-item { font-size: 15px; }
+      }
+      @media (max-width: 650px) {
+        body { background: #fff; padding: 0; }
+        .resume { border: 0; padding: 26px 20px; }
+        .print-btn, .back-link { display: none; }
+        .name { font-size: 29px; }
+        .experience-header { align-items: flex-start; flex-direction: column; gap: 1px; }
+        .date { white-space: normal; }
+        .skills-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -490,7 +155,6 @@
         <div class="header-content">
           <h1 class="name">Ravi Kumar</h1>
           <p class="title">Founding Engineer | Backend &amp; Full-Stack | AI/MCP</p>
-          <p class="title-secondary">Full-Stack Engineer · Node.js · Flutter · Available for Remote</p>
           <div class="contact">
             <a href="mailto:hey.ravikovind@gmail.com"
               >hey.ravikovind@gmail.com</a
@@ -516,14 +180,7 @@
       <!-- Summary -->
       <section class="section">
         <h2 class="section-title">Summary</h2>
-        <p class="summary">
-          Backend-focused full-stack engineer who has built and operated production
-          platforms processing 80K+ orders at &lt;200ms P95 latency with 99.9% uptime.
-          5+ years shipping end-to-end systems across Node.js, Flutter, Python, and
-          AWS/GCP &mdash; from 0&rarr;1 architecture to real-time infrastructure and AI/MCP
-          integration. Strong bias toward system design, end-to-end ownership, and
-          pragmatic architecture. NIT Allahabad.
-        </p>
+        <p class="summary">Founding Engineer with 5+ years taking products from 0→1 and owning architecture, release, and production operation. Built backend and real-time platforms serving 30K+ users and 80K+ orders at &lt;200ms P95 with 99.9% uptime. Combines product ownership with backend/platform depth and practical AI/MCP infrastructure.</p>
       </section>
 
       <!-- Experience -->
@@ -595,22 +252,12 @@
                 /></svg
             ></a>
           </p>
-          <p class="location" style="margin-top: 2px">
-            Connected trusted local businesses for quick deliveries and hassle-free bookings
-          </p>
+          <p class="location" style="margin-top: 2px">Multi-segment commerce platform</p>
           <ul>
-            <li>
-              Architected Zoober from scratch (0→1) — mobile apps (Play Store/App Store), production-grade servers and cloud infrastructure. Deployed on AWS (EC2, ALB, NGINX, CloudFront, WAF, S3, SES) achieving <strong>99.9% uptime</strong> across restaurant, salon, meat shop, grocery and fruit store segments near Gummanahalli and Kothanur, Bengaluru
-            </li>
-            <li>
-              Designed Monolithic Express.js server, REST API with <strong>optimised MongoDB collections</strong> using 2dsphere geospatial indexes (aggregation pipeline) for <strong>&lt;100ms</strong> radius-based store discovery under concurrent load and built a <strong>real-time WebSocket sync</strong> layer broadcasting order/rider position updates with automatic reconnection
-            </li>
-            <li>
-              Architected <strong>Multiple Flutter apps ecosystem</strong> (Customer, Merchant, Rider, Admin, CRM, Notification Panel, etc) with BLoC state management, Adaptive + Responsive Server Driven UI and go_router deep linking across Android, iOS and Web. Windows/Web panels for handling high-level operations. Full release app cycles across the Play Store and App Store
-            </li>
-            <li>
-              Implemented <strong>multi-segment order and booking flow</strong> covering restaurants, salons, grocery and meat shops — each with custom pricing, slot-booking and delivery logic; set up <strong>AWS SES</strong> transactional email pipeline and <strong>FCM push notification</strong> layer across Customer, Merchant and Rider apps for order lifecycle events and OTP delivery
-            </li>
+            <li>Architected and launched Zoober from <strong>0→1</strong>, owning the product ecosystem, backend architecture, mobile/web releases, cloud infrastructure, and production operations; achieved <strong>99.9% uptime</strong>.</li>
+            <li>Designed backend architecture with geospatial discovery, REST APIs, and real-time WebSocket updates for order lifecycle and rider-location synchronization.</li>
+            <li>Owned customer, merchant, rider, admin, CRM, and operations applications across Android, iOS, web, and desktop, including end-to-end release cycles.</li>
+            <li>Built multi-segment commerce flows and integrated payment gateways, delivery providers, ERP systems, and third-party services with webhook verification and idempotent order processing.</li>
           </ul>
           <p class="role" style="margin-top: 8px">
             Internal Tool: MCPVave
@@ -636,21 +283,11 @@
                 <line x1="10" y1="14" x2="21" y2="3" /></svg
             ></a>
           </p>
-          <p class="location" style="margin-top: 2px">
-            AI Engine — Cross-Platform (Mobile, Desktop and Web) MCP Client | Foundation for AI-Powered Commerce
-          </p>
+          <p class="location" style="margin-top: 2px">Cross-platform MCP client and internal AI platform</p>
           <ul>
-            <li>
-              Built <strong>Model Context Protocol (MCP) engine</strong> enabling standardised AI/LLM-to-data communication via SSE/STDIO across <strong>6 platforms</strong> (Android, iOS, Windows, macOS, Linux, Web)
-            </li>
-            <li>
-              Developed internal packages: <strong>mcp_client</strong> (protocol implementation)
-              and <strong>llm_shared</strong> (unified LLM provider interface for Claude, GPT, Gemini etc)
-            </li>
-            <li>
-              Powered AI capabilities: <strong>intelligent inventory management</strong>, reports, demand
-              forecasting, automated customer support, and smart ordering — an internal tool for making Zoober AI-powered
-            </li>
+            <li>Built a <strong>Model Context Protocol (MCP)</strong> client enabling LLM-to-data workflows over SSE/STDIO across <strong>6 platforms</strong>.</li>
+            <li>Created shared MCP and LLM-provider packages to support internal AI workflows.</li>
+            <li>Enabled internal AI capabilities for inventory, reporting, forecasting, support, and ordering workflows.</li>
           </ul>
         </div>
 
@@ -695,7 +332,7 @@
           </div>
           <p class="role">Founding Engineer</p>
           <p class="location">Bengaluru, Karnataka, India</p>
-          <p class="location" style="margin-bottom: 4px">Groceries Delivery in minutes</p>
+          <p class="location" style="margin-bottom: 4px">Multi-store grocery delivery platform</p>
           <div class="stats">
             <span class="stat"><span class="stat-value">35+</span> Stores</span>
             <span class="stat"><span class="stat-value">80K+</span> Orders</span>
@@ -704,22 +341,11 @@
             <span class="stat"><span class="stat-value">99.9%</span> Uptime</span>
           </div>
           <ul>
-            <li>
-              Architected Node.js Express.js backend server processing a total of <strong>80K+ orders</strong>
-              with <strong>&lt;200ms P95 latency</strong>; and a <strong>real-time WebSocket sync</strong> layer broadcasting order/rider position/CRM message exchange/alerts and updates with automatic reconnection. Deployed <strong>Cloud infrastructure</strong> on AWS/GCP with CI/CD pipelines
-            </li>
-            <li>
-              Built a <strong>Multiple Flutter apps ecosystem</strong> (TingTing, Store, Delivery, Admin, CRM, Notification Panel, Control Panel etc) across Android, iOS and Web. Windows (Admin)/Web (CRM and Control Panel) panels for handling high-level operations &amp; smooth monitoring
-            </li>
-            <li>
-              Built Zoho Gofrugal ERP automated stock sync crons in Dart, deployed on GCP Cloud Run — syncing <strong>35+ stores</strong> × <strong>12K+/store products</strong> to keep physical inventory aligned with TingTing in real-time
-            </li>
-            <li>
-              Integrated Google Maps, Firebase (messaging, analytics, crashlytics), Facebook app events, deep links, MP2 ONDC (on-demand rider provider) and payment gateways (<strong>Juspay, PhonePe, Razorpay, BillDesk</strong>) with webhook signature verification and idempotent order handling
-            </li>
-            <li>
-              Designed <strong>order state machine</strong> (placed → accepted → dispatched → delivered) with timeout-based auto-cancellation, rider assignment logic and real-time CRM alert escalation for operations monitoring across <strong>35+ stores</strong>
-            </li>
+            <li>Architected and operated the Node.js backend processing <strong>80K+ orders</strong> at <strong>&lt;200ms P95</strong>, with real-time WebSocket updates and AWS/GCP deployment pipelines.</li>
+            <li>Owned the end-to-end application ecosystem for customers, merchants, riders, and operations across Android, iOS, web, and desktop.</li>
+            <li>Built ERP inventory synchronization for <strong>35+ stores</strong> and designed reliable fulfillment workflows across the platform.</li>
+            <li>Integrated payment gateways, delivery providers, ERP systems, and third-party commerce services with webhook verification and idempotent order processing.</li>
+            <li>Designed order-state, rider-assignment, and operational-alerting systems for reliable fulfillment across <strong>35+ stores</strong>.</li>
           </ul>
         </div>
 
@@ -731,20 +357,9 @@
           <p class="role">Software Engineer (Remote)</p>
           <p class="location"><a href="https://workrush.co.uk" target="_blank" style="color: var(--text-secondary);">workrush.co.uk</a></p>
           <ul>
-            <li>
-              Built consumer-facing Flutter apps (<strong>Footbus, Livehappy and more</strong>) with BLoC
-              state management and shipped <strong>15+ releases</strong> across Play Store and
-              App Store
-            </li>
-            <li>
-              Developed backend systems (Node.js, PHP) and collaborated across
-              time zones on API design, feature specifications, and production
-              debugging
-            </li>
-            <li>
-              Participated in technical spec writing, code reviews and release planning as part of a distributed <strong>UK–India cross-timezone team</strong>
-            </li>
-          </ul>
+            <li>Built and shipped consumer Flutter applications, delivering <strong>15+ releases</strong> across Android and iOS.</li>
+            <li>Contributed backend APIs, production debugging, specifications, and release planning in a distributed UK–India team.</li>
+            </ul>
         </div>
       </section>
 
@@ -752,59 +367,12 @@
       <section class="section">
         <h2 class="section-title">Technical Skills</h2>
         <div class="skills-grid">
-          <div class="skill-row">
-            <span class="skill-label">Backend:</span>
-            <span class="skill-value"
-              >Node.js, Express, Microservices, REST APIs, WebSocket,
-              Event-Driven</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">Databases:</span>
-            <span class="skill-value"
-              >MongoDB, PostgreSQL, Redis, Query
-              Optimisation</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">Mobile:</span>
-            <span class="skill-value"
-              >Flutter, Dart, BLoC, iOS, Android, Cross-platform</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">Infrastructure:</span>
-            <span class="skill-value"
-              >AWS (EC2, S3, CloudFront), GCP, OCI, Docker, NGINX, CI/CD,
-              Linux</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">Languages:</span>
-            <span class="skill-value"
-              >JavaScript, TypeScript, Dart, Python</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">System Design:</span>
-            <span class="skill-value"
-              >Distributed Systems, High Availability, Real-Time Sync, Failure
-              Handling</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">AI/MCP:</span>
-            <span class="skill-value"
-              >Model Context Protocol, LLM Integration, SSE/STDIO, Claude, GPT,
-              Gemini</span
-            >
-          </div>
-          <div class="skill-row">
-            <span class="skill-label">Tools:</span>
-            <span class="skill-value"
-              >Git, GitHub, Claude Code, GitHub Copilot</span
-            >
-          </div>
+          <div class="skill-row"><span class="skill-label">Backend:</span><span class="skill-value">Node.js, Express, FastAPI, NestJS, Microservices, REST APIs, WebSockets, Event-Driven</span></div>
+          <div class="skill-row"><span class="skill-label">Frontend &amp; Mobile:</span><span class="skill-value">React, Next.js, TypeScript, Tailwind CSS, Responsive UI, Flutter, Dart, BLoC, iOS, Android, Cross-platform, Hive</span></div>
+          <div class="skill-row"><span class="skill-label">Data &amp; Infrastructure:</span><span class="skill-value">PostgreSQL, MongoDB, Redis, PostGIS, Prisma, Query Optimisation, AWS (EC2, S3, CloudFront), GCP, OCI, Docker, NGINX, CI/CD, Linux</span></div>
+          <div class="skill-row"><span class="skill-label">Architecture &amp; Messaging:</span><span class="skill-value">Kafka, BullMQ, Valkey, Distributed Systems, High Availability, Real-Time Processing</span></div>
+          <div class="skill-row"><span class="skill-label">AI/MCP:</span><span class="skill-value">Model Context Protocol, LLM Integration, SSE/STDIO, Claude, GPT, Gemini</span></div>
+          <div class="skill-row"><span class="skill-label">Languages &amp; Tools:</span><span class="skill-value">JavaScript, TypeScript, Python, Dart, Git, GitHub, Claude Code, GitHub Copilot</span></div>
         </div>
       </section>
 
@@ -837,190 +405,30 @@
                     d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
                   /></svg></a
             ></span>
-            <span class="date">Voltvave Product</span>
+            <span class="date">Aug 2025 - Jan 2026</span>
           </div>
           <p class="role">
             Real-Time Monitoring Dashboard | Event-Driven Microservices
             Architecture
           </p>
-          <p class="location">
-            Python, FastAPI, Next.js 16, React 19, Kafka, PostgreSQL, Redis, Docker, OCI (Ampere A1)
-          </p>
+          <p class="location">Stack: Python, FastAPI, Kafka, PostgreSQL, Redis, Next.js</p>
           <ul>
-            <li>
-              Architected <strong>12-service event-driven system</strong> with Kafka-based data
-              pipeline (KRaft mode, Snappy compression) processing live market
-              data from Kite WebSocket API through 4-stage flow (data-ingestion
-              → candle-builder → rsi-calculator → divergence-detector) with
-              <strong>&lt;50ms end-to-end latency</strong>
-            </li>
-            <li>
-              Implemented incremental RSI calculation using <strong>Wilder's smoothing</strong>
-              (avoiding 300+ candle recalculation per tick) and <strong>ZigZag
-              peak/trough analysis</strong> for price/RSI divergence detection with Redis
-              pub/sub broadcasting alerts to WebSocket clients and PostgreSQL
-              time-series persistence
-            </li>
-            <li>
-              Built <strong>multi-source news aggregation</strong> (Livemint, Moneycontrol,
-              Financial Express) with keyword tagging (<strong>150+ terms</strong>), sentiment
-              analysis, and 5-minute Redis caching for real-time financial news
-              delivery
-            </li>
-            <li>
-              Developed responsive frontend with <strong>Next.js 16 App Router</strong>, React
-              19, TypeScript, Tailwind CSS v4, SWR caching, and embedded
-              TradingView charts for live market visualization
-            </li>
-          </ul>
+            <li>Architected a <strong>12-service event-driven system</strong> that ingests, processes, detects, and alerts on live market data at <strong>&lt;50ms end-to-end latency</strong>.</li>
+            <li>Used Kafka, Redis, PostgreSQL, and WebSockets to provide resilient real-time processing, persistence, and alert delivery.</li>
+            </ul>
         </div>
 
         <div class="experience-item">
-          <div class="experience-header">
-            <span class="company"
-              >GrihaHomes
-              <a
-                href="https://grihahomes.com"
-                title="Web"
-                style="color: var(--text-secondary); margin-left: 8px"
-                ><svg
-                  viewBox="0 0 24 24"
-                  style="
-                    width: 12px;
-                    height: 12px;
-                    fill: none;
-                    stroke: currentColor;
-                    stroke-width: 2;
-                    vertical-align: middle;
-                  "
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  /></svg></a
-            ></span>
-            <span class="date">Freelance Project</span>
-          </div>
-          <p class="role">Agent-Centric Property Listing Platform | Geo Search + AI Chat</p>
-          <p class="location">NestJS, Next.js, PostgreSQL, PostGIS, Redis, Cloudinary, OCI ARM, Claude AI, Docker, Tailwind CSS, TypeScript</p>
-          <ul>
-            <li>
-              Built full-stack property listing platform with <strong>NestJS + Prisma</strong> REST API, <strong>PostGIS</strong> powered geo-search, and <strong>Next.js + Tailwind CSS</strong> frontend — connecting property seekers with verified agents in Bangalore
-            </li>
-            <li>
-              Implemented complete visit booking lifecycle (pending → scheduled → visited → confirmed/cancelled), agent time-slot management, role-based access (user/agent/admin), and rate-limited <strong>SMS OTP auth</strong> with daily password fallback
-            </li>
-            <li>
-              Integrated <strong>Claude AI</strong> conversational assistant for natural-language property search; deployed on <strong>OCI ARM free tier</strong> with Docker + Cloudflare Tunnel — zero infra cost, scalable to 50K+ users
-            </li>
-          </ul>
+          <div class="experience-header"><span class="company"><a href="https://open-notifier.io" target="_blank">Open Notifier</a></span><span class="date">May 2026 - Jun 2026</span></div>
+          <p class="role">Self-Hostable, Multi-Tenant Notification Infrastructure</p>
+          <p class="location">Stack: Node.js, TypeScript, PostgreSQL, BullMQ, Valkey, MCP</p>
+          <ul><li>Built a self-hostable, multi-tenant push-notification platform with <strong>MCP</strong> support for AI-agent initiated notification workflows.</li><li>Designed stateless API, MCP, and worker processes with BullMQ/Valkey asynchronous delivery, independent horizontal scaling, and observability through OpenTelemetry/SigNoz and Sentry.</li></ul>
         </div>
 
         <div class="experience-item">
-          <div class="experience-header">
-            <span class="company"
-              >Open Notifier
-              <a
-                href="https://open-notifier.io"
-                title="Web"
-                style="color: var(--text-secondary); margin-left: 8px"
-                ><svg
-                  viewBox="0 0 24 24"
-                  style="
-                    width: 12px;
-                    height: 12px;
-                    fill: none;
-                    stroke: currentColor;
-                    stroke-width: 2;
-                    vertical-align: middle;
-                  "
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  /></svg></a
-            ></span>
-            <span class="date">Micro SaaS</span>
-          </div>
-          <p class="role">Self-Hostable Push Notification Platform | MCP-Powered for AI Agents</p>
-          <p class="location">Node.js, TypeScript, Express 5, Prisma, PostgreSQL, BullMQ, Valkey, Flutter, MCP, FCM, SigNoz (OTel), Sentry</p>
-          <ul>
-            <li>
-              Built a <strong>self-hostable, multi-tenant push notification platform</strong> with <strong>MCP (Model Context Protocol)</strong> support — letting AI agents (Claude Desktop etc.) send FCM push notifications directly to users' phones via natural language
-            </li>
-            <li>
-              Architected horizontally scalable system with <strong>BullMQ on Valkey</strong> for async delivery queuing, <strong>PgBouncer</strong> for connection pooling, and separate stateless API / MCP / Worker processes — each independently scalable
-            </li>
-            <li>
-              Shipped full <strong>Flutter</strong> mobile app for device registration, channel management, and notification history; wired end-to-end observability with <strong>SigNoz (OpenTelemetry) + Sentry</strong>
-            </li>
-          </ul>
-        </div>
-
-        <div class="experience-item">
-          <div class="experience-header">
-            <span class="company"
-              >Bhagavad Gita
-              <a
-                href="https://play.google.com/store/apps/details?id=com.gita"
-                title="Play Store"
-                style="color: var(--text-secondary); margin-left: 8px"
-                ><svg
-                  viewBox="0 0 24 24"
-                  style="
-                    width: 12px;
-                    height: 12px;
-                    fill: currentColor;
-                    vertical-align: middle;
-                  "
-                >
-                  <path
-                    d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"
-                  /></svg></a
-              ><a
-                href="https://bhagavad-gita-india.web.app/"
-                title="Web"
-                style="color: var(--text-secondary); margin-left: 4px"
-                ><svg
-                  viewBox="0 0 24 24"
-                  style="
-                    width: 12px;
-                    height: 12px;
-                    fill: none;
-                    stroke: currentColor;
-                    stroke-width: 2;
-                    vertical-align: middle;
-                  "
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  /></svg></a
-            ></span>
-            <span class="date">Side Project</span>
-          </div>
-          <div class="stats">
-            <span class="stat"
-              ><span class="stat-value">40K+</span> Downloads</span
-            >
-            <span class="stat"><span class="stat-value">2K</span> DAU</span>
-          </div>
-          <p class="role">Offline-First Mobile App | Flutter + BLoC</p>
-          <ul>
-            <li>
-              Built cross-platform Flutter app with <strong>offline-first architecture</strong>
-              using <strong>Isolate-based multithreading</strong> for background data processing
-              without blocking UI
-            </li>
-            <li>
-              Implemented <strong>Hydrated BLoC with Hive persistence</strong> for offline-first
-              state management, enabling full app functionality without network
-              connectivity
-            </li>
-          </ul>
+          <div class="experience-header"><span class="company"><a href="https://play.google.com/store/apps/details?id=com.gita" target="_blank">Bhagavad Gita</a></span><span class="date">May 2021</span></div>
+          <div class="stats"><span class="stat"><span class="stat-value">4.8+</span> Rating</span><span class="stat"><span class="stat-value">40K+</span> Downloads</span><span class="stat"><span class="stat-value">2K</span> DAU</span></div>
+          <ul><li>Shipped an offline-first cross-platform application with full offline functionality, demonstrating sustained user adoption and end-to-end product delivery.</li></ul>
         </div>
       </section>
 
@@ -1101,7 +509,7 @@
                     d="M12.001 2C6.476 2 2.001 6.475 2.001 12c0 4.425 2.862 8.163 6.838 9.488.5.087.688-.213.688-.476 0-.238-.013-1.02-.013-1.85-2.512.463-3.163-.612-3.363-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.088.637-1.338-2.225-.25-4.55-1.112-4.55-4.937 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.263 2.75 1.025.8-.225 1.65-.338 2.5-.338s1.7.113 2.5.338c1.912-1.3 2.75-1.025 2.75-1.025.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.688 0 3.837-2.337 4.687-4.562 4.937.362.313.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .263.188.575.688.475C19.138 20.163 22 16.413 22 12c0-5.525-4.475-10-10-10z"
                   /></svg></a
             ></span>
-            <span class="date">Featured</span>
+            <span class="date">Jan 2024 - Present</span>
           </div>
           <div class="stats">
             <span class="stat"
@@ -1111,14 +519,10 @@
               ><span class="stat-value">6</span> Platforms</span
             >
           </div>
-          <p class="role">Flutter Icon Libraries | Static + Animated | lucide-animated Ecosystem</p>
+          <p class="role">Cross-Platform Flutter Icon Packages</p>
           <ul>
-            <li>
-              Publishing and maintaining two Flutter packages: <strong>flutter_lucide</strong> (1,666+ static icons) and <strong>flutter_lucide_animated</strong> (smooth Lottie-style animations) with tree-shaking optimization
-            </li>
-            <li>
-              flutter_lucide_animated officially featured in <strong>pqoqubbw/icons</strong> — the lucide-animated ecosystem alongside Svelte, Vue, and Angular implementations
-            </li>
+            <li>Publish and maintain two cross-platform Flutter icon packages.</li>
+            <li><em>flutter_lucide_animated</em> is featured in the lucide-animated ecosystem.</li>
           </ul>
         </div>
 
@@ -1131,8 +535,8 @@
           <div>
             <span class="degree">Bachelor of Technology</span>
             <span class="school">
-              — National Institute of Technology, Allahabad</span
-            >
+              — National Institute of Technology, Allahabad</span>
+            <span class="date">2017 - 2021</span>
           </div>
         </div>
       </section>

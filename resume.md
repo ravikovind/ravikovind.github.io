@@ -77,20 +77,18 @@ Groceries Delivery in minutes
 
 | Area | Skills |
 |---|---|
-| **Backend** | Node.js, Express, Microservices, REST APIs, WebSocket, Event-Driven |
-| **Databases** | MongoDB, PostgreSQL, Redis, MongoDB, Query Optimisation |
-| **Mobile** | Flutter, Dart, BLoC, iOS, Android, Cross-platform |
-| **Infrastructure** | AWS (EC2, S3, CloudFront), GCP, OCI, Docker, NGINX, CI/CD, Linux |
-| **Languages** | JavaScript, TypeScript, Dart, Python |
-| **System Design** | Distributed Systems, High Availability, Real-Time Sync, Failure Handling |
+| **Backend** | Node.js, Express, FastAPI, NestJS, Microservices, REST APIs, WebSockets, Event-Driven |
+| **Frontend & Mobile** | React, Next.js, TypeScript, Tailwind CSS, Responsive UI, Flutter, Dart, BLoC, iOS, Android, Cross-platform, Hive |
+| **Data & Infrastructure** | PostgreSQL, MongoDB, Redis, PostGIS, Prisma, Query Optimisation, AWS (EC2, S3, CloudFront), GCP, OCI, Docker, NGINX, CI/CD, Linux |
+| **Architecture & Messaging** | Kafka, BullMQ, Valkey, Distributed Systems, High Availability, Real-Time Processing |
 | **AI/MCP** | Model Context Protocol, LLM Integration, SSE/STDIO, Claude, GPT, Gemini |
-| **Tools** | Git, GitHub, Claude Code, GitHub Copilot |
+| **Languages & Tools** | JavaScript, TypeScript, Python, Dart, Git, GitHub, Claude Code, GitHub Copilot |
 
 ---
 
 ## Selected Projects
 
-### Tredye — Voltvave Product
+### Tredye — Voltvave Product (Aug 2025 - Jan 2026)
 [tredye.com](https://tredye.com)
 
 **Real-Time Monitoring Dashboard | Event-Driven Microservices Architecture**
@@ -121,7 +119,7 @@ Stack: NestJS, Next.js, PostgreSQL, PostGIS, Redis, Cloudinary, OCI ARM, Claude 
 
 ---
 
-### Open Notifier — Micro SaaS
+### Open Notifier — Micro SaaS (May 2026 - Jun 2026)
 [open-notifier.io](https://open-notifier.io)
 
 **Self-Hostable Push Notification Platform | MCP-Powered for AI Agents**
@@ -136,7 +134,9 @@ Stack: Node.js, TypeScript, Express 5, Prisma, PostgreSQL, BullMQ, Valkey, Flutt
 
 ---
 
-### Bhagavad Gita — Side Project
+### Bhagavad Gita — Side Project (May 2021)
+
+**Rating:** 4.8+
 [Play Store](https://play.google.com/store/apps/details?id=com.gita) | [Web](https://bhagavad-gita-india.web.app/)
 
 **Stats:** 40K+ Downloads | 2K DAU
@@ -151,7 +151,7 @@ Stack: Node.js, TypeScript, Express 5, Prisma, PostgreSQL, BullMQ, Valkey, Flutt
 
 ## Open Source
 
-### flutter_lucide & flutter_lucide_animated — Featured
+### flutter_lucide & flutter_lucide_animated — Featured (Jan 2024 - Present)
 [pub.dev/flutter_lucide](https://pub.dev/packages/flutter_lucide) | [pub.dev/flutter_lucide_animated](https://pub.dev/packages/flutter_lucide_animated) | [lucide-animated.com](https://lucide-animated.com) | [pqoqubbw/icons (6.8K ★)](https://github.com/pqoqubbw/icons)
 
 **Stats:** 6.8K Stars | 4K Weekly Downloads | 6 Platforms
@@ -178,4 +178,4 @@ Stack: TypeScript, Node.js, OpenAI API, Google Gemini, Nano Banana
 
 ## Education
 
-**Bachelor of Technology** — National Institute of Technology, Allahabad
+**Bachelor of Technology (2017 - 2021)** — National Institute of Technology, Allahabad
