@@ -2268,3 +2268,102 @@ noscript .fade-in-section {
     #cursor-dot.hidden,
     #cursor-ring.hidden { opacity: 0 !important; }
 }
+
+/*
+ * Project preview image (inline in project rows)
+ */
+.project-preview-img {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    margin-top: 14px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-row:hover .project-preview-img {
+    border-color: rgba(245, 158, 11, 0.35);
+    box-shadow: 0 4px 24px rgba(245, 158, 11, 0.1);
+}
+
+/*
+ * Inline code
+ */
+code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: rgba(245, 158, 11, 0.08);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(245, 158, 11, 0.18);
+}
+
+/*
+ * Responsive — small-screen patches
+ */
+
+/* Shrink section vertical rhythm on mobile */
+@media (max-width: 640px) {
+    :root {
+        --spacing-xl: 64px;
+        --spacing-lg: 36px;
+    }
+
+    .hero-greeting {
+        font-size: 2.1rem;
+    }
+
+    .hero-tagline {
+        font-size: 1.25rem;
+    }
+
+    /* Allow hero CTA buttons to wrap on tiny phones */
+    .hero-actions-row {
+        flex-wrap: wrap;
+    }
+
+    /* Give the Download PDF / Resume button breathing room */
+    .btn-outline {
+        flex-shrink: 0;
+    }
+
+    /* Section tagline fits without overflow */
+    .section-tagline {
+        font-size: 1.05rem;
+    }
+
+    /* OSS line: let name stack above stats on tiny screens */
+    .oss-line-content {
+        gap: 2px;
+    }
+
+    .oss-line-name {
+        font-size: 0.88rem;
+    }
+
+    .oss-line-stats {
+        font-size: 0.72rem;
+    }
+}
+
+/* Resume PDF download button — visible on mobile too */
+@media (max-width: 480px) {
+    .hero-actions {
+        width: 100%;
+    }
+
+    .hero-actions-row .btn {
+        flex: 1 1 auto;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Keep ghost icon buttons round and small */
+    .hero-actions-row .btn-ghost {
+        flex: 0 0 48px;
+    }
+}
+}
