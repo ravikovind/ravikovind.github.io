@@ -2288,11 +2288,6 @@ noscript .fade-in-section {
     box-shadow: 0 4px 24px rgba(245, 158, 11, 0.1);
 }
 
-@media (max-width: 640px) {
-    .project-preview-img {
-        display: none;
-    }
-}
 
 /*
  * Inline code
