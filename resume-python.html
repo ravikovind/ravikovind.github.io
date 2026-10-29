@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ravi Kumar | Python & FastAPI Engineer</title>
+    <meta name="description" content="Founding Engineer with 5+ years building production systems in Python, FastAPI, and Node.js — real-time pipelines, event-driven microservices, and AI/MCP infrastructure." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ravikovind.github.io/resume.html" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://ravikovind.github.io/resume.html" />
+    <meta property="og:title" content="Ravi Kovind | Founding Engineer" />
+    <meta property="og:description" content="Founding Engineer with 5+ years taking products from 0 to 1, operating production systems, and building AI/MCP infrastructure." />
+    <meta property="og:image" content="https://ravikovind.github.io/assets/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ravi Kovind | Founding Engineer" />
+    <meta name="twitter:description" content="Founding Engineer with 5+ years taking products from 0 to 1, operating production systems, and building AI/MCP infrastructure." />
+    <meta name="twitter:image" content="https://ravikovind.github.io/assets/og-image.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ravi Kovind","url":"https://ravikovind.github.io","jobTitle":"Founding Engineer","sameAs":["https://github.com/ravikovind","https://linkedin.com/in/ravikovind"]}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Saira:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --ink: #1a1a1a;
+        --muted: #555;
+        --subtle: #555;
+        --accent: #b45309;
+        --accent-soft: #fef3c7;
+        --line: #e0e0e0;
+        --text-primary: var(--ink);
+        --text-secondary: var(--muted);
+        --border: var(--line);
+      }
+      body {
+        background: #f0f0f0;
+        color: var(--ink);
+        font-family: "Lato", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 28px 16px;
+      }
+      .resume {
+        width: min(900px, 100%);
+        margin: 0 auto;
+        padding: 42px 48px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+      }
+      .header {
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 3px solid var(--accent);
+      }
+      .name {
+        color: var(--ink);
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: -0.8px;
+        line-height: 1.05;
+        margin-bottom: 6px;
+      }
+      .title { color: var(--accent); font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+      .title-secondary { color: var(--muted); font-size: 12px; margin-bottom: 9px; }
+      .contact { color: var(--muted); display: flex; flex-wrap: wrap; font-size: 12px; gap: 4px 10px; }
+      a { color: inherit; text-decoration: none; }
+      .contact a:hover, .company a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+      .contact span { color: var(--border); }
+      .section { margin-bottom: 16px; }
+      .section-title {
+        color: var(--accent);
+        font-family: "Saira", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.55px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid var(--line);
+        text-transform: none;
+      }
+      .summary { color: var(--muted); font-size: 14px; line-height: 1.6; }
+      .experience-item { break-inside: avoid; margin-bottom: 10px; }
+      .experience-item:last-child { margin-bottom: 0; }
+      .experience-header { align-items: baseline; display: flex; gap: 16px; justify-content: space-between; margin-bottom: 2px; }
+      .company { color: var(--ink); font-family: "Saira", sans-serif; font-size: 14px; font-weight: 700; line-height: 1.25; }
+      .company a { color: inherit; }
+      .date { color: var(--subtle); flex: 0 0 auto; font-family: "Saira", sans-serif; font-size: 10px; font-weight: 500; white-space: nowrap; }
+      .role { color: var(--accent); font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+      .location { color: var(--subtle); font-size: 10px; margin-bottom: 6px; }
+      .experience-item ul { color: var(--muted); font-size: 14px; line-height: 1.5; margin-left: 18px; }
+      .experience-item li { margin-bottom: 4px; padding-left: 1px; }
+      strong { color: var(--ink); font-weight: 700; }
+      .stats { display: flex; flex-wrap: wrap; gap: 5px; margin: 6px 0 8px; font-family: "Saira", sans-serif; font-size: 10px; }
+      .stat { background: var(--accent-soft); border: 1px solid #fde68a; border-radius: 999px; color: var(--ink); padding: 2px 8px; }
+      .stat-value { color: var(--accent); font-weight: 700; }
+      .skills-grid { display: grid; gap: 7px 26px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .skill-row { align-items: baseline; display: flex; gap: 7px; }
+      .skill-label { color: var(--ink); flex: 0 0 112px; font-size: 12px; font-weight: 700; }
+      .skill-value { color: var(--muted); font-family: "Saira", sans-serif; font-size: 10px; line-height: 1.4; }
+      .education-item { align-items: baseline; display: flex; font-size: 12px; justify-content: space-between; }
+      .degree { font-weight: 700; } .school { color: var(--muted); }
+      .project-links, .projects-list, .project-row { display: none; }
+      .print-btn { background: var(--accent); border: 0; border-radius: 6px; box-shadow: none; color: #fff; cursor: pointer; font: 700 12px "Lato", sans-serif; padding: 10px 16px; position: fixed; right: 18px; top: 18px; }
+      .back-link { color: var(--muted); font-size: 12px; left: 18px; position: fixed; top: 18px; }
+      @page { size: A4; margin: 9mm 10mm; }
+      @media print {
+        body { background: #fff; font-size: 15px; line-height: 1.3; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .resume { border: 0; margin: 0; padding: 0; width: 100%; }
+        .print-btn, .back-link { display: none; }
+        .header { margin-bottom: 8px; padding-bottom: 6px; }
+        .name { font-size: 32px; margin-bottom: 2px; }
+        .title { font-size: 15px; margin-bottom: 1px; }
+        .title-secondary, .contact { font-size: 13px; margin-bottom: 3px; }
+        .contact { gap: 3px 6px; }
+        .section { margin-bottom: 9px; }
+        .section-title { font-size: 13px; margin-bottom: 4px; padding-bottom: 2px; }
+        .summary { font-size: 15px; line-height: 1.33; }
+        .experience-item { margin-bottom: 7px; }
+        .experience-header { gap: 8px; }
+        .company { font-size: 15px; }
+        .date { font-size: 13px; }
+        .role { font-size: 13px; margin-bottom: 1px; }
+        .location { font-size: 13px; margin-bottom: 2px; }
+        .experience-item ul { font-size: 13px; line-height: 1.32; margin-left: 13px; }
+        .experience-item li { margin-bottom: 2px; }
+        .stats { font-size: 13px; gap: 3px; margin: 2px 0 3px; }
+        .stat { padding: 1px 5px; }
+        .skills-grid { gap: 3px 15px; }
+        .skill-label { flex-basis: 81px; font-size: 13px; }
+        .skill-value { font-size: 13px; }
+        .education-item { font-size: 13px; }
+      }
+      @media (max-width: 650px) {
+        body { background: #fff; padding: 0; }
+        .resume { border: 0; padding: 26px 20px; }
+        .back-link { display: none; }
+        .name { font-size: 28px; }
+        .experience-header { align-items: flex-start; flex-direction: column; gap: 1px; }
+        .date { white-space: normal; }
+        .skills-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+    <button class="print-btn" onclick="window.print()">Download PDF</button>
+
+    <div class="resume">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <h1 class="name">Ravi Kumar</h1>
+          <p class="title">Founding Engineer | Backend &amp; Full-Stack | AI/MCP</p>
+          <div class="contact">
+            <a href="mailto:hey.ravikovind@gmail.com"
+              >hey.ravikovind@gmail.com</a
+            >
+            <span>|</span>
+            <a href="tel:+918433491441">+91 8433491441</a>
+            <span>|</span>
+            <a href="https://ravikovind.github.io" target="_blank"
+              >ravikovind.github.io</a
+            >
+            <span>|</span>
+            <a href="https://linkedin.com/in/ravikovind" target="_blank"
+              >linkedin.com/in/ravikovind</a
+            >
+            <span>|</span>
+            <a href="https://github.com/ravikovind" target="_blank"
+              >github.com/ravikovind</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Summary -->
+      <section class="section">
+        <h2 class="section-title">Summary</h2>
+        <p class="summary">Founding Engineer with 5+ years taking products from 0→1 across <strong>Python</strong>, <strong>FastAPI</strong>, and Node.js — building event-driven microservices, real-time data pipelines, and production platforms serving 30K+ users and 80K+ orders at &lt;200ms P95 with 99.9% uptime. Strong <strong>Python</strong> depth across <strong>FastAPI</strong> services, async I/O, Kafka consumers, and background task automation.</p>
+      </section>
+
+      <!-- Experience -->
+      <section class="section">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <span class="company">Voltvave Innovations Pvt Ltd</span>
+            <span class="date">Mar 2025 - Jul 2026</span>
+          </div>
+          <p class="role">Founding Engineer</p>
+          <p class="location">Bengaluru, Karnataka, India</p>
+          <p class="role" style="margin-top: 8px">
+            Zoober
+            <a
+              href="https://zoober.in"
+              title="Web App"
+              style="color: var(--text-secondary); margin-left: 6px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-width: 2;
+                  vertical-align: middle;
+                "
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                /></svg
+            ></a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.voltvave.app"
+              title="Play Store"
+              style="color: var(--text-secondary); margin-left: 4px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: currentColor;
+                  vertical-align: middle;
+                "
+              >
+                <path
+                  d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"
+                /></svg
+            ></a>
+            <a
+              href="https://apps.apple.com/in/app/zoober-buy-book-delivery/id6742256589"
+              title="App Store"
+              style="color: var(--text-secondary); margin-left: 4px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: currentColor;
+                  vertical-align: middle;
+                "
+              >
+                <path
+                  d="M11.6734 7.222C10.7974 7.222 9.4414 6.226 8.0134 6.262C6.1294 6.286 4.4014 7.354 3.4294 9.046C1.4734 12.442 2.9254 17.458 4.8334 20.218C5.7694 21.562 6.8734 23.074 8.3374 23.026C9.7414 22.966 10.2694 22.114 11.9734 22.114C13.6654 22.114 14.1454 23.026 15.6334 22.99C17.1454 22.966 18.1054 21.622 19.0294 20.266C20.0974 18.706 20.5414 17.194 20.5654 17.11C20.5294 17.098 17.6254 15.982 17.5894 12.622C17.5654 9.814 19.8814 8.47 19.9894 8.41C18.6694 6.478 16.6414 6.262 15.9334 6.214C14.0854 6.07 12.5374 7.222 11.6734 7.222ZM14.7934 4.39C15.5734 3.454 16.0894 2.146 15.9454 0.85C14.8294 0.898 13.4854 1.594 12.6814 2.53C11.9614 3.358 11.3374 4.69 11.5054 5.962C12.7414 6.058 14.0134 5.326 14.7934 4.39Z"
+                /></svg
+            ></a>
+          </p>
+          <p class="location" style="margin-top: 2px">Multi-segment commerce platform</p>
+          <ul>
+            <li>Architected and launched Zoober from <strong>0→1</strong>, owning the product ecosystem, backend architecture, mobile/web releases, cloud infrastructure, and production operations; achieved <strong>99.9% uptime</strong>.</li>
+            <li>Designed backend architecture with geospatial discovery, REST APIs, and real-time WebSocket updates for order lifecycle and rider-location synchronization.</li>
+            <li>Owned customer, merchant, rider, admin, CRM, and operations applications across Android, iOS, web, and desktop, including end-to-end release cycles.</li>
+            <li>Built multi-segment commerce flows and integrated payment gateways, delivery providers, ERP systems, and third-party services with webhook verification and idempotent order processing.</li>
+          </ul>
+          <p class="role" style="margin-top: 8px">
+            Internal Tool: MCPVave
+            <a
+              href="https://mcpvave.voltvave.com/public/index.html"
+              title="Web"
+              style="color: var(--text-secondary); margin-left: 6px"
+              ><svg
+                viewBox="0 0 24 24"
+                style="
+                  width: 12px;
+                  height: 12px;
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-width: 2;
+                  vertical-align: middle;
+                "
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" /></svg
+            ></a>
+          </p>
+          <p class="location" style="margin-top: 2px">Cross-platform MCP client and internal AI platform</p>
+          <ul>
+            <li>Built a <strong>Model Context Protocol (MCP)</strong> client enabling LLM-to-data workflows over SSE/STDIO across <strong>6 platforms</strong>.</li>
+            <li>Created shared MCP and LLM-provider packages to support internal AI workflows.</li>
+            <li>Enabled internal AI capabilities for inventory, reporting, forecasting, support, and ordering workflows.</li>
+            <li>Built multiple <strong>Python-based MCP servers</strong> for testing MCPVave client compatibility across SSE and STDIO transports.</li>
+          </ul>
+          <p class="role" style="margin-top: 8px">
+            Tredye
+            <a href="https://tredye.com" title="Web" style="color: var(--text-secondary); margin-left: 6px"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; vertical-align: middle;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+          </p>
+          <p class="location" style="margin-top: 2px">Stack: Python, FastAPI, Kafka, PostgreSQL, Redis, Next.js, Docker, OCI</p>
+          <ul>
+            <li>Architected a <strong>12-service event-driven system</strong> in <strong>Python + FastAPI</strong> with a Kafka-based pipeline (data-ingestion → candle-builder → rsi-calculator → divergence-detector) processing live market data at <strong>&lt;50ms end-to-end latency</strong>.</li>
+            <li>Implemented incremental RSI calculation with Wilder's smoothing and ZigZag divergence detection; Redis pub/sub for alert broadcasting and PostgreSQL for time-series persistence.</li>
+            <li>Built multi-source news aggregation (150+ keyword terms), sentiment scoring, and 5-minute Redis caching — all as async <strong>FastAPI</strong> background services.</li>
+          </ul>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <span class="company"
+              >TingTing
+              <a
+                href="https://apps.apple.com/in/app/tingting-groceries-in-mins/id6464051281"
+                title="App Store"
+                style="color: var(--text-secondary); margin-left: 8px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M11.6734 7.222C10.7974 7.222 9.4414 6.226 8.0134 6.262C6.1294 6.286 4.4014 7.354 3.4294 9.046C1.4734 12.442 2.9254 17.458 4.8334 20.218C5.7694 21.562 6.8734 23.074 8.3374 23.026C9.7414 22.966 10.2694 22.114 11.9734 22.114C13.6654 22.114 14.1454 23.026 15.6334 22.99C17.1454 22.966 18.1054 21.622 19.0294 20.266C20.0974 18.706 20.5414 17.194 20.5654 17.11C20.5294 17.098 17.6254 15.982 17.5894 12.622C17.5654 9.814 19.8814 8.47 19.9894 8.41C18.6694 6.478 16.6414 6.262 15.9334 6.214C14.0854 6.07 12.5374 7.222 11.6734 7.222ZM14.7934 4.39C15.5734 3.454 16.0894 2.146 15.9454 0.85C14.8294 0.898 13.4854 1.594 12.6814 2.53C11.9614 3.358 11.3374 4.69 11.5054 5.962C12.7414 6.058 14.0134 5.326 14.7934 4.39Z"
+                  /></svg></a
+              ><a
+                href="https://play.google.com/store/apps/details?id=com.tingtingnow.app"
+                title="Play Store"
+                style="color: var(--text-secondary); margin-left: 4px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M3.6097 1.814L13.793 12L3.6108 22.186C3.4178 22.105 3.2487 21.962 3.1356 21.767C3.0474 21.614 3.001 21.442 3.001 21.266V2.735C3.001 2.321 3.2519 1.966 3.6097 1.814ZM14.5 12.707L16.802 15.009L5.865 21.342L14.5 12.707ZM17.699 9.509L20.506 11.135C20.984 11.411 21.147 12.023 20.871 12.501C20.783 12.652 20.657 12.778 20.506 12.866L17.698 14.491L15.207 12L17.699 9.509ZM5.865 2.658L16.803 8.99L14.5 11.293L5.865 2.658Z"
+                  /></svg></a
+            ></span>
+            <span class="date">Aug 2022 - Mar 2025</span>
+          </div>
+          <p class="role">Founding Engineer</p>
+          <p class="location">Bengaluru, Karnataka, India</p>
+          <p class="location" style="margin-bottom: 4px">Multi-store grocery delivery platform</p>
+          <div class="stats">
+            <span class="stat"><span class="stat-value">35+</span> Stores</span>
+            <span class="stat"><span class="stat-value">80K+</span> Orders</span>
+            <span class="stat"><span class="stat-value">30K+</span> Users</span>
+            <span class="stat"><span class="stat-value">₹1.5Cr+</span> GMV</span>
+            <span class="stat"><span class="stat-value">99.9%</span> Uptime</span>
+          </div>
+          <ul>
+            <li>Architected and operated the Node.js backend processing <strong>80K+ orders</strong> at <strong>&lt;200ms P95</strong>, with real-time WebSocket updates and AWS/GCP deployment pipelines.</li>
+            <li>Owned the end-to-end application ecosystem for customers, merchants, riders, and operations across Android, iOS, web, and desktop.</li>
+            <li>Built <strong>Python + FastAPI</strong> ERP inventory sync service deployed on GCP Cloud Run — syncing <strong>~12K products × 35+ stores</strong> between Zoho Gofrugal physical inventory and TingTing in real time.</li>
+            <li>Integrated payment gateways, delivery providers, ERP systems, and third-party commerce services with webhook verification and idempotent order processing.</li>
+            <li>Designed order-state, rider-assignment, and operational-alerting systems for reliable fulfillment across <strong>35+ stores</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="experience-item" style="break-before: page; page-break-before: always;">
+          <div class="experience-header">
+            <span class="company">Workrush</span>
+            <span class="date">Jun 2021 - Aug 2022</span>
+          </div>
+          <p class="role">Software Engineer (Remote)</p>
+          <p class="location"><a href="https://workrush.co.uk" target="_blank" style="color: var(--text-secondary);">workrush.co.uk</a></p>
+          <ul>
+            <li>Built and shipped consumer Flutter applications, delivering <strong>15+ releases</strong> across Android and iOS.</li>
+            <li>Contributed backend APIs, production debugging, specifications, and release planning in a distributed UK–India team.</li>
+            </ul>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-row"><span class="skill-label">Python:</span><span class="skill-value">FastAPI, async/await, Pydantic, SQLAlchemy, Celery, background tasks, Kafka consumers, REST APIs, WebSockets</span></div>
+          <div class="skill-row"><span class="skill-label">Backend:</span><span class="skill-value">Node.js, Express, NestJS, Microservices, Event-Driven Architecture, Real-Time Systems</span></div>
+          <div class="skill-row"><span class="skill-label">Databases:</span><span class="skill-value">PostgreSQL, MongoDB, Redis, Valkey, PostGIS, Prisma, Query Optimization</span></div>
+          <div class="skill-row"><span class="skill-label">Data &amp; Messaging:</span><span class="skill-value">Kafka, BullMQ, Distributed Systems, Real-Time Processing, High Availability</span></div>
+          <div class="skill-row"><span class="skill-label">Cloud &amp; Infra:</span><span class="skill-value">AWS (EC2, S3, CloudFront), GCP Cloud Run, OCI, Docker, NGINX, Linux, CI/CD</span></div>
+          <div class="skill-row"><span class="skill-label">AI &amp; Agent Infra:</span><span class="skill-value">Model Context Protocol (MCP), LLM Integration, SSE, STDIO, Claude, GPT, Gemini</span></div>
+          <div class="skill-row"><span class="skill-label">Languages:</span><span class="skill-value">Python, JavaScript, TypeScript, Dart</span></div>
+          <div class="skill-row"><span class="skill-label">Dev Tools:</span><span class="skill-value">Git, GitHub, Claude Code, GitHub Copilot</span></div>
+        </div>
+      </section>
+
+      <!-- Selected Projects -->
+      <section class="section">
+        <h2 class="section-title">Selected Projects</h2>
+
+        <div class="experience-item">
+          <div class="experience-header"><span class="company"><a href="https://open-notifier.io" target="_blank">Open Notifier</a></span><span class="date">May 2026 - Jun 2026</span></div>
+          <p class="role">Self-Hostable, Multi-Tenant Notification Infrastructure</p>
+          <p class="location">Stack: Node.js, TypeScript, PostgreSQL, BullMQ, Valkey, MCP</p>
+          <ul><li>Built a self-hostable, multi-tenant push-notification platform with <strong>MCP</strong> support for AI-agent initiated notification workflows.</li><li>Designed stateless API, MCP, and worker processes with BullMQ/Valkey asynchronous delivery and independent horizontal scaling.</li></ul>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header"><span class="company"><a href="https://grihahomes.com" target="_blank">GrihaHomes</a></span><span class="date">Apr 2026 - Jun 2026</span></div>
+          <p class="role">Agent-Centric Property Listing Platform | Geo Search + AI Chat</p>
+          <p class="location">Stack: NestJS, Next.js, PostgreSQL, PostGIS, Redis, Claude AI, MCP, Docker, OCI ARM</p>
+          <ul>
+            <li>Built full-stack property listing platform with <strong>NestJS + Prisma</strong>, <strong>PostGIS</strong> geo-search, and Next.js — visit booking lifecycle, role-based access, and SMS OTP auth.</li>
+            <li>Integrated <strong>Claude AI</strong> via <strong>Model Context Protocol (MCP)</strong> for natural-language property search and conversational AI chat; deployed on <strong>OCI ARM</strong> with Docker — zero infra cost, scalable to 50K+ users.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Open Source -->
+      <section class="section">
+        <h2 class="section-title">Open Source</h2>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <span class="company"
+              >flutter_lucide & flutter_lucide_animated
+              <a
+                href="https://pub.dev/packages/flutter_lucide"
+                title="flutter_lucide on pub.dev"
+                style="color: var(--text-secondary); margin-left: 8px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M3 10H2V4.003C2 3.449 2.455 3 2.992 3h18.016C21.556 3 22 3.438 22 4.003V10h-1v10.002c0 .553-.455 1-1.007 1H4.007A1.001 1.001 0 0 1 3 20.002V10zm16 0H5v9h14v-9zM4 5v3h16V5H4zm5 7h6v2H9v-2z"
+                  /></svg></a
+              ><a
+                href="https://pub.dev/packages/flutter_lucide_animated"
+                title="flutter_lucide_animated on pub.dev"
+                style="color: var(--text-secondary); margin-left: 4px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M3 10H2V4.003C2 3.449 2.455 3 2.992 3h18.016C21.556 3 22 3.438 22 4.003V10h-1v10.002c0 .553-.455 1-1.007 1H4.007A1.001 1.001 0 0 1 3 20.002V10zm16 0H5v9h14v-9zM4 5v3h16V5H4zm5 7h6v2H9v-2z"
+                  /></svg></a
+              ><a
+                href="https://lucide-animated.com"
+                title="lucide-animated.com"
+                style="color: var(--text-secondary); margin-left: 4px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-width: 2;
+                    vertical-align: middle;
+                  "
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  /></svg></a
+              ><a
+                href="https://github.com/pqoqubbw/icons"
+                title="pqoqubbw/icons on GitHub (6.8K stars)"
+                style="color: var(--text-secondary); margin-left: 4px"
+                ><svg
+                  viewBox="0 0 24 24"
+                  style="
+                    width: 12px;
+                    height: 12px;
+                    fill: currentColor;
+                    vertical-align: middle;
+                  "
+                >
+                  <path
+                    d="M12.001 2C6.476 2 2.001 6.475 2.001 12c0 4.425 2.862 8.163 6.838 9.488.5.087.688-.213.688-.476 0-.238-.013-1.02-.013-1.85-2.512.463-3.163-.612-3.363-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.088.637-1.338-2.225-.25-4.55-1.112-4.55-4.937 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.263 2.75 1.025.8-.225 1.65-.338 2.5-.338s1.7.113 2.5.338c1.912-1.3 2.75-1.025 2.75-1.025.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.688 0 3.837-2.337 4.687-4.562 4.937.362.313.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .263.188.575.688.475C19.138 20.163 22 16.413 22 12c0-5.525-4.475-10-10-10z"
+                  /></svg></a
+            ></span>
+            <span class="date">Jan 2024 - Present</span>
+          </div>
+          <div class="stats">
+            <span class="stat"
+              ><span class="stat-value">4K</span> Weekly DL</span
+            >
+            <span class="stat"
+              ><span class="stat-value">6</span> Platforms</span
+            >
+          </div>
+          <p class="role">Cross-Platform Flutter Icon Packages</p>
+          <ul>
+            <li>Publish and maintain two cross-platform Flutter icon packages.</li>
+            <li><em>flutter_lucide_animated</em> is featured in the lucide-animated ecosystem.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Education -->
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+          <div>
+            <span class="degree">Bachelor of Technology</span>
+            <span class="school">
+              — National Institute of Technology, Allahabad</span>
+            <span class="date">2017 - 2021</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Languages -->
+      <section class="section">
+        <h2 class="section-title">Languages</h2>
+        <div class="education-item">
+          <div>
+            <span class="degree">Hindi</span
+            ><span class="school"> (Native)</span>
+            <span style="color: var(--border); margin: 0 8px">|</span>
+            <span class="degree">English</span
+            ><span class="school"> (Professional)</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
