@@ -1,6 +1,6 @@
 # Ravi Kovind
 
-**Software Engineer** | Full-Stack | Mobile | Backend | Infrastructure
+**Founding Engineer** | Full-Stack | Mobile | Backend | Infrastructure
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-ravikovind.github.io-EB1D25?style=for-the-badge)](https://ravikovind.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ravikovind-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/ravikovind)
@@ -13,7 +13,7 @@
 
 ## About
 
-Software Engineer with 4+ years of hands-on experience designing, building, deploying, and maintaining production-grade applications. NIT Allahabad alumni.
+Founding Engineer with 5+ years taking products from 0 to 1, operating production systems, and building AI/MCP infrastructure. NIT Allahabad alumni.
 
 > *I prioritize maintainability and ownership over shortcuts and hype. Clean code, predictable systems, and long-term thinking over quick fixes.*
 
@@ -21,7 +21,7 @@ Software Engineer with 4+ years of hands-on experience designing, building, depl
 
 | Metric | Value |
 |--------|-------|
-| Years of Experience | 4+ |
+| Years of Experience | 5+ |
 | Apps Built | 10+ |
 | Users Served | 30K+ |
 | Orders Processed | 80K+ |
@@ -29,7 +29,7 @@ Software Engineer with 4+ years of hands-on experience designing, building, depl
 
 ## Tech Stack
 
-**Languages:** Dart, JavaScript, TypeScript, Python, Java, PHP
+**Languages:** Dart, Go, JavaScript, TypeScript, Python, Java
 
 **Frameworks:** Flutter, React, Next.js, Node.js, Express, FastAPI
 
@@ -37,13 +37,16 @@ Software Engineer with 4+ years of hands-on experience designing, building, depl
 
 **Infrastructure:** AWS, GCP, Docker, NGINX, Linux
 
-**Tools:** Firebase, Git, GitHub, Kafka
+**Tools:** Firebase, Git, GitHub, Kafka, MCP
 
 ## Featured Projects
 
 ### TingTing
 Hyperlocal grocery delivery ecosystem connecting customers, stores, pickers, and delivery partners. Built complete suite of apps with real-time order tracking and ERP integration.
 - 35+ Live Stores | 30K+ Users | 80K+ Orders | ₹1.5Cr+ Revenue
+
+### snap-x
+CLI tool for rendering social media images from Satori `.mjs` design files. Node.js, zero-config, any size.
 
 ### MCPVave
 Cross-platform MCP client that connects to MCP servers using SSE & STDIO. Works on mobile, desktop, and web.
@@ -65,12 +68,12 @@ Complete Bhagavad Gita app with all 18 chapters. 40K+ downloads, 2K daily users.
 
 ## Portfolio Features
 
-- Interactive particle network animation
+- **Quick Scan** — swarmline-powered multi-cursor page scan animation (ink + red theme)
+- Particle network hero background (brand red + ink black)
 - Typing effect with dynamic words
 - Horizontal scrolling tech stack timeline
 - Embedded X posts (dark theme)
-- Glass-morphism UI elements
-- Responsive mobile-first design
+- Responsive mobile-first design, cream/ink/red palette
 - SEO optimized with structured data
 
 ## Run Locally
@@ -90,6 +93,6 @@ open index.html
 
 ---
 
-**V 2.0.0** | Built with clarity.
+**V 3.0.0** | Built with clarity.
 
 [View Repository](https://github.com/ravikovind/ravikovind.github.io)
