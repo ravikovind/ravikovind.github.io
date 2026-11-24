@@ -135,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.background = 'rgba(0, 0, 0, 0.95)';
+            header.style.background = 'rgba(243, 238, 227, 0.97)';
         } else {
-            header.style.background = 'rgba(0, 0, 0, 0.7)';
+            header.style.background = 'rgba(243, 238, 227, 0.85)';
         }
     });
 
