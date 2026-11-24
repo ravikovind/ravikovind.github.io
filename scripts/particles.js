@@ -12,8 +12,8 @@
     const connectionDistance = 120;
 
     // Colors
-    const accentColor = { r: 245, g: 158, b: 11 }; // #F59E0B
-    const whiteColor = { r: 255, g: 255, b: 255 };
+    const accentColor = { r: 235, g: 29, b: 37 }; // #eb1d25
+    const whiteColor = { r: 17, g: 17, b: 17 };
 
     class Particle {
         constructor() {
