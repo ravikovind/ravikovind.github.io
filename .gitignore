@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+snap-output/*.png
+snap-output/ss
+snap-output/hero-encoded.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
