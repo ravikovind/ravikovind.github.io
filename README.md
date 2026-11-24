@@ -25,7 +25,7 @@ Founding Engineer with 5+ years taking products from 0 to 1, operating productio
 | Apps Built | 10+ |
 | Users Served | 30K+ |
 | Orders Processed | 80K+ |
-| Package Downloads | 3.89K+ |
+| Package Downloads | 6.4K+ |
 
 ## Tech Stack
 
@@ -61,7 +61,7 @@ Complete Bhagavad Gita app with all 18 chapters. 40K+ downloads, 2K daily users.
 
 | Package | Stats |
 |---------|-------|
-| [flutter_lucide](https://pub.dev/packages/flutter_lucide) | 70 likes, 3.89K downloads |
+| [flutter_lucide](https://pub.dev/packages/flutter_lucide) | 3.9K downloads |
 | [Bhagavad Gita](https://play.google.com/store/apps/details?id=com.gita) | 40K+ downloads, 2K/day |
 | [gen-images](https://github.com/ravikovind/gen-images) | AI image generation pipeline |
 | [recipe_x](https://github.com/ravikovind/recipe_x) | 45K+ recipes worldwide |
