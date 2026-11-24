@@ -26,18 +26,18 @@
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
-        --ink: #1a1a1a;
-        --muted: #555;
-        --subtle: #555;
-        --accent: #b45309;
-        --accent-soft: #fef3c7;
-        --line: #e0e0e0;
+        --ink: #111111;
+        --muted: #6b6b6b;
+        --subtle: #6b6b6b;
+        --accent: #eb1d25;
+        --accent-soft: rgba(235,29,37,0.08);
+        --line: #ddd8ce;
         --text-primary: var(--ink);
         --text-secondary: var(--muted);
         --border: var(--line);
       }
       body {
-        background: #f0f0f0;
+        background: #e8e3d8;
         color: var(--ink);
         font-family: "Lato", sans-serif;
         font-size: 16px;
@@ -48,8 +48,8 @@
         width: min(900px, 100%);
         margin: 0 auto;
         padding: 42px 48px;
-        background: #fff;
-        border: 1px solid #e0e0e0;
+        background: #f3eee3;
+        border: 1px solid var(--line);
       }
       .header {
         margin-bottom: 24px;
@@ -95,7 +95,7 @@
       .experience-item li { margin-bottom: 4px; padding-left: 1px; }
       strong { color: var(--ink); font-weight: 700; }
       .stats { display: flex; flex-wrap: wrap; gap: 5px; margin: 6px 0 8px; font-family: "Saira", sans-serif; font-size: 10px; }
-      .stat { background: var(--accent-soft); border: 1px solid #fde68a; border-radius: 999px; color: var(--ink); padding: 2px 8px; }
+      .stat { background: var(--accent-soft); border: 1px solid rgba(235,29,37,0.2); border-radius: 999px; color: var(--ink); padding: 2px 8px; }
       .stat-value { color: var(--accent); font-weight: 700; }
       .skills-grid { display: grid; gap: 7px 26px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .skill-row { align-items: baseline; display: flex; gap: 7px; }
@@ -108,7 +108,7 @@
       .back-link { color: var(--muted); font-size: 12px; left: 18px; position: fixed; top: 18px; }
       @page { size: A4; margin: 10mm; }
       @media print {
-        body { background: #fff; font-size: 16px; line-height: 1.3; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #f3eee3; font-size: 16px; line-height: 1.3; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         .resume { border: 0; margin: 0; padding: 0; width: 100%; }
         .print-btn, .back-link { display: none; }
         .header { margin-bottom: 9px; padding-bottom: 6px; }
