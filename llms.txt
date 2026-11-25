@@ -54,6 +54,3 @@ Built end-to-end hyperlocal commerce platform: 4 Flutter apps, Express.js API wi
 
 - [Portfolio / Homepage](https://ravikovind.github.io/): Full portfolio with experience, projects, and open source work.
 - [Resume](https://ravikovind.github.io/resume.html): Detailed resume — all experience, projects, and skills.
-- [Flutter Resume](https://ravikovind.github.io/resume-flutter.html): Flutter/mobile-focused resume variant.
-- [Full-Stack Resume](https://ravikovind.github.io/resume-react.html): Full-stack/React-focused resume variant.
-- [Docs](https://ravikovind.github.io/docs/): Technical write-ups on system design, Kafka, MCP, auth, payments, and more.
