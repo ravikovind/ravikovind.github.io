@@ -64,7 +64,6 @@
         document.body.appendChild(fab);
 
         fab.addEventListener('click', () => {
-            if (prefersReduced()) return;
             swarmToggle();
             setTimeout(() => {
                 syncUI(fab);
@@ -73,7 +72,7 @@
         });
 
         const saved = getSaved();
-        const startOn = saved !== 'off' && !prefersReduced();
+        const startOn = saved !== 'off';
 
         if (startOn) {
             // Wait for page load + 2s, then confirm swarmline is ready before starting

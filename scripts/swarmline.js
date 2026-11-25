@@ -1007,7 +1007,7 @@ canvas.off{pointer-events:none}
       this.env = new Env();
       this.stage = new Stage();
       this.dead = false;
-      this.speed = reduced() ? 3 : 1;
+      this.speed = reduced() ? 3 : 0.5;
       this.tour = true; // on by default: glide through the page on its own
       this.units = [];
       this.waiting = [];
@@ -1218,7 +1218,7 @@ canvas.off{pointer-events:none}
         else if (a === "finish") this.finish();
         else if (a === "replay") replay();
         else if (a === "speed") {
-          this.speed = this.speed >= 3 ? 1 : this.speed + 1;
+          this.speed = this.speed >= 2 ? 0.5 : this.speed * 2;
           b.textContent = this.speed + "×";
           b.setAttribute("aria-label", `Build speed ${this.speed}×`);
         }
