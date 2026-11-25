@@ -8,7 +8,7 @@ hey.ravikovind@gmail.com | +91 8433491441 | ravikovind.github.io | linkedin.com/
 
 ## Summary
 
-Backend-focused full-stack engineer specialising in high-scale Node.js systems, Python, Flutter, real-time infrastructure, cloud deployments and AI/MCP integration. Built production platforms processing 80K+ orders at <200ms P95 latency with 99.9% uptime. Strong bias toward system design, end-to-end ownership, and pragmatic architecture. NIT Allahabad.
+Backend-focused full-stack engineer specialising in high-scale Node.js systems, Python, Flutter, real-time infrastructure, cloud deployments and AI/MCP integration. Built production platforms processing 80K+ orders at <200ms P95 latency. Strong bias toward system design, end-to-end ownership, and pragmatic architecture. NIT Allahabad.
 
 ---
 
@@ -23,7 +23,7 @@ Backend-focused full-stack engineer specialising in high-scale Node.js systems, 
 
 connects you with trusted local businesses for quick deliveries and hassle-free bookings
 
-- Architected Zoober from scratch (0→1) — mobile apps (Play Store/App Store), production-grade servers and cloud infrastructure. Deployed on AWS (EC2, ALB, NGINX, CloudFront, WAF, S3, SES) achieving **99.9% uptime** across restaurant, salon, meat shop, grocery and fruit store segments near Gummanahalli and Kothanur, Bengaluru.
+- Architected Zoober from scratch (0→1) — mobile apps (Play Store/App Store), production-grade servers and cloud infrastructure. Deployed on AWS (EC2, ALB, NGINX, CloudFront, WAF, S3, SES) across restaurant, salon, meat shop, grocery and fruit store segments near Gummanahalli and Kothanur, Bengaluru.
 
 - Designed Monolithic Express.js server, REST API with **optimised MongoDB collections** using 2dsphere geospatial indexes(aggregation pipeline) for **<100ms** radius-based store discovery under concurrent load and built a **real-time WebSocket sync** layer broadcasting order/rider position updates with automatic reconnection.
 
@@ -51,7 +51,7 @@ AI Engine — Cross-Platform(Mobile, Desktop and Web) MCP Client | Foundation fo
 
 Groceries Delivery in minutes 
 
-**Stats:** 35+ Stores | 80K+ Orders | 30K+ Users | ₹1.5Cr+ GMV | 99.9% Uptime
+**Stats:** 35+ Stores | 80K+ Orders | 30K+ Users | ₹1.5Cr+ GMV
 
 - Architected Node.js express.js backend server processing a total of **80K+ orders** with **<200ms P95 latency**; and a **real-time WebSocket sync** layer broadcasting order/rider postion/crm message exchange/alerts and updates with automatic reconnection. Deployed **Cloud infrastructure** on AWS/GCP with CI/CD pipelines
 
