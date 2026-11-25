@@ -33,6 +33,7 @@
         btn.className = 'motion-fab';
         btn.setAttribute('aria-pressed', 'false');
         btn.setAttribute('aria-label', 'Start tour');
+        btn.setAttribute('data-swarmline-ghost', '');
         return btn;
     }
 
@@ -55,6 +56,7 @@
         prompt.id = 'motion-prompt';
         prompt.setAttribute('role', 'dialog');
         prompt.setAttribute('aria-label', 'Page Tour prompt');
+        prompt.setAttribute('data-swarmline-ghost', '');
         prompt.style.cssText = [
             'position:fixed',
             'bottom:100px',

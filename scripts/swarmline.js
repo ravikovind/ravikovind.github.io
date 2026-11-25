@@ -1129,10 +1129,17 @@ canvas.off{pointer-events:none}
     resize() {
       const dpr = Math.min(2, window.devicePixelRatio || 1);
       this.dpr = dpr;
-      this.W = innerWidth;
-      this.H = innerHeight;
+      const vv = window.visualViewport;
+      this.W = vv ? Math.round(vv.width) : innerWidth;
+      this.H = vv ? Math.round(vv.height) : innerHeight;
       this.cv.width = Math.round(this.W * dpr);
       this.cv.height = Math.round(this.H * dpr);
+      this.cv.style.width = this.W + 'px';
+      this.cv.style.height = this.H + 'px';
+      if (vv) {
+        this.cv.style.top = vv.offsetTop + 'px';
+        this.cv.style.left = vv.offsetLeft + 'px';
+      }
     }
 
     bind() {
@@ -1144,6 +1151,18 @@ canvas.off{pointer-events:none}
         this.resize();
         if (prefs.hudPos) this.placeHud(prefs.hudPos.x, prefs.hudPos.y);
       });
+      if (window.visualViewport) {
+        const onVV = () => {
+          this.resize();
+          if (prefs.hudPos) this.placeHud(prefs.hudPos.x, prefs.hudPos.y);
+        };
+        window.visualViewport.addEventListener('resize', onVV);
+        window.visualViewport.addEventListener('scroll', onVV);
+        (this.unbinds || (this.unbinds = [])).push(() => {
+          window.visualViewport.removeEventListener('resize', onVV);
+          window.visualViewport.removeEventListener('scroll', onVV);
+        });
+      }
       on(window, "pagehide", () => stop(true));
       on(window, "pointermove", (e) => {
         if (e.pointerType === "touch") return;
