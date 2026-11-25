@@ -93,7 +93,6 @@
         btns.style.cssText = 'display:flex;gap:12px;width:100%;margin-top:3px;';
 
         const yes = document.createElement('button');
-        yes.textContent = 'Start Tour';
         yes.style.cssText = [
             'flex:1',
             'background:#eb1d25',
@@ -106,10 +105,19 @@
             'cursor:pointer',
             'font-family:inherit',
             'transition:opacity 0.15s',
+            'display:flex',
+            'align-items:center',
+            'justify-content:center',
+            'gap:8px',
         ].join(';');
+        const yesIco = lucideIcon('crosshair');
+        yesIco.style.cssText = 'width:20px;height:20px;display:flex;flex-shrink:0;';
+        yes.appendChild(yesIco);
+        const yesLabel = document.createElement('span');
+        yesLabel.textContent = 'Start Tour';
+        yes.appendChild(yesLabel);
 
         const skip = document.createElement('button');
-        skip.textContent = 'Skip';
         skip.style.cssText = [
             'flex:1',
             'background:transparent',
@@ -121,7 +129,17 @@
             'cursor:pointer',
             'font-family:inherit',
             'transition:border-color 0.15s',
+            'display:flex',
+            'align-items:center',
+            'justify-content:center',
+            'gap:8px',
         ].join(';');
+        const skipIco = lucideIcon('x');
+        skipIco.style.cssText = 'width:20px;height:20px;display:flex;flex-shrink:0;';
+        skip.appendChild(skipIco);
+        const skipLabel = document.createElement('span');
+        skipLabel.textContent = 'Skip';
+        skip.appendChild(skipLabel);
 
         btns.appendChild(yes);
         btns.appendChild(skip);
@@ -129,6 +147,7 @@
         prompt.appendChild(sub);
         prompt.appendChild(btns);
         document.body.appendChild(prompt);
+        if (window.lucide) window.lucide.createIcons({ nodes: [yes, skip] });
 
         // Animate in after paint
         requestAnimationFrame(() => requestAnimationFrame(() => {
