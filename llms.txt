@@ -25,7 +25,6 @@ Built consumer-facing Flutter apps (Footbus, Livehappy and more) with BLoC state
 
 ## Selected Projects
 
-- HyperFrames CLI: CLI for creating, inspecting, validating, and rendering programmatic HTML-based videos. Runs interactively or fully automated by AI agents via `npx hyperframes`. Non-TTY/agent mode, --json flags, version pinning for CI/CD, cloud/lambda/cloudrun rendering, TTS, transcribe, beat detection.
 - [GrihaHomes](https://grihahomes.com): Agent-centric property listing platform (Bengaluru). NestJS + Prisma + PostGIS backend, Next.js + Tailwind frontend, SMS OTP auth, visit booking lifecycle, role-based access, Claude AI chat. Deployed on OCI ARM free tier.
 - [Open Notifier](https://open-notifier.io): Self-hostable multi-tenant push notification platform with MCP support. AI agents send FCM push to users' phones. Node.js + Express 5 + BullMQ + Valkey + Flutter mobile app + SigNoz observability.
 - [Tredye](https://tredye.com): Real-time trading dashboard. 12-service Kafka pipeline, RSI/ZigZag divergence detection, Next.js 16 + TradingView charts.
