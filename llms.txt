@@ -15,13 +15,13 @@ Ravi Kovind is a Founding Engineer based in Bengaluru, Karnataka, India. He has 
 ## Experience
 
 ### Voltvave Innovations Pvt Ltd — Founding Engineer (Mar 2025 – Jul 2026)
-Built Tredye, a real-time market monitoring dashboard: 12-service Kafka-based event-driven system (<50ms latency), RSI/divergence detection, multi-source news aggregation, Next.js 16 + TradingView frontend. Also built MCPVave, an MCP (Model Context Protocol) server for AI agent integration.
+Built Zoober from 0→1: multi-segment hyperlocal commerce platform (restaurant, salon, grocery, meat shop) live near Gummanahalli and Kothanur, Bengaluru. Architected Express.js monolith with MongoDB 2dsphere geospatial indexes for <100ms store discovery, real-time WebSocket order/rider sync, and a Flutter ecosystem (Customer, Merchant, Rider, Admin, CRM) across Android, iOS, and Web. Deployed on AWS (EC2, ALB, NGINX, CloudFront, WAF, S3, SES). Also built MCPVave — a cross-platform MCP (Model Context Protocol) client enabling AI/LLM integration across 6 platforms.
 
-### TingTing — Senior Flutter Engineer (Aug 2022 – Mar 2025)
-Architected a 6-app Flutter ecosystem (Customer, Merchant, Rider, Admin, CRM, Notification Panel) with BLoC, adaptive server-driven UI, and go_router. Built Zoho Gofrugal ERP stock sync on GCP Cloud Run syncing 35+ stores × 12K+ products. Led full release cycles on Play Store and App Store.
+### TingTing — Founding Engineer (Aug 2022 – Mar 2025)
+Architected backend processing 80K+ orders at <200ms P95 latency; built real-time WebSocket sync layer for order/rider/CRM updates. Deployed on AWS/GCP with CI/CD pipelines. Built 6-app Flutter ecosystem (Customer, Merchant, Rider, Admin, CRM, Notification Panel) with BLoC and adaptive server-driven UI. Zoho Gofrugal ERP stock sync on GCP Cloud Run syncing 35+ stores × 12K+ products. Stats: 35+ Stores, 80K+ Orders, 30K+ Users, ₹1.5Cr+ GMV.
 
-### Workrush — Software Engineer (prior)
-Built end-to-end hyperlocal commerce platform: 4 Flutter apps, Express.js API with 23 MongoDB schemas, geospatial store discovery, 7-stage order lifecycle with WebSocket sync, AWS infrastructure (EC2, S3, SES, CloudFront, WAF).
+### Workrush — Software Engineer (Jun 2021 – Aug 2022)
+Built consumer-facing Flutter apps (Footbus, Livehappy and more) with BLoC state management and shipped 15+ releases across Play Store and App Store. Developed backend systems in Node.js and PHP; collaborated across time zones on API design, feature specs, and production debugging.
 
 ## Selected Projects
 
