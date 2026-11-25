@@ -72,13 +72,36 @@
             }, 50);
         });
 
-        // Default ON — start immediately unless user explicitly turned off or OS reduced
         const saved = getSaved();
         const startOn = saved !== 'off' && !prefersReduced();
 
         if (startOn) {
-            swarmToggle();
-            setTimeout(() => syncUI(fab), 50);
+            // Wait for page load + 2s, then confirm swarmline is ready before starting
+            const tryStart = () => {
+                if (window[SWARM_KEY]) {
+                    swarmToggle();
+                    setTimeout(() => syncUI(fab), 50);
+                } else {
+                    // swarmline not ready yet, poll every 100ms (max ~3s)
+                    let attempts = 0;
+                    const poll = setInterval(() => {
+                        attempts++;
+                        if (window[SWARM_KEY]) {
+                            clearInterval(poll);
+                            swarmToggle();
+                            setTimeout(() => syncUI(fab), 50);
+                        } else if (attempts > 30) {
+                            clearInterval(poll);
+                        }
+                    }, 100);
+                }
+            };
+
+            if (document.readyState === 'complete') {
+                setTimeout(tryStart, 2000);
+            } else {
+                window.addEventListener('load', () => setTimeout(tryStart, 2000), { once: true });
+            }
         } else {
             syncUI(fab);
         }

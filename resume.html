@@ -107,11 +107,16 @@
       .project-links, .projects-list, .project-row { display: none; }
       .print-btn { background: var(--accent); border: 0; border-radius: 6px; box-shadow: none; color: #fff; cursor: pointer; font: 700 12px "Lato", sans-serif; padding: 10px 16px; position: fixed; right: 18px; top: 18px; }
       .back-link { color: var(--muted); font-size: 12px; left: 18px; position: fixed; top: 18px; }
+      .motion-fab { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 999; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 22px 0 18px; height: 48px; border-radius: 999px; border: none; background: var(--ink); color: #f3eee3; font-family: "Lato", sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 16px rgba(17,17,17,0.18); transition: transform 0.2s ease, background 0.2s ease; }
+      .motion-fab.is-on { background: var(--accent); }
+      .motion-fab:hover { transform: translateX(-50%) translateY(-3px); }
+      .motion-fab i { display: flex; align-items: center; flex-shrink: 0; line-height: 0; }
+      .motion-fab svg { width: 18px; height: 18px; display: block; }
       @page { size: A4; margin: 10mm; }
       @media print {
         body { background: #f3eee3; font-size: 16px; line-height: 1.3; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         .resume { border: 0; margin: 0; padding: 0; width: 100%; }
-        .print-btn, .back-link { display: none; }
+        .print-btn, .back-link, .motion-fab { display: none !important; visibility: hidden !important; position: absolute !important; }
         .header { margin-bottom: 9px; padding-bottom: 6px; }
         .name { font-size: 34px; margin-bottom: 2px; }
         .title { font-size: 16px; margin-bottom: 1px; }
@@ -562,5 +567,7 @@
         </div>
       </section>
     </div>
+  <script src="scripts/swarmline.js" defer></script>
+  <script src="scripts/motion.js" defer></script>
   </body>
 </html>
