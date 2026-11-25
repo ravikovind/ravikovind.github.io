@@ -9,10 +9,6 @@
 
 ---
 
-<video src="branding/reel.mp4" autoplay loop muted playsinline width="320" style="border-radius:16px"></video>
-
-> [Download Portfolio Reel](branding/reel.mp4) — 1080×1920, ~70s, H.264/AAC
-
 ![Portfolio Screenshot](assets/ss.png)
 
 ## About
