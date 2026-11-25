@@ -49,6 +49,8 @@
         fab.appendChild(label);
         if (window.lucide) window.lucide.createIcons({ nodes: [fab] });
         document.documentElement.setAttribute('data-motion', on ? 'on' : 'off');
+        // Keep FAB last in DOM so it stays above swarmline at equal z-index
+        if (fab.parentNode) fab.parentNode.appendChild(fab);
     }
 
     function buildPrompt(fab) {
