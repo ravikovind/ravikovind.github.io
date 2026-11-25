@@ -32,19 +32,19 @@
         btn.id = 'motion-toggle';
         btn.className = 'motion-fab';
         btn.setAttribute('aria-pressed', 'false');
-        btn.setAttribute('aria-label', 'Start scan');
+        btn.setAttribute('aria-label', 'Start tour');
         return btn;
     }
 
     function syncUI(fab) {
         const on = isRunning();
         fab.setAttribute('aria-pressed', String(on));
-        fab.setAttribute('aria-label', on ? 'Stop scan' : 'Start scan');
+        fab.setAttribute('aria-label', on ? 'Stop tour' : 'Start tour');
         fab.classList.toggle('is-on', on);
         fab.innerHTML = '';
         fab.appendChild(lucideIcon(on ? 'stop-circle' : 'crosshair'));
         const label = document.createElement('span');
-        label.textContent = on ? 'Stop Scan' : 'Quick Scan All';
+        label.textContent = on ? 'Stop Tour' : 'Page Tour';
         fab.appendChild(label);
         if (window.lucide) window.lucide.createIcons({ nodes: [fab] });
         document.documentElement.setAttribute('data-motion', on ? 'on' : 'off');
@@ -54,7 +54,7 @@
         const prompt = document.createElement('div');
         prompt.id = 'motion-prompt';
         prompt.setAttribute('role', 'dialog');
-        prompt.setAttribute('aria-label', 'Quick Scan prompt');
+        prompt.setAttribute('aria-label', 'Page Tour prompt');
         prompt.style.cssText = [
             'position:fixed',
             'bottom:88px',
@@ -83,7 +83,7 @@
 
         const title = document.createElement('p');
         title.style.cssText = 'margin:0;font-weight:700;font-size:15px;letter-spacing:-0.01em;';
-        title.textContent = 'Quick Scan All?';
+        title.textContent = 'Take a Page Tour?';
 
         const sub = document.createElement('p');
         sub.style.cssText = 'margin:0;font-size:12px;color:#6b6b6b;line-height:1.5;';
@@ -93,7 +93,7 @@
         btns.style.cssText = 'display:flex;gap:8px;width:100%;margin-top:2px;';
 
         const yes = document.createElement('button');
-        yes.textContent = 'Yes, Scan';
+        yes.textContent = 'Start Tour';
         yes.style.cssText = [
             'flex:1',
             'background:#eb1d25',
