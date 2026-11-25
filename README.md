@@ -41,12 +41,18 @@ Founding Engineer with 5+ years taking products from 0 to 1, operating productio
 
 ## Featured Projects
 
+### Zoober
+Multi-segment hyperlocal commerce platform (restaurant, salon, grocery, meat shop) built 0→1. <100ms store discovery, real-time WebSocket sync, Flutter ecosystem across Android, iOS, and Web. Deployed on AWS.
+
 ### TingTing
 Hyperlocal grocery delivery ecosystem connecting customers, stores, pickers, and delivery partners. Built complete suite of apps with real-time order tracking and ERP integration.
 - 35+ Live Stores | 30K+ Users | 80K+ Orders | ₹1.5Cr+ Revenue
 
-### HyperFrames
-CLI for creating, inspecting, validating, and rendering programmatic HTML-based videos. Runs interactively for developers or fully automated by AI coding agents via `npx hyperframes`.
+### GrihaHomes
+Agent-centric property listing platform (Bengaluru). NestJS + PostGIS backend, Next.js frontend, Claude AI chat, SMS OTP auth, visit booking lifecycle.
+
+### Open Notifier
+Self-hostable multi-tenant push notification platform with MCP support. AI agents send FCM push to users' phones. Node.js + BullMQ + Valkey + Flutter app + SigNoz observability.
 
 ### snap-x
 CLI tool for rendering social media images from Satori `.mjs` design files. Node.js, zero-config, any size.
@@ -65,6 +71,7 @@ Complete Bhagavad Gita app with all 18 chapters. 40K+ downloads, 2K daily users.
 | Package | Stats |
 |---------|-------|
 | [flutter_lucide](https://pub.dev/packages/flutter_lucide) | 3.9K downloads |
+| [flutter_lucide_animated](https://pub.dev/packages/flutter_lucide_animated) | Featured in pqoqubbw/icons (6.8K stars) |
 | [Bhagavad Gita](https://play.google.com/store/apps/details?id=com.gita) | 40K+ downloads, 2K/day |
 | [gen-images](https://github.com/ravikovind/gen-images) | AI image generation pipeline |
 | [recipe_x](https://github.com/ravikovind/recipe_x) | 45K+ recipes worldwide |
