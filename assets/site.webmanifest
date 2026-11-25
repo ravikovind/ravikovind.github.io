@@ -1,11 +1,11 @@
 {
-    "name": "Ravi Kovind | Software Engineer",
+    "name": "Ravi Kovind | Founding Engineer",
     "short_name": "RK Portfolio",
-    "description": "Software Engineer with hands-on experience in Full-Stack, Mobile, Backend & Infrastructure",
+    "description": "Founding Engineer with 5+ years taking products from 0 to 1, owning architecture, release, and production operation across backend, mobile, and AI infrastructure.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#4F46E5",
+    "background_color": "#f3eee3",
+    "theme_color": "#eb1d25",
     "orientation": "portrait-primary",
     "icons": [
         {

@@ -17,12 +17,5 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Cover Letter -->
-  <url>
-    <loc>https://ravikovind.github.io/cover-letter.html</loc>
-    <lastmod>2026-11-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
 
 </urlset>

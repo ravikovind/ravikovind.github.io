@@ -1,6 +1,6 @@
 # Ravi Kovind
 
-> Software Engineer with 5+ years of experience designing, building, deploying, and maintaining production-grade applications. Specialises in full-stack, mobile (Flutter), backend, and infrastructure.
+> Founding Engineer with 5+ years of experience designing, building, deploying, and maintaining production-grade applications. Legal name: Ravi Kumar. Specialises in full-stack, mobile (Flutter), backend, and infrastructure.
 
 ## About
 
@@ -48,7 +48,7 @@ Built consumer-facing Flutter apps (Footbus, Livehappy and more) with BLoC state
 
 ## Education
 
-- B.Tech, Computer Science — National Institute of Technology, Allahabad (NIT Prayagraj)
+- B.Tech, Computer Science — National Institute of Technology, Allahabad
 
 ## Pages
 

@@ -40,6 +40,7 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ravi Kovind — Founding Engineer portfolio" />
     <meta property="og:site_name" content="Ravi Kovind Portfolio" />
     <meta property="og:locale" content="en_US" />
 
@@ -96,7 +97,7 @@
     <link rel="stylesheet" href="styles/style.css" />
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@0.260.0"></script>
+    <script src="https://unpkg.com/lucide@0.260.0" defer></script>
 
     <!-- Devicon for Tech Logos -->
     <link
@@ -104,54 +105,63 @@
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
 
-    <!-- Structured Data: Person -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ravi Kovind",
-        "url": "https://ravikovind.github.io",
-        "image": "https://ravikovind.github.io/assets/og-image.png",
-        "jobTitle": "Founding Engineer",
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "National Institute of Technology, Allahabad"
-        },
-        "sameAs": [
-          "https://github.com/ravikovind",
-          "https://linkedin.com/in/ravikovind",
-          "https://x.com/ravi_kovind",
-          "https://www.reddit.com/u/ravi_kovind"
-        ],
-        "knowsAbout": [
-          "JavaScript",
-          "TypeScript",
-          "Dart",
-          "Python",
-          "Java",
-          "Flutter",
-          "React",
-          "Node.js",
-          "MongoDB",
-          "AWS"
-        ],
-        "description": "Founding Engineer with 5+ years taking products from 0 to 1, owning architecture, release, and production operation across backend, mobile, and AI infrastructure."
-      }
-    </script>
-
-    <!-- Structured Data: WebSite -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Ravi Kovind Portfolio",
-        "url": "https://ravikovind.github.io",
-        "description": "Professional portfolio of Ravi Kovind, Software Engineer",
-        "author": {
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
           "@type": "Person",
-          "name": "Ravi Kovind"
+          "@id": "https://ravikovind.github.io/#person",
+          "name": "Ravi Kovind",
+          "alternateName": "Ravi Kumar",
+          "url": "https://ravikovind.github.io/",
+          "image": "https://ravikovind.github.io/assets/og-image.png",
+          "jobTitle": "Founding Engineer",
+          "description": "Founding Engineer with 5+ years taking products from 0 to 1, owning architecture, release, and production operation across backend, mobile, and AI infrastructure.",
+          "email": "hey.ravikovind@gmail.com",
+          "telephone": "+918433491441",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+          },
+          "nationality": { "@type": "Country", "name": "India" },
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "National Institute of Technology, Allahabad"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Voltvave Innovations Pvt Ltd",
+            "url": "https://zoober.in"
+          },
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Founding Engineer",
+            "occupationLocation": { "@type": "City", "name": "Bengaluru" },
+            "skills": "Node.js, Flutter, TypeScript, Python, AWS, Kafka, PostgreSQL, MongoDB, React, MCP"
+          },
+          "knowsAbout": ["JavaScript","TypeScript","Dart","Python","Java","Flutter","React","Node.js","MongoDB","AWS","Kafka","Model Context Protocol","System Design","Distributed Systems"],
+          "sameAs": [
+            "https://github.com/ravikovind",
+            "https://linkedin.com/in/ravikovind",
+            "https://x.com/ravi_kovind",
+            "https://www.reddit.com/u/ravi_kovind"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ravikovind.github.io/#website",
+          "name": "Ravi Kovind — Founding Engineer",
+          "url": "https://ravikovind.github.io/",
+          "description": "Professional portfolio of Ravi Kovind, Founding Engineer — backend, mobile, and AI infrastructure.",
+          "inLanguage": "en-US",
+          "author": { "@id": "https://ravikovind.github.io/#person" }
         }
-      }
+      ]
+    }
     </script>
   </head>
   <body>
@@ -168,7 +178,7 @@
     <header class="glass-header">
       <nav class="container" aria-label="Main navigation">
         <a href="#" class="logo" aria-label="Ravi Kovind - Home">
-          <img src="assets/logo.jpg" alt="RK" />
+          <img src="assets/logo.jpg" alt="Ravi Kovind" />
         </a>
         <div class="nav-links">
           <a href="#about">About</a>
