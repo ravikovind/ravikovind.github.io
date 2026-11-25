@@ -156,7 +156,7 @@
       this.style = document.createElement("style");
       this.style.setAttribute("data-swarmline", "");
       this.style.textContent =
-        `html[${ACTIVE}] body *:not([${SHOWN}]):not(swarmline-layer):not(#motion-toggle){visibility:hidden !important}` +
+        `html[${ACTIVE}] body *:not([${SHOWN}]):not(swarmline-layer):not(#motion-toggle):not(#motion-toggle *){visibility:hidden !important}` +
         `html[${ACTIVE}] [${SHOWN}]{visibility:visible !important}`;
     }
     hide() {
