@@ -45,6 +45,9 @@ Founding Engineer with 5+ years taking products from 0 to 1, operating productio
 Hyperlocal grocery delivery ecosystem connecting customers, stores, pickers, and delivery partners. Built complete suite of apps with real-time order tracking and ERP integration.
 - 35+ Live Stores | 30K+ Users | 80K+ Orders | ₹1.5Cr+ Revenue
 
+### HyperFrames
+CLI for creating, inspecting, validating, and rendering programmatic HTML-based videos. Runs interactively for developers or fully automated by AI coding agents via `npx hyperframes`.
+
 ### snap-x
 CLI tool for rendering social media images from Satori `.mjs` design files. Node.js, zero-config, any size.
 
@@ -68,7 +71,7 @@ Complete Bhagavad Gita app with all 18 chapters. 40K+ downloads, 2K daily users.
 
 ## Portfolio Features
 
-- **Quick Scan** — swarmline-powered multi-cursor page scan animation (ink + red theme)
+- **Page Tour** — swarmline-powered multi-cursor page scan animation (ink + red theme)
 - Particle network hero background (brand red + ink black)
 - Typing effect with dynamic words
 - Horizontal scrolling tech stack timeline
@@ -83,6 +86,46 @@ git clone https://github.com/ravikovind/ravikovind.github.io.git
 cd ravikovind.github.io
 open index.html
 ```
+
+## Branding
+
+Portfolio reel and brand assets are generated programmatically. Scripts live in [`branding/`](branding/).
+
+### Portfolio Reel — `branding/record-tour.mjs`
+
+Records the live portfolio website with the Page Tour animation running, then encodes a phone-format MP4.
+
+**Requirements:** Node.js 22+, Chromium, FFmpeg, Python 3
+
+```bash
+# Install Playwright (one-time)
+npm install playwright-core
+npx playwright install ffmpeg
+
+# Record and encode
+node branding/record-tour.mjs
+# Output: ravi-final.mp4 (1080×1920, ~70s, H.264 Baseline + AAC)
+```
+
+**How it works:**
+1. Launches headless Chromium at `540×960` viewport (9:16 mobile, matches recordVideo canvas exactly — no letterboxing)
+2. Clears `localStorage` to force the first-visit Page Tour prompt
+3. Clicks "Start Tour" — triggers the swarmline animation across the page
+4. Scrolls through the full page over ~120 seconds (40 steps × 3s each)
+5. Saves raw VP9 WebM via Playwright's built-in video recorder
+6. Generates a procedural background music track (`branding/gen-music.py`) matched to the final duration
+7. FFmpeg encodes: 2× speed (`setpts=0.5*PTS`) + lanczos 2× upscale to 1080×1920 + AAC audio + music fade-out
+
+### Background Music — `branding/gen-music.py`
+
+Pure-Python procedural music generator — no dependencies beyond the standard library.
+
+```bash
+python3 branding/gen-music.py output.wav 60
+# Generates 60s of 128 BPM beat (kick/snare/hihat + Am pentatonic bass + pad chords)
+```
+
+**Args:** `<output.wav> <duration_seconds>`
 
 ## Contact
 
