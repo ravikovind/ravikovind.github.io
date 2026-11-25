@@ -29,7 +29,7 @@ Founding Engineer with 5+ years taking products from 0 to 1, operating productio
 
 ## Tech Stack
 
-**Languages:** Dart, Go, JavaScript, TypeScript, Python, Java
+**Languages:** Dart, JavaScript, TypeScript, Python, Java
 
 **Frameworks:** Flutter, React, Next.js, Node.js, Express, FastAPI
 
