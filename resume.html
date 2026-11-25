@@ -643,7 +643,13 @@
         </div>
       </section>
     </div>
+  <script src="https://unpkg.com/lucide@0.260.0" defer></script>
   <script src="scripts/swarmline.js" defer></script>
   <script src="scripts/motion.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
   </body>
 </html>
