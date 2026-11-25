@@ -57,26 +57,26 @@
         prompt.setAttribute('aria-label', 'Page Tour prompt');
         prompt.style.cssText = [
             'position:fixed',
-            'bottom:88px',
+            'bottom:100px',
             'left:50%',
-            'transform:translateX(-50%) translateY(16px)',
+            'transform:translateX(-50%) translateY(24px)',
             'background:#f3eee3',
-            'border:1.5px solid #111111',
-            'border-radius:14px',
-            'padding:18px 20px 16px',
+            'border:2px solid #111111',
+            'border-radius:21px',
+            'padding:27px 30px 24px',
             'display:flex',
             'flex-direction:column',
             'align-items:center',
-            'gap:10px',
+            'gap:15px',
             'font-family:inherit',
-            'font-size:14px',
+            'font-size:21px',
             'color:#111111',
-            'box-shadow:0 8px 32px rgba(17,17,17,0.14)',
+            'box-shadow:0 12px 48px rgba(17,17,17,0.14)',
             'z-index:999997',
             'opacity:0',
             'transition:opacity 0.25s ease,transform 0.25s ease',
-            'max-width:260px',
-            'width:calc(100vw - 48px)',
+            'max-width:390px',
+            'width:calc(100vw - 32px)',
             'text-align:center',
             'pointer-events:all',
         ].join(';');
@@ -90,7 +90,7 @@
         sub.textContent = 'Animate and highlight every element on this page';
 
         const btns = document.createElement('div');
-        btns.style.cssText = 'display:flex;gap:8px;width:100%;margin-top:2px;';
+        btns.style.cssText = 'display:flex;gap:12px;width:100%;margin-top:3px;';
 
         const yes = document.createElement('button');
         yes.textContent = 'Start Tour';
@@ -99,9 +99,9 @@
             'background:#eb1d25',
             'color:#f3eee3',
             'border:none',
-            'border-radius:8px',
-            'padding:9px 12px',
-            'font-size:13px',
+            'border-radius:12px',
+            'padding:14px 18px',
+            'font-size:19px',
             'font-weight:600',
             'cursor:pointer',
             'font-family:inherit',
@@ -115,9 +115,9 @@
             'background:transparent',
             'color:#111111',
             'border:1.5px solid #ddd8ce',
-            'border-radius:8px',
-            'padding:9px 12px',
-            'font-size:13px',
+            'border-radius:12px',
+            'padding:14px 18px',
+            'font-size:19px',
             'cursor:pointer',
             'font-family:inherit',
             'transition:border-color 0.15s',
